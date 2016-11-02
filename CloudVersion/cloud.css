@@ -1,4 +1,4 @@
-#cloud {
+.cloud {
 width: 350px; height: 120px;
 
 background: #f2f9fe;
@@ -16,16 +16,18 @@ font-size: 40px;
 
 position: relative;
 margin: 120px auto 20px;
+
+display:inline-block;
 }
 
-#cloud:after, #cloud:before {
+.cloud:after, .cloud:before {
 content: '';
 position: absolute;
 background: #f2f9fe;
-z-index: -1
+z-index: 0;
 }
 
-#cloud:after {
+.cloud:after {
 width: 100px; height: 100px;
 top: -50px; left: 50px;
 
@@ -34,7 +36,7 @@ border-radius: 100px;
 -moz-border-radius: 100px;
 }
 
-#cloud:before {
+.cloud:before {
 width: 180px; height: 180px;
 top: -90px; right: 50px;
 
@@ -43,23 +45,24 @@ border-radius: 200px;
 -moz-border-radius: 200px;
 }
 
-.buttonLeft {
+.buttonLeft, .buttonRight {
   background-color: rgba(0, 0, 0, 0);
   color: #000000;
   font-size: 60px;
-  float: left;
   text-align: center;
   width: 120px; height: 120px;
-    display: inline;
+  display: inline;
   border-radius: 100px;
   -webkit-border-radius: 100px;
   -moz-border-radius: 100px;
 }
 
+.buttonLeft {
+  float: left;
+
+}
+
 .buttonRight {
-  background-color: rgba(0, 0, 0, 0);
-  color: #000000;
-  font-size: 60px;
   float: right;
   text-align: center;
   width: 120px; height: 120px;
@@ -78,4 +81,12 @@ border-radius: 200px;
   left:0px;
   right:0px;
 
+}
+
+
+input[type="button"]
+{
+  border: none;
+  box-shadow: none !important;
+  outline: 0;
 }

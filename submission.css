@@ -1,0 +1,16 @@
+#submit {
+  width: inherit;
+  height: 100px;
+  margin-top: 100px;
+  padding-top: 35px;
+
+  text-align: center;
+  font-size: 40px;
+  font-family: Arial, Helvetica, sans-serif;
+
+
+  background-color: rgb(90, 100, 150);
+  box-shadow: 1px 3px 20px;
+
+
+}

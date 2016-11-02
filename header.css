@@ -1,0 +1,14 @@
+#header {
+  width: 800px;
+  height: 80px;
+
+  margin: 0 auto;
+  text-align: center;
+  vertical-align: middle;
+
+}
+
+#header span {
+  font-size: 50px;
+  color: rgb(162, 178, 212);
+}
