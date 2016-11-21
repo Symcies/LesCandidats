@@ -1,0 +1,29 @@
+{
+  "name": "webtry",
+  "version": "0.1.0",
+  "description": "webtry",
+  "main": "express-server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/Symcies/LesCandidats.git"
+  },
+  "author": "Igor Koval",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Symcies/LesCandidats/issues"
+  },
+  "homepage": "https://github.com/Symcies/LesCandidats#readme",
+  "dependencies": {
+    "ejs": "^2.5.2",
+    "express": "^4.14.0",
+    "mongodb": "^2.2.11",
+    "socket.io": "^1.5.1",
+    "survey-react": "^0.10.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0"
+  }
+}

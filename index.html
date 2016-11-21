@@ -2,11 +2,11 @@
 <html>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <head>
-  <link rel="stylesheet" type="text/css" href="background.css"></link>
-  <link rel="stylesheet" type="text/css" href="header.css"></link>
-  <link rel="stylesheet" type="text/css" href="content.css"></link>
-  <link rel="stylesheet" type="text/css" href="buttons.css"></link>
-  <link rel="stylesheet" type="text/css" href="submission.css"></link>
+  <link rel="stylesheet" type="text/css" href="/css/background.css"></link>
+  <link rel="stylesheet" type="text/css" href="/css/header.css"></link>
+  <link rel="stylesheet" type="text/css" href="/css/content.css"></link>
+  <link rel="stylesheet" type="text/css" href="/css/buttons.css"></link>
+  <link rel="stylesheet" type="text/css" href="/css/submission.css"></link>
 </head>
 <body>
 
@@ -26,56 +26,58 @@
       <div class="cloud">
         <input type="button" class="buttonLeft" value="-"></input>
         <input type="button" class="buttonRight" value="+"></input>
-        <div class="cloudText">Système Politique</div>
+        <div class="cloudText" data-preference = "0">Système Politique</div>
       </div>
 
       <div class="cloud">
         <input type="button" class="buttonLeft" value="-"></input>
         <input type="button" class="buttonRight" value="+"></input>
-        <div class="cloudText">Economie et Finances</div>
+        <div class="cloudText" data-preference = "0">Economie et Finances</div>
       </div>
 
       <div class="cloud">
         <input type="button" class="buttonLeft" value="-"></input>
         <input type="button" class="buttonRight" value="+"></input>
-        <div class="cloudText">Politique étrangère</div>
+        <div class="cloudText" data-preference = "0">Politique étrangère</div>
       </div>
 
       <div class="cloud">
         <input type="button" class="buttonLeft" value="-"></input>
         <input type="button" class="buttonRight" value="+"></input>
-        <div class="cloudText">Sécurité</div>
+        <div class="cloudText" data-preference = "0" data-preference = "0">Sécurité</div>
       </div>
 
       <div class="cloud">
         <input type="button" class="buttonLeft" value="-"></input>
         <input type="button" class="buttonRight" value="+"></input>
-        <div class="cloudText">Justice</div>
+        <div class="cloudText" data-preference = "0">Justice</div>
       </div>
 
       <div class="cloud">
         <input type="button" class="buttonLeft" value="-"></input>
         <input type="button" class="buttonRight" value="+"></input>
-        <div class="cloudText">Emploi</div>
+        <div class="cloudText" data-preference = "0">Emploi</div>
       </div>
 
       <div class="cloud">
         <input type="button" class="buttonLeft" value="-"></input>
         <input type="button" class="buttonRight" value="+"></input>
-        <div class="cloudText">Environnement</div>
+        <div class="cloudText" data-preference = "0">Environnement</div>
       </div>
 
     </div>
 
     <div id="submit">
-       Submit your answer 
+       <input id="submit-button" type="button" value="Soumettez vos priorités"></input>
     </div>
 
   </div>
 
 
 
-    <script src = "selectTheme.js"></script>
+    <script src="js/selectTheme.js">console.log(__dirnam)</script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="js/socket-user.js"></script>
 
 </body>
 </html>
