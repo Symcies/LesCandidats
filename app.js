@@ -3,6 +3,7 @@
 //////////////////////////////////
 var express = require('express');
 var app = express();
+var bodyParser = require('body-parser');
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
 
@@ -19,6 +20,12 @@ var userPoliticalCompliance = require('./userPoliticalCompliance')
 /////////////////////////////////////////
 app.use(express.static(__dirname + '/public'));
 
+
+/////////////////////////////////////////
+//LOL
+app.use(bodyParser.urlencoded( {extended: true}));
+app.use(bodyParser.json());
+
 /////////////////////////
 /// Launch the server ///
 /////////////////////////
@@ -28,15 +35,8 @@ app.get('/', function (req, res) {
   res.sendFile(__dirname + '/index.html');
 });
 
-io.on('connection', function (socket) {
-  socket.on('user-theme-preference', function (data) {
-
-    var userQuestions = userPreference.userQuestions(data);
-    // TODO : Send the questions to the user.
-    console.log(1);
-    app.post('/questions', function (req, res) {
-      console.log(2);
-      res.sendFile(__dirname + '/questions.html');
-    });
-  });
+app.post('/questions', function(req, res) {
+  console.log(req.body);
+  //console.log(res.json(req.body));
+  res.sendFile(__dirname + '/questions.html');
 });
