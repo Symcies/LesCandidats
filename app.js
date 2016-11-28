@@ -1,11 +1,18 @@
+var React = require('react');
+var ReactDOM = require('react-dom');
+var Survey = require("survey-react");
+Survey.Survey.cssType = "bootstrap";
+
+
 //////////////////////////////////
 ///  Import the server modules ///
 //////////////////////////////////
 var express = require('express');
 var app = express();
+var url = require('url');
 var bodyParser = require('body-parser');
 var server = require('http').Server(app);
-var io = require('socket.io')(server);
+var querystring = require('querystring');
 
 
 //////////////////////////////////////
@@ -20,11 +27,19 @@ var userPoliticalCompliance = require('./userPoliticalCompliance')
 /////////////////////////////////////////
 app.use(express.static(__dirname + '/public'));
 
+app.set('views', __dirname + '/views');
+app.engine('html', require('ejs').renderFile);
 
 /////////////////////////////////////////
-//LOL
+/// Package used
+/////////////////////////////////////////
 app.use(bodyParser.urlencoded( {extended: true}));
 app.use(bodyParser.json());
+
+/////////////////////////////////////////
+/// Global variables
+/////////////////////////////////////////
+var themes;
 
 /////////////////////////
 /// Launch the server ///
@@ -35,8 +50,8 @@ app.get('/', function (req, res) {
   res.sendFile(__dirname + '/index.html');
 });
 
-app.post('/questions', function(req, res) {
-  console.log(req.body);
-  //console.log(res.json(req.body));
-  res.sendFile(__dirname + '/questions.html');
+app.get('/questions', function(req, res) {
+  var params = querystring.parse(url.parse(req.url).query);
+  var questions = userPreference.userQuestions(params);
+  res.render('questions.ejs', {surveyJSON:questions});
 });

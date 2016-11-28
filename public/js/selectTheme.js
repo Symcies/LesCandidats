@@ -47,3 +47,23 @@ var colors = { '0': 'rgb(247, 220, 168)',
 
   }
 })();
+
+
+///////////////////////////
+/// Send data to server ///
+///////////////////////////
+
+(function() {
+  document.getElementById('submission').addEventListener('click', function(e) {
+    var url = 'http://localhost:8080/questions?';
+
+    var themes = document.getElementsByClassName('cloudText');
+    for(var i = 0; i < themes.length; ++i) {
+      var themeName = themes[i].innerText;
+      var themeValue = themes[i].dataset.preference;
+      url += themeName + '=' + themeValue + '&';
+    }
+
+    location.href = url;
+  });
+})();

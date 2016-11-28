@@ -3,11 +3,40 @@
 /// Connect to MongoDB host ///
 ///////////////////////////////
 var MongoClient = require('mongodb').MongoClient;
-//MongoClient.connect('mongodb://publicuser:publicmdp@ds155747.mlab.com:55747/political-preference-questions'), (err, database) => {
+var db;
 
-//});
+MongoClient.connect('mongodb://publicuser:publicmdp@ds155747.mlab.com:55747/political-preference-questions', (err, database) => {
+  if (err) return console.log(err)
+  db = database
+})
+
+////////////////////////////////////////
+/// MongoDB function to extract data ///
+////////////////////////////////////////
+var getRandomSubarray = function(arr, size) {
+    var shuffled = arr.slice(0), i = arr.length, temp, index;
+    while (i--) {
+        index = Math.floor((i + 1) * Math.random());
+        temp = shuffled[index];
+        shuffled[index] = shuffled[i];
+        shuffled[i] = temp;
+    }
+    return shuffled.slice(0, size);
+}
 
 
+var GetIdsWithCorrespondingTheme = function(theme, database, callback) {
+  var listIDS = [];
+  console.log(theme);
+  database.collection('questions').find({"theme":theme}, {"_id":1}).toArray(function(err, results) {
+  });
+  return [];
+};
+
+
+/////////////////////////////////////////////////////
+/// Select the questions based on user preference ///
+/////////////////////////////////////////////////////
 var ConvertToQuestionsPerTheme = function(userData) {
 
   /////////////////////////
@@ -39,7 +68,22 @@ var ConvertToQuestionsPerTheme = function(userData) {
 };
 
 var getListIDs = function(questionsPerTheme) {
-  return [0, 1, 2, 3, 4, 5, 6, 9, 38];
+  var finalIDs = [];
+
+  var questionsPerThemeIterator = Object.keys(questionsPerTheme);
+  for(var i = 0; i < questionsPerThemeIterator.length; ++i) {
+    var name = questionsPerThemeIterator[i];
+    var numberOfQuestions = questionsPerTheme[name];
+    var listIDs = GetIdsWithCorrespondingTheme(name, db);
+    console.log(listIDs);
+    if(listIDs.length > numberOfQuestions) {
+      var listIDs = getRandomSubarray(listIDs, numberOfQuestions);
+    }
+    finalIDs.concat(listIDs);
+  }
+
+  //console.log(finalIDs);
+  return finalIDs;
 };
 
 
@@ -61,7 +105,23 @@ var shuffleListIDs = function(listIDs) {
 };
 
 var getQuestionsFromMongoDB = function(listIDs) {
-  return listIDs;
+  var surveyJSON = { title: "Tell us, what technologies do you use?", pages: [
+    { name:"page1", questions: [
+      { type: "radiogroup", choices: [ "Yes", "No" ], isRequired: true, name: "frameworkUsing",title: "Do you use any front-end framework like Bootstrap?" },
+      { type: "checkbox", choices: ["Bootstrap","Foundation"], hasOther: true, isRequired: true, name: "framework", title: "What front-end framework do you use?", visible: false }
+    ]},
+        { name: "page2", questions: [
+          { type: "radiogroup", choices: ["Yes","No"],isRequired: true, name: "mvvmUsing", title: "Do you use any MVVM framework?" },
+          { type: "checkbox", choices: [ "AngularJS", "KnockoutJS", "React" ], hasOther: true, isRequired: true, name: "mvvm", title: "What MVVM framework do you use?", visible: false } ] },
+        { name: "page3",questions: [
+          { type: "comment", name: "about", title: "Please tell us about your main requirements for Survey library" } ] }
+       ],
+       triggers: [
+        { type: "visible", operator: "equal", value: "Yes", name: "frameworkUsing", questions: ["framework"]},
+        { type: "visible", operator: "equal", value: "Yes", name: "mvvmUsing", questions: ["mvvm"]}
+     ]
+  };
+  return surveyJSON;
 };
 
 

@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<head>
+  <link rel="stylesheet" type="text/css" href="/css/background.css"></link>
+  <link rel="stylesheet" type="text/css" href="/css/header.css"></link>
+  <link rel="stylesheet" type="text/css" href="/css/content.css"></link>
+
+</head>
+<body>
+
+  <div id="header">
+    <span>Les Candidats 2017</span>
+  </div>
+
+
+
+  <div id="page-wrap">
+    <div id="surveyContainer">
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.3.0/knockout-min.js"></script>
+  <script src="js/survey.ko.min.js"></script>
+
+
+  <script>
+  Survey.Survey.cssType = "bootstrap";
+  function sendDataToServer(survey) {
+    var resultAsString = JSON.stringify(survey.data);
+    console.log(resultAsString); //send Ajax request to your web server.
+  };
+
+  var questions = <%- JSON.stringify(surveyJSON) %>;
+  var survey = new Survey.Survey(questions, "surveyContainer");
+  //Use onComplete event to save the data
+  survey.onComplete.add(sendDataToServer);
+  </script>
+
+</body>
+</html>
