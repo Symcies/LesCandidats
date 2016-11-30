@@ -51,7 +51,11 @@ app.get('/', function (req, res) {
 });
 
 app.get('/questions', function(req, res) {
-  var params = querystring.parse(url.parse(req.url).query);
-  var questions = userPreference.userQuestions(params);
-  res.render('questions.ejs', {surveyJSON:questions});
+  var userThemeSelection = querystring.parse(url.parse(req.url).query);
+  var renderSurvey = function(questions)
+  {
+    res.render('questions.ejs', {surveyJSON:questions});
+  };
+
+  userPreference.constructSurvey(userThemeSelection, renderSurvey);
 });
