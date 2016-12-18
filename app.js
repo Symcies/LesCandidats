@@ -56,6 +56,6 @@ app.get('/questions', function(req, res) {
   {
     res.render('questions.ejs', {surveyJSON:questions});
   };
-
-  userPreference.constructSurvey(userThemeSelection, renderSurvey);
+  var totalNumberOfQuestions = 20;
+  userPreference.constructSurvey(userThemeSelection, totalNumberOfQuestions,  renderSurvey);
 });

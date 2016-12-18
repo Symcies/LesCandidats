@@ -1,3 +1,8 @@
+//////////////////////////////////
+/// Different libraries loaded ///
+//////////////////////////////////
+var async = require('async');
+
 
 ///////////////////////////////
 /// Connect to MongoDB host ///
@@ -10,9 +15,10 @@ MongoClient.connect('mongodb://publicuser:publicmdp@ds155747.mlab.com:55747/poli
   db = database
 })
 
-////////////////////////////////////////
-/// MongoDB function to extract data ///
-////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+///  Select the IDS of the questions out of the mongo database
+////////////////////////////////////////////////////////////////////////////////
+
 var getRandomSubarray = function(arr, size) {
     var shuffled = arr.slice(0), i = arr.length, temp, index;
     while (i--) {
@@ -24,37 +30,20 @@ var getRandomSubarray = function(arr, size) {
     return shuffled.slice(0, size);
 }
 
-
-var GetIdsWithCorrespondingTheme = function(theme, database, callback) {
-  var listIDS = [];
-  console.log(theme);
-  database.collection('questions').find({"theme":theme}, {"_id":1}).toArray(function(err, results) {
-  });
-  return [];
-};
-
-
-
-
-var getListIDs = function(questionsPerTheme) {
-  var finalIDs = [];
-
-  var questionsPerThemeIterator = Object.keys(questionsPerTheme);
-  for(var i = 0; i < questionsPerThemeIterator.length; ++i) {
-    var name = questionsPerThemeIterator[i];
-    var numberOfQuestions = questionsPerTheme[name];
-    var listIDs = GetIdsWithCorrespondingTheme(name, db);
-    console.log(listIDs);
-    if(listIDs.length > numberOfQuestions) {
-      var listIDs = getRandomSubarray(listIDs, numberOfQuestions);
+var GetQuestionIDsOfGivenTheme = function(themeName, themeNumberOfQuestions, callback) {
+  db.collection('questions').find({"theme":themeName}, {"_id":1}).toArray(function(err, questionIDs) {
+    listQuestionIDs = [];
+    for(var i = 0; i < questionIDs.length; ++i)
+    {
+      listQuestionIDs.push(questionIDs[i]["_id"]);
     }
-    finalIDs.concat(listIDs);
-  }
-
-  //console.log(finalIDs);
-  return finalIDs;
+    if(questionIDs.length > themeNumberOfQuestions)
+    {
+      questionIDs = getRandomSubarray(questionIDs, themeNumberOfQuestions);
+    }
+    callback(err, listQuestionIDs);
+  });
 };
-
 
 
 var shuffleListIDs = function(listIDs) {
@@ -73,7 +62,32 @@ var shuffleListIDs = function(listIDs) {
   return listIDs;
 };
 
-var getQuestionsFromMongoDB = function(listIDs) {
+
+////////////////////////////////////////
+/// MongoDB function to extract data ///
+////////////////////////////////////////
+
+var transformMongoDBQuestionIntoSurveyJSQuestion = function(MongoQuestions, surveyRender)
+{
+  var surveyJSON = {};
+  surveyJSON["title"] = "Questions";
+  pages = [];
+  for(var i = 0; i < MongoQuestions.length; ++i)
+  {
+      page = {};
+      page["name"] = "page" + i;
+      page["questions"] = [MongoQuestions[i]["question"]];
+      //console.log("PAGE", page);
+      pages.push(page);
+  }
+  surveyJSON["pages"] = pages;
+  console.log(surveyJSON);
+  surveyRender(surveyJSON);
+};
+
+
+var getQuestionsFromMongoDB = function(listIDs, surveyRender) {
+/*
   var surveyJSON = { title: "Tell us, what technologies do you use?", pages: [
     { name:"page1", questions: [
       { type: "radiogroup", choices: [ "Yes", "No" ], isRequired: true, name: "frameworkUsing",title: "Do you use any front-end framework like Bootstrap?" },
@@ -90,98 +104,44 @@ var getQuestionsFromMongoDB = function(listIDs) {
         { type: "visible", operator: "equal", value: "Yes", name: "mvvmUsing", questions: ["mvvm"]}
      ]
   };
-  return surveyJSON;
+  */
+
+  db.collection('questions').find({"_id": {$in: listIDs}}).toArray(function(err, questions) {
+
+    //console.log("MONGO QUESTIONS", questions);
+    transformMongoDBQuestionIntoSurveyJSQuestion(questions, surveyRender);
+  });
 };
-
-
-
-/////////////////////////////////////////////////////
-/// Select the questions based on user preference ///
-/////////////////////////////////////////////////////
-var ConvertToQuestionsPerTheme = function(userData) {
-
-  /////////////////////////
-  // NUMBER OF QUESTIONS //
-  var numberOfQuestions = 20;
-  //   TODO : MOVE IT    //
-  /////////////////////////
-
-  var userDataIterator = Object.keys(userData);
-
-  var sumPreferences = 0;
-  for(var i = 0; i < userDataIterator.length; ++i) {
-    var name = userDataIterator[i];
-    sumPreferences += parseInt(userData[name]);
-  }
-
-  var questionsPerTheme = {};
-  for(var i = 0; i < userDataIterator.length; ++i) {
-    var name = userDataIterator[i];
-    var questions = userData[name] * numberOfQuestions / sumPreferences;
-    questionsPerTheme[name] = questions;
-  }
-
-  // TODO : Rounding the number of questions
-  // TODO : Return the question if the sum is null!
-
-  return questionsPerTheme;
-
-};
-
-
 
 
 ////////////////////////////////////////////////////////////////////////////////
 ///  Convert the user favorite themes into a personnalized survey to render  ///
 ////////////////////////////////////////////////////////////////////////////////
 
-var constructSurvey = function(userFavoriteTheme, callbackFunction) {
+var constructSurvey = function(userThemeSelection, totalNumberOfQuestions, surveyRender) {
 
-    /// Get the number of question per theme
-    
-    /////////////////////////
-    // NUMBER OF QUESTIONS //
-    var numberOfQuestions = 20;
-    //   TODO : MOVE IT    //
-    /////////////////////////
-
-    var userDataIterator = Object.keys(userData);
+    var iteratorTheme = Object.keys(userThemeSelection);
 
     var sumPreferences = 0;
-    for(var i = 0; i < userDataIterator.length; ++i) {
-      var name = userDataIterator[i];
-      sumPreferences += parseInt(userData[name]);
+    for(var i = 0; i < iteratorTheme.length; ++i) {
+      var themeName = iteratorTheme[i];
+      sumPreferences += parseInt(userThemeSelection[themeName]);
     }
 
-    var questionsPerTheme = {};
-    for(var i = 0; i < userDataIterator.length; ++i) {
-      var name = userDataIterator[i];
-      var questions = userData[name] * numberOfQuestions / sumPreferences;
-      questionsPerTheme[name] = questions;
+    getQuestionIDsPerTheme = [];
+    for(var i = 0; i < iteratorTheme.length; ++i) {
+      var themeName = iteratorTheme[i];
+      var themeNumberOfQuestions = parseInt(userThemeSelection[themeName]) * totalNumberOfQuestions / sumPreferences;
+      getQuestionIDsPerTheme.push( GetQuestionIDsOfGivenTheme.bind(null, themeName, themeNumberOfQuestions) );
     }
 
-    // TODO : Rounding the number of questions
-    // TODO : Return the question if the sum is null!
-
-
-
-    // TO USE IN THIS ORDER
-
-    // Get the number of questions per theme w.r.t the user preference
-    //ConvertToQuestionsPerTheme(userFavoriteTheme);
-
-    // From a number of questions/theme to a list of ID/theme
-    //var listIDs = getListIDs(questionsPerTheme);
-
-    // Get a shuffled list of IDs
-    //listIDs = shuffleListIDs(listIDs);
-
-    // Get the questions and return them to the front
-    //var questions = getQuestionsFromMongoDB(listIDs);
-
-
-    /// Render the view with the personalized questions
-    //callbackFunction(questions);
+    async.parallel(getQuestionIDsPerTheme
+    , function(err, results)
+    {
+        listIDs = [].concat.apply([], results);
+        listIDs = shuffleListIDs(listIDs);
+        getQuestionsFromMongoDB(listIDs, surveyRender);
+    });
 };
 
 
