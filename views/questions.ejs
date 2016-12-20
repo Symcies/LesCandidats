@@ -21,21 +21,18 @@
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.3.0/knockout-min.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="js/survey.ko.min.js"></script>
 
 
   <script>
   Survey.Survey.cssType = "bootstrap";
-  function sendDataToServer(survey) {
-    var resultAsString = JSON.stringify(survey.data);
-    console.log(resultAsString); //send Ajax request to your web server.
-  };
 
   var questions = <%- JSON.stringify(surveyJSON) %>;
-  var survey = new Survey.Survey(questions, "surveyContainer");
-  //Use onComplete event to save the data
-  survey.onComplete.add(sendDataToServer);
+  var questionIDs = <%- JSON.stringify(listIDs) %>;
+
   </script>
+  <script src ="js/SurveyAnswersToBack.js"> </script>
 
 </body>
 </html>

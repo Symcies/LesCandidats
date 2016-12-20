@@ -52,10 +52,15 @@ app.get('/', function (req, res) {
 
 app.get('/questions', function(req, res) {
   var userThemeSelection = querystring.parse(url.parse(req.url).query);
-  var renderSurvey = function(questions)
+  var renderSurvey = function(questionIDs, questions)
   {
-    res.render('questions.ejs', {surveyJSON:questions});
+    res.render('questions.ejs', {listIDs:questionIDs, surveyJSON:questions});
   };
   var totalNumberOfQuestions = 20;
   userPreference.constructSurvey(userThemeSelection, totalNumberOfQuestions,  renderSurvey);
+});
+
+app.post('/answers', function(req, res) {
+  console.log(req.body);
+  res.render('answers.ejs');
 });
