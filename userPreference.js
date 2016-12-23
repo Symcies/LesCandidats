@@ -72,6 +72,7 @@ var transformMongoDBQuestionIntoSurveyJSQuestion = function(listIDs, MongoQuesti
   var surveyJSON = {};
   surveyJSON["title"] = "Questions";
   pages = [];
+  MongoQuestions = shuffleListIDs(MongoQuestions);
   for(var i = 0; i < MongoQuestions.length; ++i)
   {
       page = {};
@@ -80,7 +81,7 @@ var transformMongoDBQuestionIntoSurveyJSQuestion = function(listIDs, MongoQuesti
       pages.push(page);
   }
   surveyJSON["pages"] = pages;
-  surveyRender(listIDs, surveyJSON);
+  surveyRender(surveyJSON);
 };
 
 
@@ -116,7 +117,6 @@ var constructSurvey = function(userThemeSelection, totalNumberOfQuestions, surve
     , function(err, results)
     {
         listIDs = [].concat.apply([], results);
-        listIDs = shuffleListIDs(listIDs);
         getQuestionsFromMongoDB(listIDs, surveyRender);
     });
 };

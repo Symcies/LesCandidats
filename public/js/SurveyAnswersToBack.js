@@ -1,8 +1,6 @@
 function sendDataToServer(survey) {
   var resultAsString = JSON.stringify(survey.data);
 
-
-
   $.ajax({
     type: "POST",
     url: '/answers',
@@ -13,7 +11,6 @@ function sendDataToServer(survey) {
     error: function(err){ alert('error'); },
     contentType: "application/json"
   });
-
 };
 
 

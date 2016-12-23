@@ -58,12 +58,28 @@ var colors = { '0': 'rgb(247, 220, 168)',
     var url = 'http://localhost:8080/questions?';
 
     var themes = document.getElementsByClassName('cloudText');
+    userData = {};
     for(var i = 0; i < themes.length; ++i) {
       var themeName = themes[i].innerText;
       var themeValue = themes[i].dataset.preference;
+      userData[themeName] = themeValue;
       url += themeName + '=' + themeValue + '&';
     }
 
     location.href = url;
+    /*
+    userData = JSON.stringify(userData);
+    $.ajax({
+      type: "POST",
+      url: '/questions',
+      data: userData,
+      success: function(html){
+         $('body').html(html); // place the html wherever you like
+      },
+      error: function(err){ alert('error'); },
+      contentType: "application/json"
+    });
+    */
+
   });
 })();

@@ -52,15 +52,32 @@ app.get('/', function (req, res) {
 
 app.get('/questions', function(req, res) {
   var userThemeSelection = querystring.parse(url.parse(req.url).query);
-  var renderSurvey = function(questionIDs, questions)
+  var renderSurvey = function(questions)
   {
-    res.render('questions.ejs', {listIDs:questionIDs, surveyJSON:questions});
+    res.render('questions.ejs', {surveyJSON:questions});
   };
   var totalNumberOfQuestions = 20;
   userPreference.constructSurvey(userThemeSelection, totalNumberOfQuestions,  renderSurvey);
 });
 
+
+/*
+app.post('/questions', function(req, res) {
+  console.log("ok");
+  var renderSurvey = function(questions)
+  {
+    res.render('questions.ejs', {surveyJSON:questions});
+  };
+  var totalNumberOfQuestions = 20;
+  userPreference.constructSurvey(req.body, totalNumberOfQuestions,  renderSurvey);
+});
+*/
+
 app.post('/answers', function(req, res) {
-  console.log(req.body);
-  res.render('answers.ejs');
+  var renderResults = function(results)
+  {
+    res.render('answers.ejs', {results:results});
+  }
+  userPoliticalCompliance.computeResults(req.body, renderResults);
+
 });
