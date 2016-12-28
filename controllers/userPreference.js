@@ -86,7 +86,8 @@ var transformMongoDBQuestionIntoSurveyJSQuestion = function(listIDs, MongoQuesti
 
 
 var getQuestionsFromMongoDB = function(listIDs, surveyRender) {
-  db.collection('questions').find({"_id": {$in: listIDs}}).toArray(function(err, questions) {
+  db.collection('questions').find({"_id": {$in: listIDs}}, {question:1, _id:0, "question.type":1, "question.choices":1, "question.name":1}).toArray(function(err, questions) {
+    //console.log(questions);
     transformMongoDBQuestionIntoSurveyJSQuestion(listIDs, questions, surveyRender);
   });
 };

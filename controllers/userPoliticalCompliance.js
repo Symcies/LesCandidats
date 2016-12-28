@@ -23,8 +23,18 @@ MongoClient.connect('mongodb://publicuser:publicmdp@ds155747.mlab.com:55747/poli
 
 
 var getResultsOfGivenQuestion = function(questionText, questionAnswer, callback) {
-  db.collection('questions').find({"question.name":questionText}, {"reponses":1, "_id":0}).toArray(function(err, politicalPreference) {
-    callback(err, politicalPreference[0].reponses[questionAnswer])
+  var Query = {
+    "question.name": questionText,
+    "question.choices" : { $elemMatch : { "value" : questionAnswer }}
+  };
+  var Projection = {
+    "question.choices.$": 1,
+    "_id": 0
+  };
+
+  db.collection('questions').find(Query, Projection).toArray(function(err, politicalPreference) {
+    //console.log(politicalPreference[0].question.choices[0].answers);
+    callback(err, politicalPreference[0].question.choices[0].answers)
   });
 
 };

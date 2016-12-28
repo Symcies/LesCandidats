@@ -19,8 +19,8 @@ var querystring = require('querystring');
 /// Import the JS backend modules ///
 /////////////////////////////////////
 
-var userPreference = require('./userPreference');
-var userPoliticalCompliance = require('./userPoliticalCompliance')
+var userPreference = require('./controllers/userPreference');
+var userPoliticalCompliance = require('./controllers/userPoliticalCompliance')
 
 /////////////////////////////////////////
 /// Public files : CSS and Javascript ///
@@ -47,7 +47,7 @@ var themes;
 server.listen(8080);
 
 app.get('/', function (req, res) {
-  res.sendFile(__dirname + '/index.html');
+  res.sendFile(__dirname + '/views/index.html');
 });
 
 app.get('/questions', function(req, res) {
