@@ -1,5 +1,6 @@
 #layout-navigation {
   margin: 20px 0px 20px 0px;
+  text-align: center;
 }
 
 #website-title {
@@ -15,6 +16,7 @@
 
 #navigation-menu {
   display: inline-block;
+
 }
 
 #navigation-menu ul li {
@@ -32,5 +34,5 @@
 }
 
 #navigation-menu a:hover {
-   border-bottom:3px solid #fff;
+   border-bottom:1px solid #000000;
 }

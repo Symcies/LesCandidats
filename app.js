@@ -47,7 +47,27 @@ var themes;
 server.listen(8080);
 
 app.get('/', function (req, res) {
-  res.sendFile(__dirname + '/views/index.html');
+  res.render('main.html');
+});
+
+app.get('/biographies', function (req, res) {
+  res.render('bio.html');
+});
+
+app.get('/analyse', function (req, res) {
+  res.render('analyse.html');
+});
+
+app.get('/concept', function (req, res) {
+  res.render('concept.html');
+});
+
+app.get('/sources', function (req, res) {
+  res.render('sources.html');
+});
+
+app.get('/test', function (req, res) {
+  res.sendFile(__dirname + '/views/test.html');
 });
 
 app.get('/questions', function(req, res) {

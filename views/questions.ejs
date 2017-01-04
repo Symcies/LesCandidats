@@ -3,15 +3,13 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <head>
   <link rel="stylesheet" type="text/css" href="/css/background.css"></link>
-  <link rel="stylesheet" type="text/css" href="/css/header.css"></link>
   <link rel="stylesheet" type="text/css" href="/css/content.css"></link>
+
 
 </head>
 <body>
 
-  <div id="header">
-    <span>Les Candidats 2017</span>
-  </div>
+  <div id="header"></div>
 
 
 
@@ -23,7 +21,12 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.3.0/knockout-min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="js/survey.ko.min.js"></script>
-
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script>
+  $(function(){
+    $("#header").load("/html/header.html");
+  });
+  </script>
 
   <script>
   Survey.Survey.cssType = "bootstrap";
