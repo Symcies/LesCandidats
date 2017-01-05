@@ -9,8 +9,9 @@ var async = require('async');
 ///////////////////////////////
 var MongoClient = require('mongodb').MongoClient;
 var db;
+var MongoDBKey = require('./MongoDBKey');
 
-MongoClient.connect('mongodb://publicuser:publicmdp@ds155747.mlab.com:55747/political-preference-questions', (err, database) => {
+MongoClient.connect(MongoDBKey.key, (err, database) => {
   if (err) return console.log(err)
   db = database
 })

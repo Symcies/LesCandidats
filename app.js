@@ -66,10 +66,6 @@ app.get('/sources', function (req, res) {
   res.render('sources.ejs');
 });
 
-app.get('/oldtest', function (req, res) {
-  res.render('test.html');
-});
-
 app.get('/test', function (req, res) {
   res.render('test.ejs');
 });
@@ -84,18 +80,6 @@ app.get('/questions', function(req, res) {
   userPreference.constructSurvey(userThemeSelection, totalNumberOfQuestions,  renderSurvey);
 });
 
-
-/*
-app.post('/questions', function(req, res) {
-  console.log("ok");
-  var renderSurvey = function(questions)
-  {
-    res.render('questions.ejs', {surveyJSON:questions});
-  };
-  var totalNumberOfQuestions = 20;
-  userPreference.constructSurvey(req.body, totalNumberOfQuestions,  renderSurvey);
-});
-*/
 
 app.post('/answers', function(req, res) {
   var renderResults = function(results)

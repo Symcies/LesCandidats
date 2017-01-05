@@ -1,62 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
 <% include partials/head %>
+<link rel="stylesheet" type="text/css" href="/css/buttons.css"></link>
 <body>
     <% include partials/navbar %>
 
     <div class="container">
-      <div id="page-wrap">
+      <section class="row">
+        <div class="cloud col-lg-4">
+          <input type="button" class="buttonLeft" value="-"></input>
+          <input type="button" class="buttonRight" value="+"></input>
+          <div class="cloudText" data-preference = "0">Système Politique</div>
+        </div>
 
-        <div id="themes">
-          <div id="content-header">
-            <span> Selectionnez les catégories qui vous importent </span>
-          </div>
+        <div class="cloud col-lg-4">
+          <input type="button" class="buttonLeft" value="-"></input>
+          <input type="button" class="buttonRight" value="+"></input>
+          <div class="cloudText" data-preference = "0">Economie et Finances</div>
+        </div>
 
-          <div class="cloud">
-            <input type="button" class="buttonLeft" value="-"></input>
-            <input type="button" class="buttonRight" value="+"></input>
-            <div class="cloudText" data-preference = "0">Système Politique</div>
-          </div>
+        <div class="cloud col-lg-4">
+          <input type="button" class="buttonLeft" value="-"></input>
+          <input type="button" class="buttonRight" value="+"></input>
+          <div class="cloudText" data-preference = "0">Politique étrangère</div>
+        </div>
 
-          <div class="cloud">
-            <input type="button" class="buttonLeft" value="-"></input>
-            <input type="button" class="buttonRight" value="+"></input>
-            <div class="cloudText" data-preference = "0">Economie et Finances</div>
-          </div>
+        <div class="cloud col-lg-4">
+          <input type="button" class="buttonLeft" value="-"></input>
+          <input type="button" class="buttonRight" value="+"></input>
+          <div class="cloudText" data-preference = "0" data-preference = "0">Sécurité</div>
+        </div>
 
-          <div class="cloud">
-            <input type="button" class="buttonLeft" value="-"></input>
-            <input type="button" class="buttonRight" value="+"></input>
-            <div class="cloudText" data-preference = "0">Politique étrangère</div>
-          </div>
+        <div class="cloud col-lg-4">
+          <input type="button" class="buttonLeft" value="-"></input>
+          <input type="button" class="buttonRight" value="+"></input>
+          <div class="cloudText" data-preference = "0">Justice</div>
+        </div>
 
-          <div class="cloud">
-            <input type="button" class="buttonLeft" value="-"></input>
-            <input type="button" class="buttonRight" value="+"></input>
-            <div class="cloudText" data-preference = "0" data-preference = "0">Sécurité</div>
-          </div>
+        <div class="cloud col-lg-4">
+          <input type="button" class="buttonLeft" value="-"></input>
+          <input type="button" class="buttonRight" value="+"></input>
+          <div class="cloudText" data-preference = "0">Emploi</div>
+        </div>
 
-          <div class="cloud">
-            <input type="button" class="buttonLeft" value="-"></input>
-            <input type="button" class="buttonRight" value="+"></input>
-            <div class="cloudText" data-preference = "0">Justice</div>
-          </div>
+        <div class="cloud col-lg-4">
+          <input type="button" class="buttonLeft" value="-"></input>
+          <input type="button" class="buttonRight" value="+"></input>
+          <div class="cloudText" data-preference = "0">Environnement</div>
+        </div>
 
-          <div class="cloud">
-            <input type="button" class="buttonLeft" value="-"></input>
-            <input type="button" class="buttonRight" value="+"></input>
-            <div class="cloudText" data-preference = "0">Emploi</div>
-          </div>
-
-          <div class="cloud">
-            <input type="button" class="buttonLeft" value="-"></input>
-            <input type="button" class="buttonRight" value="+"></input>
-            <div class="cloudText" data-preference = "0">Environnement</div>
-          </div>
-
+      </section>
+      <section class="row">
         <input id="submission" type="submit" />
-      </div>
+      </section>
     </div>
+
+
+
 
     <div class="container">
         <% include partials/content %>
