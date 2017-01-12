@@ -70,14 +70,16 @@ app.get('/test', function (req, res) {
   res.render('test.ejs');
 });
 
-app.get('/questions', function(req, res) {
-  var userThemeSelection = querystring.parse(url.parse(req.url).query);
+app.post('/questions', function(req, res) {
+  var userThemeSelection = req.body;
+  console.log(userThemeSelection);
   var renderSurvey = function(questions)
   {
     res.render('questions.ejs', {surveyJSON:questions});
   };
   var totalNumberOfQuestions = 20;
-  userPreference.constructSurvey(userThemeSelection, totalNumberOfQuestions,  renderSurvey);
+  res.render('questions.ejs')
+  //userPreference.constructSurvey(userThemeSelection, totalNumberOfQuestions,  renderSurvey);
 });
 
 

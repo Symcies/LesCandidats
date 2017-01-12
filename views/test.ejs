@@ -1,77 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <% include partials/head %>
-<link rel="stylesheet" type="text/css" href="/css/buttons.css"></link>
+<link rel="stylesheet" type="text/css" href="/css/test.css"></link>
 <body>
     <% include partials/navbar %>
 
-    <div class="container">
-      <section class="row">
-        <div class="cloud col-lg-4">
-          <input type="button" class="buttonLeft" value="-"></input>
-          <input type="button" class="buttonRight" value="+"></input>
-          <div class="cloudText" data-preference = "0">Système Politique</div>
-        </div>
 
-        <div class="cloud col-lg-4">
-          <input type="button" class="buttonLeft" value="-"></input>
-          <input type="button" class="buttonRight" value="+"></input>
-          <div class="cloudText" data-preference = "0">Economie et Finances</div>
-        </div>
 
-        <div class="cloud col-lg-4">
-          <input type="button" class="buttonLeft" value="-"></input>
-          <input type="button" class="buttonRight" value="+"></input>
-          <div class="cloudText" data-preference = "0">Politique étrangère</div>
+    <div class="container" id="mainContainer">
+      <div class="row">
+        <div id="TestText">
+          Le petit texte sur l'intérêt du test
         </div>
+      </div>
 
-        <div class="cloud col-lg-4">
-          <input type="button" class="buttonLeft" value="-"></input>
-          <input type="button" class="buttonRight" value="+"></input>
-          <div class="cloudText" data-preference = "0" data-preference = "0">Sécurité</div>
+
+
+      <div class="row">
+        <div class="text-center">
+          <input id="submission" type="submit" />
         </div>
-
-        <div class="cloud col-lg-4">
-          <input type="button" class="buttonLeft" value="-"></input>
-          <input type="button" class="buttonRight" value="+"></input>
-          <div class="cloudText" data-preference = "0">Justice</div>
-        </div>
-
-        <div class="cloud col-lg-4">
-          <input type="button" class="buttonLeft" value="-"></input>
-          <input type="button" class="buttonRight" value="+"></input>
-          <div class="cloudText" data-preference = "0">Emploi</div>
-        </div>
-
-        <div class="cloud col-lg-4">
-          <input type="button" class="buttonLeft" value="-"></input>
-          <input type="button" class="buttonRight" value="+"></input>
-          <div class="cloudText" data-preference = "0">Environnement</div>
-        </div>
-
-      </section>
-      <section class="row">
-        <input id="submission" type="submit" />
-      </section>
+      </div>
     </div>
 
 
 
 
     <div class="container">
-        <% include partials/content %>
         <hr>
 
         <% include partials/footer %>
     </div>
-
-    <script src="js/selectTheme.js"></script>
     <script src="https://code.jquery.com/jquery.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $('#home').addClass("active");
-        });
-    </script>
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+    <script src="js/initTest.js"></script>
+    <script src="js/test.js"></script>
+
+
 </body>
 </html>
