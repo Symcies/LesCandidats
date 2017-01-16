@@ -9,6 +9,7 @@ var async = require('async');
 ///////////////////////////////
 var MongoClient = require('mongodb').MongoClient;
 var db;
+
 var MongoDBKey = require('./MongoDBKey');
 
 MongoClient.connect(MongoDBKey.key, (err, database) => {

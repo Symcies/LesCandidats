@@ -19,8 +19,8 @@ var querystring = require('querystring');
 /// Import the JS backend modules ///
 /////////////////////////////////////
 
-var userPreference = require('./controllers/userPreference');
-var userPoliticalCompliance = require('./controllers/userPoliticalCompliance')
+var constructSurvey = require('./routes/constructSurvey');
+var userPoliticalCompliance = require('./routes/userPoliticalCompliance')
 
 /////////////////////////////////////////
 /// Public files : CSS and Javascript ///
@@ -72,14 +72,14 @@ app.get('/test', function (req, res) {
 
 app.post('/questions', function(req, res) {
   var userThemeSelection = req.body;
-  console.log(userThemeSelection);
   var renderSurvey = function(questions)
   {
     res.render('questions.ejs', {surveyJSON:questions});
   };
+  // TODO : The user should select the number of question
+  
   var totalNumberOfQuestions = 20;
-  res.render('questions.ejs')
-  //userPreference.constructSurvey(userThemeSelection, totalNumberOfQuestions,  renderSurvey);
+  constructSurvey.constructSurvey(userThemeSelection, totalNumberOfQuestions,  renderSurvey);
 });
 
 

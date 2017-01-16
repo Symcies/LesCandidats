@@ -68,25 +68,29 @@ function sendUserSelectionToServer() {
     userPreference[themeName] = intensity;
   }
 
-  userPreference = JSON.stringify(userPreference);
 
+  var form = document.createElement("form");
+  form.setAttribute("method", "post");
+  form.setAttribute("action", "questions");
 
-  $.ajax({
-    type: "POST",
-    url: "/questions",
-    data: userPreference,
-    success: function(html){
-       $('body').html(html); // place the html wherever you like
-    },
-    error: function(err){ alert('error'); },
-    contentType: "application/json"
-  });
+  for(var key in userPreference) {
+      if(userPreference.hasOwnProperty(key)) {
+          var hiddenField = document.createElement("input");
+          hiddenField.setAttribute("type", "hidden");
+          hiddenField.setAttribute("name", key);
+          hiddenField.setAttribute("value", userPreference[key]);
+
+          form.appendChild(hiddenField);
+       }
+  }
+  document.body.appendChild(form);
+  form.submit();
+
 
 };
 
 (function() {
   document.getElementById('submission').addEventListener('click', function(e) {
-
     sendUserSelectionToServer();
   });
 })();

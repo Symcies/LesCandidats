@@ -1,24 +1,17 @@
 .navbar {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 18px;
+  font-family: 'Playfair Display', serif;
+  background-color: #E8E8E8;
 
-  background-color: #49576B;
-  height: 60px;
-  padding-top: 10px;
 }
 
 
-.nav.navbar-nav li a {
-   color: #fff;
- }
 
 .navbar-header a {
-  color: #fff !important;
-  font-size: 30px;
-  padding-top: 12px;
+  color: #000000 !important;
+  font-size: 20px;
+  padding-top: 14px;
 }
 
 .navbar-nav > li{
-  padding-left:20px;
-  padding-right:20px;
+
 }

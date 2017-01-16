@@ -1,4 +1,9 @@
-function sendDataToServer(survey) {
+Survey.Survey.cssType = "bootstrap"
+
+
+var survey = new Survey.Survey(questions, "surveyContainer");
+
+/*function sendDataToServer(survey) {
   var resultAsString = JSON.stringify(survey.data);
 
   $.ajax({
@@ -12,8 +17,9 @@ function sendDataToServer(survey) {
     contentType: "application/json"
   });
 };
+*/
 
 
 var survey = new Survey.Survey(questions, "surveyContainer");
 //Use onComplete event to save the data
-survey.onComplete.add(sendDataToServer);
+//survey.onComplete.add(sendDataToServer);

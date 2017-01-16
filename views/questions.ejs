@@ -1,14 +1,29 @@
-<!doctype html>
-<html>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<head>
-
-
-
-</head>
+<!DOCTYPE html>
+<html lang="en">
+<% include partials/head %>
 <body>
+    <% include partials/navbar %>
 
-    FUCK
+
+
+    <div class="container" id="mainContainer">
+      <div class="row">
+
+        <div class="center-block" id="surveyContainer">
+        </div>
+      </div>
+    </div>
+
+
+    <div class="container">
+      <hr>
+      <% include partials/footer %>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.3.0/knockout-min.js"></script>
+    <script src="js/survey.ko.min.js"></script>
+    <script>var questions = <%- JSON.stringify(surveyJSON) %>;</script>
+    <script src ="js/questions.js"></script>
 
 </body>
 </html>

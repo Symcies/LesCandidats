@@ -4,14 +4,18 @@
 
 .theme {
   border: 3px solid #142E4F;
+  border-radius: 20px;
   background-color: #ffffff;
   height: 40px;
   margin: 10px 0px 0px 0px;
   padding: 0px;
+
+  text-align: center;
 }
 
 .sub .add {
   display: inline-block;
+  background-color: transparent;
 }
 
 .sub {
@@ -26,7 +30,7 @@ input[type="button"]
 {
     width:20px;
     display:block;
-    background-color: #ffffff;
+    background-color: transparent;
     color:black ;
     border: none;
     outline:none;
@@ -35,23 +39,20 @@ input[type="button"]
 .slider {
   border: 3px solid #142E4F;
   background-color: #142E4F;
-  height:40px;
+  height:6px;
   width: 70px;
-  margin: 10px 0px 0px 0px;
+  margin: 27px 0px 0px 0px;
 }
 
 .bevel {
-    width: 40px;
-    height: 0;
-    margin: 10px 0px 0px 0px;
-    padding-bottom: 40px;
-    overflow: hidden;
+    width: 20px;
+    border-radius: 10px;
+    height: 20px;
+    margin: 20px 0px 0px 0px;
+    background-color: #142E4F;
 }
-.bevel:after {
-    content: "";
-    display: block;
-    width: 0;
-    height: 0;
-    border-right: 40px solid transparent;
-    border-bottom: 40px solid #142E4F;
+
+.themeText {
+  // TODO : centrer texte,
+  margin-top: 20px;
 }

@@ -23,7 +23,7 @@ function addTheme(themeName) {
   newRow.className = "row";
 
   var leftMargin = document.createElement('div');
-  leftMargin.className = 'col-lg-1';
+  leftMargin.className = 'col-lg-2';
 
   var newTheme = document.createElement('div');
   newTheme.id = themeName;
@@ -43,7 +43,7 @@ function addTheme(themeName) {
   visualSlider.className = "slider col-lg-1";
 
   var bevel = document.createElement('div');
-  bevel.className = "bevel";
+  bevel.className = "bevel col-lg-1";
 
   var themeText = document.createElement('span');
   themeText.setAttribute("data-preference",firstPreferenceValue);

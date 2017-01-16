@@ -1,5 +1,7 @@
 
 body {
-background-color: #fff !important;
-margin: 0px;
+  background-color: #fff !important;
+  margin: 0px;
+  padding-top: 50px;
+  font-family: 'Playfair Display', serif;
 }
