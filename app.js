@@ -1,8 +1,3 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
-var Survey = require("survey-react");
-Survey.Survey.cssType = "bootstrap";
-
 
 //////////////////////////////////
 ///  Import the server modules ///
@@ -77,7 +72,7 @@ app.post('/questions', function(req, res) {
     res.render('questions.ejs', {surveyJSON:questions});
   };
   // TODO : The user should select the number of question
-  
+
   var totalNumberOfQuestions = 20;
   constructSurvey.constructSurvey(userThemeSelection, totalNumberOfQuestions,  renderSurvey);
 });
