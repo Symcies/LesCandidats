@@ -67,6 +67,7 @@ app.get('/test', function (req, res) {
 
 app.post('/questions', function(req, res) {
   var userThemeSelection = req.body;
+  console.log(userThemeSelection);
   var renderSurvey = function(questions)
   {
     res.render('questions.ejs', {surveyJSON:questions});

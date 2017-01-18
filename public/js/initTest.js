@@ -18,6 +18,7 @@ var listOfThemes = [
 /// Functions
 
 function addTheme(themeName) {
+
   // Creating all the elements
   var newRow = document.createElement('div');
   newRow.className = "row";
@@ -26,7 +27,6 @@ function addTheme(themeName) {
   leftMargin.className = 'col-lg-2';
 
   var newTheme = document.createElement('div');
-  newTheme.id = themeName;
   newTheme.className = 'theme text-center col-lg-2';
 
   var subButton = document.createElement('input');
@@ -39,11 +39,15 @@ function addTheme(themeName) {
   addButton.value = "+";
   addButton.className = "add";
 
-  var visualSlider = document.createElement('div');
-  visualSlider.className = "slider col-lg-1";
+  var sliderColumn = document.createElement('div');
+  sliderColumn.className = 'col-lg-4';
 
-  var bevel = document.createElement('div');
-  bevel.className = "bevel col-lg-1";
+  var slider = document.createElement('input');
+  slider.type = "range";
+  slider.id = themeName;
+  slider.value = '1';
+  slider.min = '1';
+  slider.max = '13';
 
   var themeText = document.createElement('span');
   themeText.setAttribute("data-preference",firstPreferenceValue);
@@ -51,15 +55,16 @@ function addTheme(themeName) {
   themeText.textContent = themeName;
 
   // Concatenating the elements
-
   newTheme.appendChild(subButton);
   newTheme.appendChild(themeText);
   newTheme.appendChild(addButton);
 
+  sliderColumn.appendChild(slider);
+
   newRow.appendChild(leftMargin);
   newRow.appendChild(newTheme);
-  newRow.appendChild(visualSlider);
-  newRow.appendChild(bevel);
+  newRow.appendChild(sliderColumn);
+
 
   // Adding it to the container
   var container = document.getElementById('mainContainer');
