@@ -1,25 +1,38 @@
+////////////////////////////////////////////////////////////////////////////////
+/// Display the survey
+////////////////////////////////////////////////////////////////////////////////
+
 Survey.Survey.cssType = "bootstrap"
 
-
 var survey = new Survey.Survey(questions, "surveyContainer");
 
-/*function sendDataToServer(survey) {
+////////////////////////////////////////////////////////////////////////////////
+/// Send the data to the surver
+////////////////////////////////////////////////////////////////////////////////
+
+function sendDataToServer(survey) {
   var resultAsString = JSON.stringify(survey.data);
 
-  $.ajax({
-    type: "POST",
-    url: '/answers',
-    data: resultAsString,
-    success: function(html){
-       $('body').html(html); // place the html wherever you like
-    },
-    error: function(err){ alert('error'); },
-    contentType: "application/json"
-  });
+  var form = document.createElement("form");
+  form.setAttribute("method", "post");
+  form.setAttribute("action", "answers")
+
+  for(var key in survey.data) {
+    if(survey.data.hasOwnProperty(key)) {
+      var hiddenField = document.createElement("input");
+      hiddenField.setAttribute("type", "hidden");
+      hiddenField.setAttribute("name", key);
+      hiddenField.setAttribute("value", survey.data[key]);
+
+      form.appendChild(hiddenField);
+    }
+  }
+
+  document.body.appendChild(form);
+  form.submit();
+
 };
-*/
 
 
-var survey = new Survey.Survey(questions, "surveyContainer");
-//Use onComplete event to save the data
-//survey.onComplete.add(sendDataToServer);
+
+survey.onComplete.add(sendDataToServer);

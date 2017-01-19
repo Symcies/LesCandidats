@@ -1,33 +1,28 @@
-<html>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<head>
-  <link rel="stylesheet" type="text/css" href="/css/background.css"></link>
-  <link rel="stylesheet" type="text/css" href="/css/content.css"></link>
-  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-  <script>
-  $(function(){
-    $("#header").load("/html/header.html");
-  });
-  </script>
-</head>
+<!DOCTYPE html>
+<html lang="en">
+<% include partials/head %>
 <body>
-
-  <div id="header"></div>
-
-
-
-  <div id="page-wrap">
-    <div id="surveyContainer">
+    <% include partials/navbar %>
 
 
 
+    <div class="container" id="mainContainer">
+      <div class="row">
+
+
+      </div>
     </div>
-  </div>
 
-<script>
-  var results = <%- JSON.stringify(results) %>
-  console.log(results);
-</script>
+
+    <div class="container">
+      <hr>
+      <% include partials/footer %>
+    </div>
+
+    <script>
+      var results = <%- JSON.stringify(results) %>
+      console.log(results);
+    </script>
 
 </body>
 </html>

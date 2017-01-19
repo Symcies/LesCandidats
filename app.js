@@ -15,7 +15,7 @@ var querystring = require('querystring');
 /////////////////////////////////////
 
 var constructSurvey = require('./routes/constructSurvey');
-var userPoliticalCompliance = require('./routes/userPoliticalCompliance')
+var constructResults = require('./routes/constructResults')
 
 /////////////////////////////////////////
 /// Public files : CSS and Javascript ///
@@ -67,7 +67,6 @@ app.get('/test', function (req, res) {
 
 app.post('/questions', function(req, res) {
   var userThemeSelection = req.body;
-  console.log(userThemeSelection);
   var renderSurvey = function(questions)
   {
     res.render('questions.ejs', {surveyJSON:questions});
@@ -84,6 +83,6 @@ app.post('/answers', function(req, res) {
   {
     res.render('answers.ejs', {results:results});
   }
-  userPoliticalCompliance.computeResults(req.body, renderResults);
+  constructResults.computeResults(req.body, renderResults);
 
 });
