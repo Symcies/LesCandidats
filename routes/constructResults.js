@@ -1,3 +1,4 @@
+
 ////////////////////////////////////////////////////////////////////////////////
 /// Different libraries loaded
 ////////////////////////////////////////////////////////////////////////////////
@@ -75,18 +76,41 @@ var getResultsOfGivenQuestion = function(questionText, questionAnswer, callback)
 };
 
 ////////////////////////////////////////////////////////////////////////////////
-/// Connect to MongoDB host
+/// Update the user results based on the answers
 ////////////////////////////////////////////////////////////////////////////////
 
-var sumJSObjects = function(finalObject, result) {
-  for(key in result) {
-    if(!finalObject[key]) {
-      finalObject[key] = result[key];
-    } else {
-      finalObject[key] += result[key];
-    }
-  };
+var initResultFormat = function(queryResult) {
+
+  var resultFormat = {};
+
+  // TODO : BE VERY VERY CAREFUL !
+  // TODO : CHANGE THE FOLLOWING WHEN DONE
+
 };
+
+////////////////////////////////////////////////////////////////////////////////
+/// Update the user results based on the answers
+////////////////////////////////////////////////////////////////////////////////
+
+var sumJSObjects = function(queryResult, resultsPerTheme) {
+
+  var theme = queryResult['theme'];
+  var results = {};
+
+  if(!resultsPerTheme[theme]) {
+      results = queryResult['userAnswer'];
+      results['topAnswer'] = queryResult['topAnswers'];
+  }
+  else {
+    var previousResults = queryResult[theme];
+    results['topAnswer'] = previousResults['topAnswers'] + queryResult['topAnswer'];
+
+  }
+
+};
+
+
+
 
 ////////////////////////////////////////////////////////////////////////////////
 /// Connect to MongoDB host
@@ -104,14 +128,12 @@ var computeResults = function(surveyResults, renderResults)
 
   async.parallel(
     getResultsPerQuestion,
-    function(err, results) {
-      var finalSum = {};
-      var topAnswersSum = 0;
+    function(err, queryResults) {
+      var resultsPerTheme = initResultFormat(queryResults);
 
-      for(var i=0; i < results.length; i++) {
-        result = results[i];
-        topAnswersSum += result['topAnswer'];
-        sumJSObjects(finalSum, result['userAnswer']);
+      for(var i=0; i < queryResults.length; i++) {
+        queryResult = queryResults[i];
+        resultsPerTheme['theme'] = sumJSObjects(queryResult, resultsPerTheme);
       }
       renderResults(finalSum);
   });

@@ -1,19 +1,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 /// Global variables
 ////////////////////////////////////////////////////////////////////////////////
-
-var listOfThemes = [
-  "Système Politique",
-  "Environnement",
-  "Politique étrangère",
-  "Economies et Finances",
-  "Culture",
-  "Justice",
-  "Sécurité",
-  "Santé",
-  "Travail",
-  "Numérique"
-]
+//var config = require('../../config');
+//var listOfThemes = config.listOfThemes;
 
 ////////////////////////////////////////////////////////////////////////////////
 /// Function on click of the buttons : ranges and inputs
