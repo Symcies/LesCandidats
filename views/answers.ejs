@@ -16,10 +16,8 @@
       <% include partials/footer %>
     </div>
 
-    <script>
-      var results = <%- JSON.stringify(results) %>
-      console.log(results);
-    </script>
-
+    <script> var rawResults = <%- JSON.stringify(results) %>;</script>
+    <script> var listOfParties = <%- JSON.stringify(listOfParties) %>;</script>
+    <script src="js/answers.js"></script>
 </body>
 </html>

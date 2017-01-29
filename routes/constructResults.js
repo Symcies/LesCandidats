@@ -3,6 +3,7 @@
 /// Different libraries loaded
 ////////////////////////////////////////////////////////////////////////////////
 var async = require('async');
+var config = require('./../config');
 
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -81,11 +82,22 @@ var getResultsOfGivenQuestion = function(questionText, questionAnswer, callback)
 
 var initResultFormat = function(queryResult) {
 
+  var resultFormatPerTheme = {};
+  for(key in config.listOfParties) {
+      if (!config.listOfParties.hasOwnProperty(key)) continue;
+      resultFormatPerTheme[config.listOfParties[key]] = 0;
+  }
+  resultFormatPerTheme['topAnswer'] = 0;
+
   var resultFormat = {};
+  for(key in config.listOfThemes) {
+    if (!config.listOfThemes.hasOwnProperty(key)) continue;
 
-  // TODO : BE VERY VERY CAREFUL !
-  // TODO : CHANGE THE FOLLOWING WHEN DONE
+    var theme = config.listOfThemes[key];
+    resultFormat[theme] = JSON.parse(JSON.stringify(resultFormatPerTheme));
+  }
 
+  return resultFormat;
 };
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -95,18 +107,23 @@ var initResultFormat = function(queryResult) {
 var sumJSObjects = function(queryResult, resultsPerTheme) {
 
   var theme = queryResult['theme'];
-  var results = {};
+  var gradesPerParties = queryResult['userAnswer'];
+  var previousResults = resultsPerTheme[theme];
+  var newResults = previousResults;
 
-  if(!resultsPerTheme[theme]) {
-      results = queryResult['userAnswer'];
-      results['topAnswer'] = queryResult['topAnswers'];
+  newResults['topAnswer'] = previousResults['topAnswer'] + queryResult['topAnswer'];
+
+  for(key in gradesPerParties) {
+    if(!gradesPerParties.hasOwnProperty(key)) continue;
+
+
+    grade = gradesPerParties[key];
+
+    newResults[key] = previousResults[key] + gradesPerParties[key];
+
   }
-  else {
-    var previousResults = queryResult[theme];
-    results['topAnswer'] = previousResults['topAnswers'] + queryResult['topAnswer'];
 
-  }
-
+  return newResults;
 };
 
 
@@ -133,9 +150,14 @@ var computeResults = function(surveyResults, renderResults)
 
       for(var i=0; i < queryResults.length; i++) {
         queryResult = queryResults[i];
-        resultsPerTheme['theme'] = sumJSObjects(queryResult, resultsPerTheme);
+        var theme = queryResult['theme'];
+
+        var tt  = sumJSObjects(queryResult, resultsPerTheme);
+        
+        resultsPerTheme[theme] = tt
+        break;
       }
-      renderResults(finalSum);
+      renderResults(resultsPerTheme);
   });
 
 };

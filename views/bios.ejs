@@ -1,11 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <% include partials/head %>
+<link rel="stylesheet" type="text/css" href="/css/bios.css"></link>
 <body>
     <% include partials/navbar %>
 
     <div>
+      <div class="row">
+        <div class="col-md-4">
 
+        </div>
+      </div>
     </div>
 
 
@@ -18,7 +23,10 @@
       <% include partials/footer %>
     </div>
 
-    <script> var biographie = <%- JSON.stringify(biographie) %>;</script>
-    <script src='/js/bio.js'></script>
+    <script> var biographies = <%- JSON.stringify(biographies) %>;</script>
+    <script src="js/bios.js"></script>
+
+
+
 </body>
 </html>

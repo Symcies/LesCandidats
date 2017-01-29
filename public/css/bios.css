@@ -1,0 +1,49 @@
+.framework {
+  padding: 10px;
+}
+
+.candidate {
+  height : 400px;
+  margin : 10px;
+  padding-top: 10px;
+
+  background-color: #e8e8e8;
+
+  border-top: 3px solid  #b1b1b1;
+  border-bottom: 3px solid  #b1b1b1;
+}
+
+
+.listPositions {
+  margin-left: 0px;
+  padding-left: 0px;
+
+  list-style-type: none;
+  font-size: 13px;
+}
+
+.title {
+  text-align: center;
+  border-bottom: 1px solid black;
+  margin: 5px 18px 30px 18px;
+}
+
+.bio {
+  height : 80px;
+
+}
+
+.portrait {
+  overflow: hidden;
+  height: 180px;
+
+}
+
+.linkRow {
+  width: 200px;
+  margin:0 auto;
+}
+
+.textColumn {
+  padding: 0px 10px 0px 10px;
+}

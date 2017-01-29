@@ -8,7 +8,8 @@ var url = require('url');
 var bodyParser = require('body-parser');
 var server = require('http').Server(app);
 var querystring = require('querystring');
-
+var config = require('./config');
+var biographies = require('./data/biographies');
 
 //////////////////////////////////////
 /// Import the JS backend modules ///
@@ -46,8 +47,13 @@ app.get('/', function (req, res) {
 });
 
 app.get('/biographies', function (req, res) {
-  res.render('bio.ejs');
+  res.render('bios.ejs', {biographies: biographies});
 });
+
+app.get('/biographies/:name', function(req, res) {
+  res.render('bio.ejs', {biographie: biographies[req.params.name]});
+});
+
 
 app.get('/analyse', function (req, res) {
   res.render('analyse.ejs');
@@ -62,7 +68,7 @@ app.get('/sources', function (req, res) {
 });
 
 app.get('/test', function (req, res) {
-  res.render('test.ejs');
+  res.render('test.ejs', {listOfThemes: config.listOfThemes});
 });
 
 app.post('/questions', function(req, res) {
@@ -81,7 +87,7 @@ app.post('/questions', function(req, res) {
 app.post('/answers', function(req, res) {
   var renderResults = function(results)
   {
-    res.render('answers.ejs', {results:results});
+    res.render('answers.ejs', {results:results, listOfParties: config.listOfParties});
   }
   constructResults.computeResults(req.body, renderResults);
 

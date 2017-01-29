@@ -1,21 +1,27 @@
 var listOfThemes = [
   "Système Politique",
   "Environnement",
-  "Politique étrangère",
-  "Economies et Finances",
+  "Politique internationale",
+  "Economie et Finances",
   "Culture",
   "Justice",
   "Sécurité",
   "Santé",
-  "Travail",
+  "Emploi",
   "Numérique"
 ]
 
 var listOfParties = {
-  "Les Républicains" : "LR",
-  "Parti Socialise": "PS",
-  "Europe Ecologie Les Verts": "EELV",
-  "Front de Gauche": "FG",
+  "François Fillon" : "FF",
+  "Emmanuel Macron": "EM",
+  "Benoît Hamon": "BH",
+  "Yannick Jadot": "YJ",
+  "Jean-Luc Mélenchon": "JLM",
+  "Marine Le Pen": "MLP",
+  "Nathalie Arthaud": "NA",
+  "Philippe Poutou":  "PP",
+  "Nicolas Dupont-Aignan" : "NDA",
+  "Rama Yade" : "RY",
 }
 
 
