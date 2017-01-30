@@ -25,7 +25,7 @@ var listCurrentSituation = function(listPositions) {
 
   for(var i = 0; i < listPositions.length; ++i) {
     var position = document.createElement('li');
-    position.textContent = "- " + listPositions[i];
+    position.textContent = listPositions[i];
     list.appendChild(position);
   }
 
@@ -46,46 +46,39 @@ var writeBiographe = function(name) {
 
   nameRow.appendChild(title);
 
-  /// Second row with site, functions and picture
+  /// SEcond row with eyes
+  var eyesRow = document.createElement('div');
+  eyesRow.className = 'row eyes';
 
-  var textColumn = document.createElement('div');
-  textColumn.className = 'col-lg-7 textColumn';
+  var portrait = document.createElement("img");
+  portrait.src = '/img/' + bio["shortName"] + 'eyes.jpg'
+  portrait.height = 160;
+  portrait.alt = name;
+
+  eyesRow.appendChild(portrait);
+
+  /// Thirt row with functions
+
+  var currentSituationRow = document.createElement('div');
+  currentSituationRow.className = 'row';
 
   var currentSituation = listCurrentSituation(bio["currentSituation"]);
+
+  currentSituationRow.appendChild(currentSituation);
+
+  /// Fourth row with site
+  var websiteRow = document.createElement('div');
+  websiteRow.className = "row";
 
   var website = document.createElement('a');
   website.href = bio['website'];
   website.textContent = bio['partyName'];
 
-  textColumn.appendChild(currentSituation);
-  textColumn.appendChild(website);
+  websiteRow.appendChild(website);
 
-
-  /// Load the image
-  var portrait = document.createElement("img");
-  portrait.src = '/img/' + bio["shortName"] + '.jpg'
-  portrait.height = 200;
-  portrait.alt = name;
-
-  var imageColumn = document.createElement('div')
-  imageColumn.className = 'col-lg-5 portrait';
-
-  imageColumn.appendChild(portrait);
-
-  var textRow = document.createElement('div');
-  textRow.className = 'row';
-  textRow.appendChild(textColumn);
-  textRow.appendChild(imageColumn);
-
-  /// Third row with the short bio
+  /// Fifth row with link to full biographie
   var bioRow = document.createElement('div');
-  bioRow.className = 'row';
-
-  var resume = document.createElement('p');
-  resume.className = "bio";
-  resume.textContent = bio['shortBio'];
-
-  bioRow.appendChild(resume);
+  bioRow.className = "row bio";
 
   var linkToBiographie = document.createElement('a');
   linkToBiographie.href = 'biographies/' + bio['shortName'];
@@ -93,9 +86,7 @@ var writeBiographe = function(name) {
   linkToBiographie.className = 'btn btn-default';
   linkToBiographie.textContent = 'Voir la biographie complète';
 
-  var linkRow = document.createElement('div');
-  linkRow.className = 'row linkRow'
-  linkRow.appendChild(linkToBiographie);
+  bioRow.appendChild(linkToBiographie);
 
 
   /// Assemble the divs
@@ -103,9 +94,10 @@ var writeBiographe = function(name) {
   fullCandidate.className = 'col-lg-12 candidate';
 
   fullCandidate.appendChild(nameRow);
-  fullCandidate.appendChild(textRow);
-  fullCandidate.appendChild(bioRow);
-  fullCandidate.appendChild(linkRow);
+  fullCandidate.appendChild(eyesRow);
+  fullCandidate.appendChild(currentSituationRow);
+  fullCandidate.appendChild(websiteRow);
+  fullCandidate.appendChild(linkToBiographie);
 
   var ext = document.createElement('div');
   ext.className = 'col-lg-4 framework';
@@ -124,12 +116,11 @@ var writeBiographe = function(name) {
   }
 
   listCandidates = shuffle(listCandidates);
+  var container = document.getElementById('mainContainer');
 
   for(var i = 0; i < listCandidates.length; ++i) {
 
     var fullCandidate = writeBiographe(listCandidates[i]);
-
-    var container = document.getElementById('mainContainer');
     container.appendChild(fullCandidate);
   }
 

@@ -10,6 +10,7 @@ var server = require('http').Server(app);
 var querystring = require('querystring');
 var config = require('./config');
 var biographies = require('./data/biographies');
+var infoContent = require('./data/infoContent');
 
 //////////////////////////////////////
 /// Import the JS backend modules ///
@@ -51,13 +52,27 @@ app.get('/biographies', function (req, res) {
 });
 
 app.get('/biographies/:name', function(req, res) {
-  res.render('bio.ejs', {biographie: biographies[req.params.name]});
+  if(biographies.hasOwnProperty(req.params.name))
+    res.render('bio.ejs', {biographie: biographies[req.params.name]});
+  else {
+    res.status(404);
+    res.render('404.ejs', { url: req.url });
+    return;
+  }
 });
 
 
 app.get('/analyse', function (req, res) {
   res.render('analyse.ejs');
 });
+
+app.get('/info', function(req, res) {
+  res.render('info.ejs', {info: infoContent.info});
+});
+
+app.get('/team', function(req, res) {
+  res.render('team.ejs');
+})
 
 app.get('/concept', function (req, res) {
   res.render('concept.ejs');
@@ -91,4 +106,10 @@ app.post('/answers', function(req, res) {
   }
   constructResults.computeResults(req.body, renderResults);
 
+});
+
+app.get('*', function(req, res) {
+  res.status(404);
+  res.render('404.ejs', { url: req.url });
+  return;
 });
