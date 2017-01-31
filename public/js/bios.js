@@ -18,73 +18,46 @@ function shuffle(array) {
   return array;
 }
 
-var listCurrentSituation = function(listPositions) {
-
-  var list = document.createElement('ul');
-  list.className = 'listPositions'
-
-  for(var i = 0; i < listPositions.length; ++i) {
-    var position = document.createElement('li');
-    position.textContent = listPositions[i];
-    list.appendChild(position);
-  }
-
-  return list;
-};
-
 var writeBiographe = function(name) {
 
   var bio = biographies[name];
 
   /// First row with the name
   var nameRow = document.createElement('div');
-  nameRow.className = 'row';
+  nameRow.className = 'row eyeRow';
 
-  var title = document.createElement('h2');
-  title.className = "title"
-  title.textContent = bio["name"];
+  var thumbNail = document.createElement('div');
+  thumbNail.className = 'thumbnail';
 
-  nameRow.appendChild(title);
-
-  /// SEcond row with eyes
-  var eyesRow = document.createElement('div');
-  eyesRow.className = 'row eyes';
+  var caption = document.createElement('div');
+  caption.className = 'caption eyes';
 
   var portrait = document.createElement("img");
   portrait.src = '/img/' + bio["shortName"] + 'eyes.jpg'
   portrait.height = 160;
   portrait.alt = name;
 
-  eyesRow.appendChild(portrait);
+  var title = document.createElement('h2');
+  title.className = "title"
+  title.textContent = bio["name"];
 
-  /// Thirt row with functions
-
-  var currentSituationRow = document.createElement('div');
-  currentSituationRow.className = 'row';
-
-  var currentSituation = listCurrentSituation(bio["currentSituation"]);
-
-  currentSituationRow.appendChild(currentSituation);
-
-  /// Fourth row with site
-  var websiteRow = document.createElement('div');
-  websiteRow.className = "row";
-
-  var website = document.createElement('a');
-  website.href = bio['website'];
-  website.textContent = bio['partyName'];
-
-  websiteRow.appendChild(website);
+  caption.appendChild(portrait);
+  thumbNail.appendChild(caption);
+  thumbNail.appendChild(title);
+  nameRow.appendChild(thumbNail);
 
   /// Fifth row with link to full biographie
   var bioRow = document.createElement('div');
   bioRow.className = "row bio";
 
+  // TODO = remove link to have just a button --> See example here : http://v4-alpha.getbootstrap.com/components/modal/#modal-components
   var linkToBiographie = document.createElement('a');
-  linkToBiographie.href = 'biographies/' + bio['shortName'];
+  //linkToBiographie.href = 'biographies/' + bio['shortName'];
+  //linkToBiographie.href = '#bio';
   linkToBiographie.role = 'button';
   linkToBiographie.className = 'btn btn-default';
   linkToBiographie.textContent = 'Voir la biographie complète';
+  linkToBiographie.id = bio['shortName'];
 
   bioRow.appendChild(linkToBiographie);
 
@@ -94,9 +67,6 @@ var writeBiographe = function(name) {
   fullCandidate.className = 'col-lg-12 candidate';
 
   fullCandidate.appendChild(nameRow);
-  fullCandidate.appendChild(eyesRow);
-  fullCandidate.appendChild(currentSituationRow);
-  fullCandidate.appendChild(websiteRow);
   fullCandidate.appendChild(linkToBiographie);
 
   var ext = document.createElement('div');
@@ -126,3 +96,15 @@ var writeBiographe = function(name) {
 
 }
 )();
+
+
+$("[rel='tooltip']").tooltip();
+
+$('.thumbnail').hover(
+    function(){
+        $(this).find('.caption').slideUp(250); //.fadeIn(250)
+    },
+    function(){
+        $(this).find('.caption').slideDown(250); //.fadeOut(205)
+    }
+);

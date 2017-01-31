@@ -4,6 +4,10 @@
 
 }
 
+.fixedMargin {
+  margin-left: 135px !important;
+  margin-right: 135px !important;
+}
 
 
 .navbar-header a {

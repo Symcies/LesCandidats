@@ -2,21 +2,23 @@
 <html lang="en">
 <% include partials/head %>
 <link rel="stylesheet" type="text/css" href="/css/bios.css"></link>
+<link rel="stylesheet" type="text/css" href="/css/biosSingle.css"></link>
 <body>
     <% include partials/navbar %>
 
-    <div>
-      <div class="row">
-        <div class="col-md-4">
-
-        </div>
-      </div>
-    </div>
 
 
-    <div class="container" id="mainContainer">
 
-    </div>
+
+
+      <!-- Modal -->
+
+    <div class="container" id="singleBiography"></div>
+
+
+
+    <div class="container" id="mainContainer"></div>
+
 
     <div class="container">
       <hr>
@@ -25,6 +27,7 @@
 
     <script> var biographies = <%- JSON.stringify(biographies) %>;</script>
     <script src="js/bios.js"></script>
+    <script src="js/biosSingle.js"></script>
 
 
 

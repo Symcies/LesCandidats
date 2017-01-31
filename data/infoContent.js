@@ -13,6 +13,12 @@ info = [
   }
 ];
 
+var exemple = {
+  "title": "",
+  "link": "",
+  "date": "",
+  "extract": "",
+}
 
 
 
