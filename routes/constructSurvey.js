@@ -100,6 +100,16 @@ var getQuestionsFromMongoDB = function(listIDs, surveyRender) {
 ////////////////////////////////////////////////////////////////////////////////
 
 var constructSurvey = function(userThemeSelection, totalNumberOfQuestions, surveyRender) {
+    console.log(totalNumberOfQuestions);
+    if(totalNumberOfQuestions == "1") {
+      totalNumberOfQuestions = 2;
+    }
+    else if (totalNumberOfQuestions == "2") {
+      totalNumberOfQuestions = 20;
+    }
+    else if (totalNumberOfQuestions == "3") {
+      totalNumberOfQuestions = 30;
+    }
 
     var iteratorTheme = Object.keys(userThemeSelection);
 
@@ -113,6 +123,7 @@ var constructSurvey = function(userThemeSelection, totalNumberOfQuestions, surve
     for(var i = 0; i < iteratorTheme.length; ++i) {
       var themeName = iteratorTheme[i];
       var themeNumberOfQuestions = parseInt(userThemeSelection[themeName]) * totalNumberOfQuestions / sumPreferences;
+      console.log(themeName, themeNumberOfQuestions);
       getQuestionIDsPerTheme.push( GetQuestionIDsOfGivenTheme.bind(null, themeName, themeNumberOfQuestions) );
     }
 

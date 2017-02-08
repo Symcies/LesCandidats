@@ -28,6 +28,34 @@ function changeSliderColor(slider) {
   return backgroundImage;
 };
 
+////////////////////////////////////////////////////////////////////////////////
+/// Load the sliders
+////////////////////////////////////////////////////////////////////////////////
+
+var loadSlider = function(themeName) {
+  var sliderColumn = document.createElement('div');
+  sliderColumn.className = 'row';
+
+  var slider = document.createElement('input');
+  slider.type = "range";
+  slider.id = themeName;
+  slider.value = '1';
+  slider.min = '1';
+  slider.max = '13';
+
+  slider.oninput = function () {
+    slider.style.backgroundImage = changeSliderColor(slider);
+  };
+
+  sliderColumn.appendChild(slider);
+
+  return sliderColumn;
+}
+
+////////////////////////////////////////////////////////////////////////////////
+/// Buttons effects
+////////////////////////////////////////////////////////////////////////////////
+
 
 function clickAddButton(e) {
   var slider = e.target.parentNode.nextElementSibling.firstElementChild;
@@ -44,67 +72,64 @@ function clickSubButton(e) {
   //visualChangesOnButtonClick(themeName, CurrentPreference);
 };
 
+
+////////////////////////////////////////////////////////////////////////////////
+/// Load the theme text with the buttons
+////////////////////////////////////////////////////////////////////////////////
+ var loadThemeText = function(themeName) {
+
+   var subButton = document.createElement('input');
+   subButton.type = "button";
+   subButton.value = "-";
+   subButton.className = "sub";
+
+   var addButton = document.createElement('input');
+   addButton.type = "button";
+   addButton.value = "+";
+   addButton.className = "add";
+
+   var themeText = document.createElement('span');
+   themeText.textContent = themeName;
+
+   var newTheme = document.createElement('div');
+   newTheme.className = 'row text-center';
+
+
+   // Concatenating the elements
+   newTheme.appendChild(subButton);
+   newTheme.appendChild(themeText);
+   newTheme.appendChild(addButton);
+
+   return newTheme;
+
+ };
+
+
+
+
 ////////////////////////////////////////////////////////////////////////////////
 /// Function to add a theme to the test
 ////////////////////////////////////////////////////////////////////////////////
 
 function addTheme(themeName) {
 
+  var themeText = loadThemeText(themeName);
+  var slider = loadSlider(themeName);
+
   // Creating all the elements
+  var newDiv = document.createElement('div');
+  newDiv.className = "col-md-2 col-md-offset-5";
+
+  newDiv.appendChild(themeText);
+  newDiv.appendChild(slider);
+
   var newRow = document.createElement('div');
   newRow.className = "row";
-
-  var leftMargin = document.createElement('div');
-  leftMargin.className = 'col-lg-2';
-
-  var newTheme = document.createElement('div');
-  newTheme.className = 'theme text-center col-lg-2';
-
-  var subButton = document.createElement('input');
-  subButton.type = "button";
-  subButton.value = "-";
-  subButton.className = "sub";
-
-  var addButton = document.createElement('input');
-  addButton.type = "button";
-  addButton.value = "+";
-  addButton.className = "add";
-
-  var sliderColumn = document.createElement('div');
-  sliderColumn.className = 'col-lg-4';
-
-  var slider = document.createElement('input');
-  slider.type = "range";
-  slider.id = themeName;
-  slider.value = '1';
-  slider.min = '1';
-  slider.max = '13';
-
-  slider.oninput = function () {
-    slider.style.backgroundImage = changeSliderColor(slider);
-  };
-
-
-  var themeText = document.createElement('span');
-  themeText.className = "themeText"
-  themeText.textContent = themeName;
-
-  // Concatenating the elements
-  newTheme.appendChild(subButton);
-  newTheme.appendChild(themeText);
-  newTheme.appendChild(addButton);
-
-  sliderColumn.appendChild(slider);
-
-  newRow.appendChild(leftMargin);
-  newRow.appendChild(newTheme);
-  newRow.appendChild(sliderColumn);
-
+  newRow.appendChild(newDiv);
 
   // Adding it to the container
-  var container = document.getElementById('mainContainer');
-  var submissionNode = container.lastElementChild;
-  container.insertBefore(newRow, submissionNode);
+  var testDiv = document.getElementById('testRows');
+  testDiv.appendChild(newRow);
 };
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -142,7 +167,7 @@ function addTheme(themeName) {
 /// Send the data to the surver
 ////////////////////////////////////////////////////////////////////////////////
 
-function sendUserSelectionToServer() {
+function sendUserSelectionToServer(surveylength) {
 
   var userPreference = {}
   var numberOfThemes = listOfThemes.length;
@@ -167,6 +192,11 @@ function sendUserSelectionToServer() {
           form.appendChild(hiddenField);
        }
   }
+  var lengthField = document.createElement("input");
+  hiddenField.setAttribute("type", "hidden");
+  hiddenField.setAttribute("name", "length");
+  hiddenField.setAttribute("value", surveylength);
+
   document.body.appendChild(form);
   form.submit();
 
@@ -175,7 +205,12 @@ function sendUserSelectionToServer() {
 
 
 (function() {
-  document.getElementById('submission').addEventListener('click', function(e) {
-    sendUserSelectionToServer();
-  });
+  var buttons = document.getElementsByClassName("btn");
+  for(var i = 0; i < buttons.length; ++i) {
+
+    buttons[i].addEventListener('click', function(e) {
+      var length = e.target.getAttribute("data-length");
+      sendUserSelectionToServer(length);
+    });
+  }
 })();

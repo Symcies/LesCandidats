@@ -1,9 +1,1 @@
-////////////////////////// TO DO //////////////////////////
-- Add a survey duration : short / average / long
-- Send the user preference back from the server to the front WITH the survey
-- Send the user preference back from survey data to the answers
-- Linear Combination of the answers and the preferences
-- Send the results back to the front: results =
-    - For each theme, for each party, number of points
-    - Max number of point per theme
-- Show the results
+983939  -> Very pretty red

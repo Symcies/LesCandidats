@@ -1,12 +1,9 @@
 var listOfThemes = [
-  "Système Politique",
   "Environnement",
   "Politique internationale",
   "Economie et Finances",
-  "Culture",
   "Justice",
   "Sécurité",
-  "Santé",
   "Emploi",
   "Numérique"
 ]

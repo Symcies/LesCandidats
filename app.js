@@ -43,9 +43,10 @@ var themes;
 /////////////////////////
 server.listen(8080);
 
-app.get('/', function (req, res) {
+
+app.get('/', function(req, res) {
   res.render('main.ejs');
-});
+})
 
 app.get('/biographies', function (req, res) {
   res.render('bios.ejs', {biographies: biographies});
@@ -87,14 +88,16 @@ app.get('/test', function (req, res) {
 });
 
 app.post('/questions', function(req, res) {
-  var userThemeSelection = req.body;
+  var results = req.body;
+  var totalNumberOfQuestions = results.length;
+  delete results.length;
+  var userThemeSelection = results;
+
   var renderSurvey = function(questions)
   {
     res.render('questions.ejs', {surveyJSON:questions});
   };
-  // TODO : The user should select the number of question
 
-  var totalNumberOfQuestions = 20;
   constructSurvey.constructSurvey(userThemeSelection, totalNumberOfQuestions,  renderSurvey);
 });
 
