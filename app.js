@@ -48,6 +48,10 @@ app.get('/', function(req, res) {
   res.render('main.ejs');
 })
 
+app.get('/main', function(req, res) {
+  res.render('main.ejs');
+})
+
 app.get('/biographies', function (req, res) {
   res.render('bios.ejs', {biographies: biographies});
 });

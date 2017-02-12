@@ -33,7 +33,7 @@ var writeBiographe = function(name) {
   caption.className = 'caption eyes';
 
   var portrait = document.createElement("img");
-  portrait.src = '/img/' + bio["shortName"] + 'eyes.jpg'
+  portrait.src = '/img/eyes/' + bio["shortName"] + 'eyes.jpg'
   portrait.height = 160;
   portrait.alt = name;
 

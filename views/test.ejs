@@ -6,7 +6,7 @@
     <% include partials/navbar %>
 
 
-
+  <div id="wrap">
     <div class="container">
       <div class="row">
         <div class="col-md-6 col-md-offset-3 text-center" id="testTitle">
@@ -21,27 +21,27 @@
     </div>
 
     <div class="container">
-      <div class="row" id="validationRow">
-        <div class="col-md-3 col-md-offset-2">
-          <p>Choissisez la durée du test pour commencer
+      <div class="row">
+        <div class="col-md-3 col-md-offset-3">
+          <p>Durée
           </p>
         </div>
         <div class="col-md-5">
           <div class="btn-group btn-group-justified" role="group" aria-label="...">
             <div class="btn-group" role="group">
-              <button type="button" class="btn btn-default" data-length="1">Esquisse</button>
+              <button type="button" class="btn btn-default" data-length="1">Court</button>
             </div>
             <div class="btn-group" role="group">
               <button type="button" class="btn btn-default" data-length="2">Normal</button>
             </div>
             <div class="btn-group" role="group">
-              <button type="button" class="btn btn-default" data-length="3">Sérieux</button>
+              <button type="button" class="btn btn-default" data-length="3">Long</button>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="row">
+      <div class="row" id="validationRow">
         <div class="col-md-8 col-md-offset-2 text-center">
           <p>Parce que la transparence est indispensable, découvrez notre méthodologie sur la page <a href="/concept">concept</a>
           </p>
@@ -52,9 +52,9 @@
 
 
 
-
+  </div>
     <div class="container">
-        <hr>
+
 
         <% include partials/footer %>
     </div>

@@ -33,8 +33,16 @@ function changeSliderColor(slider) {
 ////////////////////////////////////////////////////////////////////////////////
 
 var loadSlider = function(themeName) {
-  var sliderColumn = document.createElement('div');
-  sliderColumn.className = 'row';
+  var subButton = document.createElement('input');
+  subButton.type = "button";
+  subButton.value = "-";
+  subButton.className = "sub";
+
+  var addButton = document.createElement('input');
+  addButton.type = "button";
+  addButton.value = "+";
+  addButton.className = "add";
+
 
   var slider = document.createElement('input');
   slider.type = "range";
@@ -47,9 +55,26 @@ var loadSlider = function(themeName) {
     slider.style.backgroundImage = changeSliderColor(slider);
   };
 
+  var addButtonColumn = document.createElement("div");
+  addButtonColumn.className = "col-md-1 buttonCol";
+  addButtonColumn.appendChild(addButton);
+
+  var subButtonColumn = document.createElement("div");
+  subButtonColumn.className = "col-md-1 buttonCol";
+  subButtonColumn.appendChild(subButton);
+
+  var sliderColumn = document.createElement('div');
+  sliderColumn.className = 'col-md-10 sliderCol';
   sliderColumn.appendChild(slider);
 
-  return sliderColumn;
+
+  var sliderRow = document.createElement('div');
+  sliderRow.className = "row sliderRow"
+  sliderRow.appendChild(subButtonColumn);
+  sliderRow.appendChild(sliderColumn);
+  sliderRow.appendChild(addButtonColumn);
+
+  return sliderRow;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -78,29 +103,21 @@ function clickSubButton(e) {
 ////////////////////////////////////////////////////////////////////////////////
  var loadThemeText = function(themeName) {
 
-   var subButton = document.createElement('input');
-   subButton.type = "button";
-   subButton.value = "-";
-   subButton.className = "sub";
 
-   var addButton = document.createElement('input');
-   addButton.type = "button";
-   addButton.value = "+";
-   addButton.className = "add";
 
    var themeText = document.createElement('span');
+   themeText.className = "themeText";
    themeText.textContent = themeName;
 
-   var newTheme = document.createElement('div');
-   newTheme.className = 'row text-center';
+   var themeCol = document.createElement('div');
+   themeCol.className = "col-md-offset-2";
+   themeCol.appendChild(themeText);
 
+   var themeRow = document.createElement('div');
+   themeRow.className = 'row';
+   themeRow.appendChild(themeCol);
 
-   // Concatenating the elements
-   newTheme.appendChild(subButton);
-   newTheme.appendChild(themeText);
-   newTheme.appendChild(addButton);
-
-   return newTheme;
+   return themeRow;
 
  };
 
@@ -111,17 +128,23 @@ function clickSubButton(e) {
 /// Function to add a theme to the test
 ////////////////////////////////////////////////////////////////////////////////
 
-function addTheme(themeName) {
+function addTheme(themeName, offset) {
 
-  var themeText = loadThemeText(themeName);
-  var slider = loadSlider(themeName);
+  var themeTextRow = loadThemeText(themeName);
+  var sliderRow = loadSlider(themeName);
 
   // Creating all the elements
   var newDiv = document.createElement('div');
-  newDiv.className = "col-md-2 col-md-offset-5";
+  if(offset) {
+    newDiv.className = "col-md-3 col-md-offset-3";
+  }
+  else {
+    newDiv.className = "col-md-3";
+  }
 
-  newDiv.appendChild(themeText);
-  newDiv.appendChild(slider);
+
+  newDiv.appendChild(themeTextRow);
+  newDiv.appendChild(sliderRow);
 
   var newRow = document.createElement('div');
   newRow.className = "row";
@@ -129,7 +152,7 @@ function addTheme(themeName) {
 
   // Adding it to the container
   var testDiv = document.getElementById('testRows');
-  testDiv.appendChild(newRow);
+  testDiv.appendChild(newDiv);
 };
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -138,9 +161,11 @@ function addTheme(themeName) {
 
 (function init(){
   var NumberOfThemes = listOfThemes.length;
+  offset = true;
   for(var i = 0; i < NumberOfThemes; ++i)
   {
-    addTheme(listOfThemes[i]);
+    addTheme(listOfThemes[i], offset);
+    offset = !offset;
   }
 })();
 

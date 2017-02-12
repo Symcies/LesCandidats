@@ -4,7 +4,7 @@
 }
 
 .candidate {
-  
+
   text-align: center;
   background-color: #e8e8e8;
 
@@ -28,6 +28,7 @@
   border-bottom: 1px solid black;
   font-size: 38px;
   height: 140px;
+  color: black;
 }
 
 

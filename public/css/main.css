@@ -3,15 +3,14 @@ html {
 }
 
 body {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Playfair Display';
+  color: white;
 
+  background-image: url("/img/background/back_BW_long.png"), url("/img/background/1.png");
+  background-repeat: no-repeat, repeat ;
+  background-position: left top, left top ;
 
-  background: #6E7376 url("/img/background/back_BW_long.png") no-repeat fixed;
-  background-position: left;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: auto 100%;
+  background-size: auto 730px, auto 300px;
 
 
 }
@@ -20,13 +19,11 @@ h1 {
     font-size: 80px;
     margin-top: 200px;
     margin-bottom: 20px;
-    text-shadow: 2px 2px #1D2731;
     color: white;
 }
 
 h2 {
   font-size: 34px;
-  text-shadow: 1px 2px #1D2731;
   color: white;
   margin-bottom: 300px;
 }
