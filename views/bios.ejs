@@ -5,28 +5,21 @@
 <link rel="stylesheet" type="text/css" href="/css/biosSingle.css"></link>
 <body>
     <% include partials/navbar %>
-
-
-
-
-
-
-      <!-- Modal -->
+  <div id="wrap">
 
     <div class="container" id="singleBiography"></div>
 
-
-
     <div class="container" id="mainContainer"></div>
 
+  </div>
 
-    <div class="container">
-      <% include partials/footer %>
-    </div>
+  <div class="container">
+    <% include partials/footer %>
+  </div>
 
-    <script> var biographies = <%- JSON.stringify(biographies) %>;</script>
-    <script src="js/bios.js"></script>
-    <script src="js/biosSingle.js"></script>
+  <script> var biographies = <%- JSON.stringify(biographies) %>;</script>
+  <script src="js/bios.js"></script>
+  <script src="js/biosSingle.js"></script>
 
 
 

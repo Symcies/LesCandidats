@@ -6,11 +6,11 @@ body {
   font-family: 'Playfair Display';
   color: white;
 
-  background-image: url("/img/background/back_BW_long.png"), url("/img/background/1.png");
+  background-image: url("/img/background/back_BW_short.png"), url("/img/background/1.png");
   background-repeat: no-repeat, repeat ;
   background-position: left top, left top ;
 
-  background-size: auto 730px, auto 300px;
+  background-size: auto 700px, auto 100px;
 
 
 }
@@ -25,7 +25,6 @@ h1 {
 h2 {
   font-size: 34px;
   color: white;
-  margin-bottom: 300px;
 }
 
 

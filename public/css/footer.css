@@ -1,3 +1,31 @@
 hr {
   width: 800px;
+  margin-top: 0px;
+  margin-bottom: 10px;
+
+  border-color: #d2d2d2;
+}
+
+.footer {
+  margin-top: -40px;
+
+  font-size: 14px;
+
+  width: 100%;
+  height: 40px;
+}
+
+.footerLinks {
+  text-decoration: none;
+  position: relative;
+  color: #6a6b6c;
+}
+
+.footerLinks:hover {
+  text-decoration: none;
+  color: white;
+}
+
+.footerLinks:hover:after {
+  width: 100%;
 }

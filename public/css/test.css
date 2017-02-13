@@ -48,6 +48,10 @@ h1 {
   float: right;
 }
 
+.add .sub {
+  color: white;
+}
+
 #validationRow {
   margin-top: 100px;
 }
