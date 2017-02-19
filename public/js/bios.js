@@ -18,63 +18,63 @@ function shuffle(array) {
   return array;
 }
 
-var writeBiographe = function(name) {
 
-  var bio = biographies[name];
-
-  /// First row with the name
-  var nameRow = document.createElement('div');
-  nameRow.className = 'row eyeRow';
-
-  var thumbNail = document.createElement('div');
-  thumbNail.className = 'thumbnail';
-
-  var caption = document.createElement('div');
-  caption.className = 'caption eyes';
+function loadImage(bio) {
 
   var portrait = document.createElement("img");
-  portrait.src = '/img/eyes/' + bio["shortName"] + 'eyes.jpg'
   portrait.height = 160;
+  portrait.src = '/img/eyes/' + bio["shortName"] + 'eyes.jpg'
   portrait.alt = name;
 
+  return portrait;
+}
+
+function loadCaption(bio) {
+
   var title = document.createElement('h2');
-  title.className = "title"
+  title.className = 'title';
   title.textContent = bio["name"];
 
-  caption.appendChild(portrait);
-  thumbNail.appendChild(caption);
-  thumbNail.appendChild(title);
-  nameRow.appendChild(thumbNail);
-
-  /// Fifth row with link to full biographie
-  var bioRow = document.createElement('div');
-  bioRow.className = "row bio";
-
+  /*
+  /// Link to biographie
   // TODO = remove link to have just a button --> See example here : http://v4-alpha.getbootstrap.com/components/modal/#modal-components
+
   var linkToBiographie = document.createElement('a');
-  //linkToBiographie.href = 'biographies/' + bio['shortName'];
-  //linkToBiographie.href = '#bio';
   linkToBiographie.role = 'button';
   linkToBiographie.className = 'btn btn-default';
   linkToBiographie.textContent = 'Voir la biographie complète';
   linkToBiographie.id = bio['shortName'];
 
+  var bioRow = document.createElement('div');
+  bioRow.className = "row";
   bioRow.appendChild(linkToBiographie);
+  */
 
+  var caption = document.createElement('div');
+  caption.className = "caption";
+  caption.appendChild(title);
+
+  return caption;
+}
+
+var writeBiographe = function(name) {
+
+  var bio = biographies[name];
+
+  var Image = loadImage(bio);
+  var Caption = loadCaption(bio);
+
+  var candidate = document.createElement('div');
+  candidate.className = 'col-md-12 thumbnail text-center';
+  candidate.appendChild(Image);
+  candidate.appendChild(Caption);
 
   /// Assemble the divs
   var fullCandidate = document.createElement('div');
-  fullCandidate.className = 'col-lg-12 candidate';
+  fullCandidate.className = 'col-md-4 candidate';
+  fullCandidate.appendChild(candidate);
 
-  fullCandidate.appendChild(nameRow);
-  fullCandidate.appendChild(linkToBiographie);
-
-  var ext = document.createElement('div');
-  ext.className = 'col-lg-4 framework';
-
-  ext.appendChild(fullCandidate);
-
-  return ext;
+  return fullCandidate;
 };
 
 
@@ -96,15 +96,3 @@ var writeBiographe = function(name) {
 
 }
 )();
-
-
-$("[rel='tooltip']").tooltip();
-
-$('.thumbnail').hover(
-    function(){
-        $(this).find('.caption').slideUp(250); //.fadeIn(250)
-    },
-    function(){
-        $(this).find('.caption').slideDown(250); //.fadeOut(205)
-    }
-);

@@ -7,15 +7,14 @@ html {
 body {
     height: 100%;
     min-height: 100%;
-    font-family: 'Playfair Display';
+    font-family: 'Playfair Display', 'Work Sans';
     color: white;
-    padding-top: 50px;
 
     background-image: url("/img/background/back_BW_short.png"), url("/img/background/1.png");
     background-repeat: no-repeat, repeat ;
     background-position: left top, left top;
 
-    background-size: auto 700px, auto 100px;
+    background-size: auto 720px, auto 100px;
 }
 
 #wrap {

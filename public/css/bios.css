@@ -1,69 +1,50 @@
-.framework {
-  padding: 20px;
-
+.candidate{
+    height: 200px;
+    overflow: hidden;
+    margin-top: 15px;
+    margin-bottom: 15px;
 }
 
-.candidate {
-
-  text-align: center;
-  background-color: #e8e8e8;
-
-  border-top: 3px solid  #b1b1b1;
-  border-bottom: 3px solid  #b1b1b1;
-}
-
-
-.listPositions {
-  margin-left: 0px;
-  padding-left: 20px;
-  padding-right: 20px;
-  height: 100px;
-
-  list-style-type: none;
-  font-size: 13px;
-}
-
-.title {
-
-  border-bottom: 1px solid black;
-  font-size: 38px;
-  height: 140px;
-  color: black;
-}
-
-
-.eyes {
-  overflow: hidden;
-  height: 140px;
-  padding: 0px;
-
-}
-
-.eyeRow {
-  height : 140px;
-}
-
-.bio {
-  margin:0 auto;
-}
-
-
-.thumbnail {
-   position:relative;
-   overflow:hidden;
-   padding: 0px;
-   height : 140px;
-}
 
 .caption {
-   position:absolute;
-   top:0;
-   right:0;
-   width:100%;
-   height:100%;
-   display: block;
-   color:#fff !important;
-   z-index:1;
-   padding: 0px !important;
+  position: absolute;
+  width:100%;
+  top: 0px;
+}
 
+.thumbnail {
+  border: 0 none;
+  box-shadow: none;
+  margin:0;
+  padding:0;
+  //background: none;
+}
+
+.thumbnail img {
+    -webkit-transition: all 1s ease; /* Safari and Chrome */
+  	-moz-transition: all 1s ease; /* Firefox */
+  	-o-transition: all 1s ease; /* IE 9 */
+  	-ms-transition: all 1s ease; /* Opera */
+  	transition: all 1s ease;
+
+    filter: blur(0);
+    -webkit-filter: blur(0);
+    -moz-filter: blur(0);
+    -o-filter: blur(0);
+    -ms-filter: blur(0);
+    -ms-filter: blur(0px);
+}
+
+.thumbnail:hover img {
+    -webkit-transform:scale(0.75); /* Safari and Chrome */
+    -moz-transform:scale(0.75); /* Firefox */
+    -ms-transform:scale(0.75); /* IE 9 */
+    -o-transform:scale(0.75); /* Opera */
+     transform:scale(0.75);
+
+     filter: blur(5px);
+    -webkit-filter: blur(5px);
+    -moz-filter: blur(5px);
+    -o-filter: blur(5px);
+    -ms-filter: blur(5px);
 }
