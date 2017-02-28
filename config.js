@@ -5,7 +5,8 @@ var listOfThemes = [
   "Justice",
   "Sécurité",
   "Emploi",
-  "Numérique"
+  "Culture",
+  "Société"
 ]
 
 var listOfParties = {

@@ -25,14 +25,6 @@ var BH = {
     "Bio":  ["first paragraph", 'second paragraph']
 }
 
-var YJ = {
-    "name": "Yannick Jadot",
-    "shortName": "YJ",
-    "currentSituation": ["Député Européen"],
-    "website": "http://yannickjadot.fr/",
-    "partyName": "Europe Ecologie Les Verts",
-    "Bio":  ["first paragraph", 'second paragraph']
-}
 
 var JLM = {
     "name": "Jean-Luc Mélenchon",
@@ -100,7 +92,6 @@ var example = {
 module.exports.EM = EM;
 module.exports.FF = FF;
 module.exports.BH = BH;
-module.exports.YJ = YJ;
 module.exports.JLM = JLM;
 module.exports.MLP = MLP;
 module.exports.NA = NA;

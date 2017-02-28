@@ -7,7 +7,7 @@ html {
 body {
     height: 100%;
     min-height: 100%;
-    font-family: 'Playfair Display', 'Work Sans';
+    font-family: 'Work Sans';
     color: white;
 
     background-image: url("/img/background/back_BW_short.png"), url("/img/background/1.png");

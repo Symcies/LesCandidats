@@ -1,5 +1,9 @@
 h1 {
-  font-size: 40px;
+  font-size: 50px;
+}
+
+p {
+  font-size: 18px;
 }
 
 #testTitle {
@@ -13,7 +17,7 @@ h1 {
 }
 
 .themeText {
-  font-size: 18px;
+  font-size: 22px;
   font-style: italic;
 
 }

@@ -83,7 +83,7 @@ var loadSlider = function(themeName) {
 
 
 function clickAddButton(e) {
-  var slider = e.target.parentNode.nextElementSibling.firstElementChild;
+  var slider = e.target.parentNode.previousElementSibling.firstElementChild;
   slider.value = parseInt(slider.value) + 1;
   slider.style.backgroundImage = changeSliderColor(slider);
   //visualChangesOnButtonClick(themeName, CurrentPreference);
@@ -110,7 +110,7 @@ function clickSubButton(e) {
    themeText.textContent = themeName;
 
    var themeCol = document.createElement('div');
-   themeCol.className = "col-md-offset-2";
+   themeCol.className = "col-md-offset-1";
    themeCol.appendChild(themeText);
 
    var themeRow = document.createElement('div');
@@ -136,7 +136,7 @@ function addTheme(themeName, offset) {
   // Creating all the elements
   var newDiv = document.createElement('div');
   if(offset) {
-    newDiv.className = "col-md-3 col-md-offset-3";
+    newDiv.className = "col-md-3 col-md-offset-4";
   }
   else {
     newDiv.className = "col-md-3";
