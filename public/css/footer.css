@@ -1,31 +1,9 @@
-hr {
-  width: 800px;
-  margin-top: 0px;
-  margin-bottom: 10px;
-
-  border-color: #d2d2d2;
-}
-
-.footer {
-  margin-top: -40px;
-
-  font-size: 14px;
-
+.footer1 {
   width: 100%;
-  height: 40px;
+  background: rgba(114, 130, 152, 1);
 }
 
-.footerLinks {
-  text-decoration: none;
-  position: relative;
-  color: #6a6b6c;
-}
-
-.footerLinks:hover {
-  text-decoration: none;
-  color: white;
-}
-
-.footerLinks:hover:after {
+.footer2 {
   width: 100%;
+  background: rgba(14, 13, 15, 1);
 }

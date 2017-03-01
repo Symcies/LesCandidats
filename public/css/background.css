@@ -10,11 +10,11 @@ body {
     font-family: 'Work Sans';
     color: white;
 
-    background-image: url("/img/background/back_BW_short.png"), url("/img/background/1.png");
-    background-repeat: no-repeat, repeat ;
-    background-position: left top, left top;
+    background-image:  url("/img/background/1.png");
+    background-repeat:  repeat ;
+    background-position:  left top;
 
-    background-size: auto 720px, auto 100px;
+    background-size:auto 100px;
 }
 
 #wrap {
