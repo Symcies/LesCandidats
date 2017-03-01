@@ -3,13 +3,19 @@
     overflow: hidden;
     margin-top: 15px;
     margin-bottom: 15px;
+    height: 200px;
 }
 
 
 .caption {
   position: absolute;
   width:100%;
-  top: 0px;
+  bottom: 20px;
+}
+
+.title {
+  z-index: 100000;
+  color: black;
 }
 
 .thumbnail {
@@ -33,6 +39,8 @@
     -o-filter: blur(0);
     -ms-filter: blur(0);
     -ms-filter: blur(0px);
+
+    height: 100px;
 }
 
 .thumbnail:hover img {

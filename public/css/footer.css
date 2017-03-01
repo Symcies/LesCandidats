@@ -1,9 +1,18 @@
 .footer1 {
   width: 100%;
-  background: rgba(114, 130, 152, 1);
+  background: #ecf0f1;
+  color: #667fa0;
+
 }
 
 .footer2 {
   width: 100%;
-  background: rgba(14, 13, 15, 1);
+  background: #667fa0;
+  color: #952222;
+}
+
+#copyright {
+  font-size: 14px;
+  padding-top: 5px;
+  margin-bottom: 5px;
 }

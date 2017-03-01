@@ -128,31 +128,19 @@ function clickSubButton(e) {
 /// Function to add a theme to the test
 ////////////////////////////////////////////////////////////////////////////////
 
-function addTheme(themeName, offset) {
+function addTheme(themeName) {
 
   var themeTextRow = loadThemeText(themeName);
   var sliderRow = loadSlider(themeName);
 
   // Creating all the elements
   var newDiv = document.createElement('div');
-  if(offset) {
-    newDiv.className = "col-md-3 col-md-offset-4";
-  }
-  else {
-    newDiv.className = "col-md-3";
-  }
-
+  newDiv.className = "col-md-6";
 
   newDiv.appendChild(themeTextRow);
   newDiv.appendChild(sliderRow);
 
-  var newRow = document.createElement('div');
-  newRow.className = "row";
-  newRow.appendChild(newDiv);
-
-  // Adding it to the container
-  var testDiv = document.getElementById('testRows');
-  testDiv.appendChild(newDiv);
+  return newDiv;
 };
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -161,12 +149,18 @@ function addTheme(themeName, offset) {
 
 (function init(){
   var NumberOfThemes = listOfThemes.length;
-  offset = true;
+  var mainCol = document.createElement('div');
+  mainCol.className = 'col-md-8 col-md-offset-3';
+
   for(var i = 0; i < NumberOfThemes; ++i)
   {
-    addTheme(listOfThemes[i], offset);
-    offset = !offset;
+    var theme = addTheme(listOfThemes[i]);
+    mainCol.appendChild(theme);
   }
+
+  // Adding it to the container
+  var testDiv = document.getElementById('testRows');
+  testDiv.appendChild(mainCol);
 })();
 
 

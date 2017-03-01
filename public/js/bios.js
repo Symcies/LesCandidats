@@ -29,15 +29,16 @@ function loadImage(bio) {
   return portrait;
 }
 
-function loadCaption(bio) {
+function loadTitle(bio) {
 
   var title = document.createElement('h2');
   title.className = 'title';
   title.textContent = bio["name"];
 
-  /*
-  /// Link to biographie
-  // TODO = remove link to have just a button --> See example here : http://v4-alpha.getbootstrap.com/components/modal/#modal-components
+  return title;
+}
+
+function loadBioLink(bio) {
 
   var linkToBiographie = document.createElement('a');
   linkToBiographie.role = 'button';
@@ -45,14 +46,9 @@ function loadCaption(bio) {
   linkToBiographie.textContent = 'Voir la biographie complète';
   linkToBiographie.id = bio['shortName'];
 
-  var bioRow = document.createElement('div');
-  bioRow.className = "row";
-  bioRow.appendChild(linkToBiographie);
-  */
-
   var caption = document.createElement('div');
   caption.className = "caption";
-  caption.appendChild(title);
+  caption.appendChild(linkToBiographie);
 
   return caption;
 }
@@ -62,16 +58,19 @@ var writeBiographe = function(name) {
   var bio = biographies[name];
 
   var Image = loadImage(bio);
-  var Caption = loadCaption(bio);
+  var Title = loadTitle(bio);
+  var Caption = loadBioLink(bio);
 
   var candidate = document.createElement('div');
   candidate.className = 'col-md-12 thumbnail text-center';
+  candidate.appendChild(Title);
   candidate.appendChild(Image);
-  candidate.appendChild(Caption);
+  candidate.appendChild(Caption)
+
 
   /// Assemble the divs
   var fullCandidate = document.createElement('div');
-  fullCandidate.className = 'col-md-4 candidate';
+  fullCandidate.className = 'col-md-6 candidate';
   fullCandidate.appendChild(candidate);
 
   return fullCandidate;
@@ -86,13 +85,16 @@ var writeBiographe = function(name) {
   }
 
   listCandidates = shuffle(listCandidates);
-  var container = document.getElementById('mainContainer');
+  var mainCol = document.createElement('div');
+  mainCol.className = 'col-lg-9 col-lg-offset-2';
 
   for(var i = 0; i < listCandidates.length; ++i) {
 
     var fullCandidate = writeBiographe(listCandidates[i]);
-    container.appendChild(fullCandidate);
+    mainCol.appendChild(fullCandidate);
   }
 
+  var container = document.getElementById('mainContainer');
+  container.appendChild(mainCol);
 }
 )();

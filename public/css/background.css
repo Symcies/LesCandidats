@@ -9,12 +9,12 @@ body {
     min-height: 100%;
     font-family: 'Work Sans';
     color: white;
-
-    background-image:  url("/img/background/1.png");
-    background-repeat:  repeat ;
-    background-position:  left top;
-
-    background-size:auto 100px;
+    /TODO : Change all color;
+    background: #c0392b;
+    background: -webkit-linear-gradient(left, #c0392b, #EF4836); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(right, #c0392b, yellow); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(right, #c0392b, yellow); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to right, #952222, #E46967); /* Standard syntax */
 }
 
 #wrap {

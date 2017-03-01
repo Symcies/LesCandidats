@@ -1,3 +1,25 @@
+body {
+    height: 100%;
+    min-height: 100%;
+    font-family: 'Work Sans';
+    color: white;
+
+    background-image: linear-gradient(to right, rgba(149,34,34, 0.85), rgba(228,105,103, 0.85) ) /* Standard syntax */,  url("/img/background/Elysee1.jpg");
+
+    background-repeat:  no repeat ;
+    background-position:  left top;
+
+    background-size:100% auto ;
+    / TODO;
+    /background: #c0392b;
+    /background: -webkit-linear-gradient(left, #c0392b, #EF4836); /* For Safari 5.1 to 6.0 */
+    /background: -o-linear-gradient(right, #c0392b, yellow); /* For Opera 11.1 to 12.0 */
+    /background: -moz-linear-gradient(right, #c0392b, yellow); /* For Firefox 3.6 to 15 */
+    /background: linear-gradient(to right, rgba(149,34,34, 0.2), rgba(228,105,103, 0.2) ); /* Standard syntax */
+
+}
+
+
 
 h1 {
     font-size: 80px;
