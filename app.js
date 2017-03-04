@@ -8,7 +8,7 @@ var url = require('url');
 var bodyParser = require('body-parser');
 var server = require('http').Server(app);
 var querystring = require('querystring');
-var config = require('./config');
+var themes = require('./data/themes');
 var biographies = require('./data/biographies');
 var infoContent = require('./data/infoContent');
 
@@ -88,7 +88,7 @@ app.get('/sources', function (req, res) {
 });
 
 app.get('/test', function (req, res) {
-  res.render('test.ejs', {listOfThemes: config.listOfThemes});
+  res.render('test.ejs', {listOfThemes: themes.listOfThemes});
 });
 
 app.post('/questions', function(req, res) {
@@ -99,7 +99,7 @@ app.post('/questions', function(req, res) {
 
   var renderSurvey = function(questions)
   {
-    res.render('questions.ejs', {surveyJSON:questions});
+    res.render('questions.ejs', {surveyJSON:questions, userPreferences:results});
   };
 
   constructSurvey.constructSurvey(userThemeSelection, totalNumberOfQuestions,  renderSurvey);
@@ -107,11 +107,16 @@ app.post('/questions', function(req, res) {
 
 
 app.post('/answers', function(req, res) {
+  var surveyData = req.body;
+  var userPreferences = JSON.parse(surveyData.userPreferences);
+  delete surveyData.userPreferences;
+
   var renderResults = function(results)
   {
-    res.render('answers.ejs', {results:results, listOfParties: config.listOfParties});
+    res.render('answers.ejs', {results:results, listOfCandidates: JSON.stringify(biographies.listOfCandidates)});
   }
-  constructResults.computeResults(req.body, renderResults);
+
+  constructResults.computeResults(surveyData, userPreferences, renderResults);
 
 });
 

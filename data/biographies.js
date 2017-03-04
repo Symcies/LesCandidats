@@ -1,3 +1,13 @@
+var FF = {
+    "name": "Francois Fillon",
+    "shortName": "FF",
+    "currentSituation": ["Député de Paris"],
+    "website": "https://www.fillon2017.fr",
+    "partyName": "Les Républicains",
+    "Bio": ["first paragraph", 'second paragraph']
+}
+
+
 var EM = {
   "name": "Emmanuel Macron",
   "shortName" : "EM",
@@ -7,14 +17,7 @@ var EM = {
   "Bio":  ["Emmanuel Macron est né le 21 décembre 1977 à Amiens. Diplômé des l'Institut de Science Politique en ..., il intègre l'ENA au sein de la promotion Léopold Sédar Senghor.","ahahah"]
 }
 
-var FF = {
-    "name": "Francois Fillon",
-    "shortName": "FF",
-    "currentSituation": ["Député de Paris"],
-    "website": "https://www.fillon2017.fr",
-    "partyName": "Les Républicains",
-    "Bio": ["first paragraph", 'second paragraph']
-}
+
 
 var BH = {
     "name": "Benoit Hamon",
@@ -79,6 +82,15 @@ var RY = {
     "partyName": "La France qui ose",
     "Bio":  ["first paragraph", 'second paragraph']
 }
+
+var JC = {
+    "name": "Jacques Cheminade",
+    "shortName": "JC",
+    "currentSituation": [""],
+    "website": "",
+    "Bio": ["first", "second"]
+}
+
 var example = {
     "name": "",
     "shortName": "",
@@ -98,3 +110,5 @@ module.exports.NA = NA;
 module.exports.PP = PP;
 module.exports.NDA = NDA;
 module.exports.RY = RY;
+module.exports.JC = JC;
+module.exports.listOfCandidates = [EM, FF, BH, JLM, MLP, NA, PP, NDA, RY, JC]

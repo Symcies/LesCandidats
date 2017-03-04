@@ -28,6 +28,13 @@ function sendDataToServer(survey) {
     }
   }
 
+  var userPref = document.createElement("input");
+  userPref.setAttribute("type", "hidden");
+  userPref.setAttribute("name", "userPreferences");
+  userPref.setAttribute("value", JSON.stringify(userPreferences));
+  form.appendChild(userPref);
+
+
   document.body.appendChild(form);
   form.submit();
 

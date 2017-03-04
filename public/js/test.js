@@ -3,142 +3,114 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 
-////////////////////////////////////////////////////////////////////////////////
-/// Function on click of the buttons : ranges and inputs
-////////////////////////////////////////////////////////////////////////////////
-
-function visualChangesOnButtonClick(themeName, preferenceValue) {
-  // TODO
-
-};
-
-function changeSliderColor(slider) {
-  var value = (slider.value - slider.min)/(slider.max - slider.min);
-
-  var backgroundImage = [
-    '-webkit-gradient(',
-      'linear, ',
-      'left top, ',
-      'right top, ',
-      'color-stop(' + value + ', #09598C), ',
-      'color-stop(' + value + ', #e8e8e8)',
-    ')'
-  ].join('');
-
-  return backgroundImage;
-};
 
 ////////////////////////////////////////////////////////////////////////////////
 /// Load the sliders
 ////////////////////////////////////////////////////////////////////////////////
 
-var loadSlider = function(themeName) {
-  var subButton = document.createElement('input');
-  subButton.type = "button";
-  subButton.value = "-";
-  subButton.className = "sub";
-
-  var addButton = document.createElement('input');
-  addButton.type = "button";
-  addButton.value = "+";
-  addButton.className = "add";
-
-
+var loadSlider = function(theme) {
   var slider = document.createElement('input');
-  slider.type = "range";
-  slider.id = themeName;
-  slider.value = '1';
-  slider.min = '1';
-  slider.max = '13';
-
-  slider.oninput = function () {
-    slider.style.backgroundImage = changeSliderColor(slider);
-  };
-
-  var addButtonColumn = document.createElement("div");
-  addButtonColumn.className = "col-md-1 buttonCol";
-  addButtonColumn.appendChild(addButton);
-
-  var subButtonColumn = document.createElement("div");
-  subButtonColumn.className = "col-md-1 buttonCol";
-  subButtonColumn.appendChild(subButton);
-
-  var sliderColumn = document.createElement('div');
-  sliderColumn.className = 'col-md-10 sliderCol';
-  sliderColumn.appendChild(slider);
-
+  slider.setAttribute('class', 'slid');
+  slider.setAttribute('id', theme['name']);
+  slider.setAttribute('data-slider-id', 'Slider');
+  slider.setAttribute('type', 'text');
+  slider.setAttribute('data-slider-min', '1');
+  slider.setAttribute('data-slider-max', '20');
+  slider.setAttribute('data-slider-step', '1');
+  slider.setAttribute('data-slider-value', '7');
 
   var sliderRow = document.createElement('div');
-  sliderRow.className = "row sliderRow"
-  sliderRow.appendChild(subButtonColumn);
-  sliderRow.appendChild(sliderColumn);
-  sliderRow.appendChild(addButtonColumn);
+  sliderRow.appendChild(slider);
 
   return sliderRow;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
-/// Buttons effects
-////////////////////////////////////////////////////////////////////////////////
-
-
-function clickAddButton(e) {
-  var slider = e.target.parentNode.previousElementSibling.firstElementChild;
-  slider.value = parseInt(slider.value) + 1;
-  slider.style.backgroundImage = changeSliderColor(slider);
-  //visualChangesOnButtonClick(themeName, CurrentPreference);
-}
-
-
-function clickSubButton(e) {
-  var slider = e.target.parentNode.nextElementSibling.firstElementChild;
-  slider.value = parseInt(slider.value) - 1;
-  slider.style.backgroundImage = changeSliderColor(slider);
-  //visualChangesOnButtonClick(themeName, CurrentPreference);
-};
-
-
-////////////////////////////////////////////////////////////////////////////////
 /// Load the theme text with the buttons
 ////////////////////////////////////////////////////////////////////////////////
- var loadThemeText = function(themeName) {
-
-
+ var loadThemeText = function(theme) {
 
    var themeText = document.createElement('span');
-   themeText.className = "themeText";
-   themeText.textContent = themeName;
+   themeText.textContent = theme['name'];
 
-   var themeCol = document.createElement('div');
-   themeCol.className = "col-md-offset-1";
-   themeCol.appendChild(themeText);
 
    var themeRow = document.createElement('div');
-   themeRow.className = 'row';
-   themeRow.appendChild(themeCol);
+   themeRow.className = 'row themeText';
+   themeRow.appendChild(themeText);
 
    return themeRow;
 
  };
 
+ ////////////////////////////////////////////////////////////////////////////////
+ /// Load the icon
+ ////////////////////////////////////////////////////////////////////////////////
+
+var loadThemeIcon = function(theme) {
+
+  /*
+  /// Load the icon
+  var themeIcon = document.createElement('i');
+  themeIcon.className = 'fa fa-' + theme['icon'] + ' fa-stack-1x' ;
+
+  /// Stack the icon into a circle
+  var circle = document.createElement('i');
+  circle.className = 'fa fa-square-o fa-stack-2x';
+
+  var stacked = document.createElement('span');
+  stacked.className = 'fa-stack fa-3x fa-fw';
+  stacked.appendChild(circle);
+  stacked.appendChild(themeIcon);
+
+  /// Incorporate the stacked icon into a col
+  var iconCol = document.createElement('div');
+  iconCol.className = 'col-md-2';
+  iconCol.appendChild(stacked);
+
+  return iconCol;
+*/
+
+  var themeIcon = document.createElement('i');
+  themeIcon.className = 'fa fa-' + theme['icon'] + '  fa-fw icon';
+
+  var iconCol = document.createElement('div');
+  iconCol.className = 'col-md-2 col-md-offset-2 iconCol';
+  iconCol.appendChild(themeIcon);
+
+  return iconCol;
 
 
+}
 
 ////////////////////////////////////////////////////////////////////////////////
 /// Function to add a theme to the test
 ////////////////////////////////////////////////////////////////////////////////
 
-function addTheme(themeName) {
+function addTheme(theme) {
 
-  var themeTextRow = loadThemeText(themeName);
-  var sliderRow = loadSlider(themeName);
+  /// load the text and slider rows
+  var themeTextRow = loadThemeText(theme);
+  var sliderRow = loadSlider(theme);
+
+  // Concatenate the text and slider into a column
+  var TextSliderCol = document.createElement('div');
+  TextSliderCol.className = 'col-md-8 textCol';
+  TextSliderCol.appendChild(themeTextRow);
+  TextSliderCol.appendChild(sliderRow);
+
+  // Load the icon column
+  var iconCol = loadThemeIcon(theme);
+
+  // Concatenate the col within a row
+  var ThemeRow = document.createElement('div');
+  ThemeRow.className = 'row';
+  ThemeRow.appendChild(iconCol);
+  ThemeRow.appendChild(TextSliderCol);
 
   // Creating all the elements
   var newDiv = document.createElement('div');
-  newDiv.className = "col-md-6";
-
-  newDiv.appendChild(themeTextRow);
-  newDiv.appendChild(sliderRow);
+  newDiv.className = "col-md-6 themeUnit";
+  newDiv.appendChild(ThemeRow);
 
   return newDiv;
 };
@@ -147,7 +119,7 @@ function addTheme(themeName) {
 /// Init the list of themes of the test
 ////////////////////////////////////////////////////////////////////////////////
 
-(function init(){
+(function initThemes(){
   var NumberOfThemes = listOfThemes.length;
   var mainCol = document.createElement('div');
   mainCol.className = 'col-md-8 col-md-offset-3';
@@ -164,23 +136,12 @@ function addTheme(themeName) {
 })();
 
 
-////////////////////////////////////////////////////////////////////////////////
-/// Add the input buttons (+) and (-)
-////////////////////////////////////////////////////////////////////////////////
+$('.slid').slider({
+	formatter: function(value) {
 
-
-(function(e) {
-  var addButtons = document.getElementsByClassName("add");
-  var subButtons = document.getElementsByClassName("sub");
-
-  var numberOfButtons = addButtons.length;
-  for(var i = 0; i < numberOfButtons; ++i)
-  {
-    addButtons[i].addEventListener('click', clickAddButton);
-    subButtons[i].addEventListener('click', clickSubButton);
-  }
-})();
-
+		return 'Current value: ' + value;
+	}
+});
 
 ////////////////////////////////////////////////////////////////////////////////
 /// Send the data to the surver
@@ -191,8 +152,8 @@ function sendUserSelectionToServer(surveylength) {
   var userPreference = {}
   var numberOfThemes = listOfThemes.length;
   for(var i = 0; i < numberOfThemes; ++i) {
-    var themeName = listOfThemes[i];
-    var intensity = document.getElementById(themeName).value;
+    var themeName = listOfThemes[i]['name'];
+    var intensity = document.getElementById(themeName).getAttribute('data-value');
     userPreference[themeName] = intensity;
   }
 
@@ -211,10 +172,12 @@ function sendUserSelectionToServer(surveylength) {
           form.appendChild(hiddenField);
        }
   }
+
   var lengthField = document.createElement("input");
-  hiddenField.setAttribute("type", "hidden");
-  hiddenField.setAttribute("name", "length");
-  hiddenField.setAttribute("value", surveylength);
+  lengthField.setAttribute("type", "hidden");
+  lengthField.setAttribute("name", "length");
+  lengthField.setAttribute("value", surveylength);
+  form.appendChild(lengthField);
 
   document.body.appendChild(form);
   form.submit();

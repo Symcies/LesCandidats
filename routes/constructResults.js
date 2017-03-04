@@ -3,7 +3,8 @@
 /// Different libraries loaded
 ////////////////////////////////////////////////////////////////////////////////
 var async = require('async');
-var config = require('./../config');
+var biographies = require('./../data/biographies');
+var themes = require('./../data/themes');
 
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -83,17 +84,17 @@ var getResultsOfGivenQuestion = function(questionText, questionAnswer, callback)
 var initResultFormat = function(queryResult) {
 
   var resultFormatPerTheme = {};
-  for(key in config.listOfParties) {
-      if (!config.listOfParties.hasOwnProperty(key)) continue;
-      resultFormatPerTheme[config.listOfParties[key]] = 0;
+  for(key in biographies.listOfCandidates) {
+      if (!biographies.listOfCandidates.hasOwnProperty(key)) continue;
+      resultFormatPerTheme[biographies.listOfCandidates[key]['shortName']] = 0;
   }
   resultFormatPerTheme['topAnswer'] = 0;
+  resultFormatPerTheme['NbOfQuestionsAnswered'] = 0;
 
   var resultFormat = {};
-  for(key in config.listOfThemes) {
-    if (!config.listOfThemes.hasOwnProperty(key)) continue;
+  for(var i= 0; i < themes.listOfThemes.length; ++i) {
 
-    var theme = config.listOfThemes[key];
+    var theme = themes.listOfThemes[i]['name'];
     resultFormat[theme] = JSON.parse(JSON.stringify(resultFormatPerTheme));
   }
 
@@ -104,58 +105,63 @@ var initResultFormat = function(queryResult) {
 /// Update the user results based on the answers
 ////////////////////////////////////////////////////////////////////////////////
 
-var sumJSObjects = function(queryResult, resultsPerTheme) {
+var sumJSObjects = function(queryResult, resultsOfTheTheme, themeImportance) {
 
-  var theme = queryResult['theme'];
-  var gradesPerParties = queryResult['userAnswer'];
-  var previousResults = resultsPerTheme[theme];
-  var newResults = previousResults;
+  var newResults = resultsOfTheTheme;
 
-  newResults['topAnswer'] = previousResults['topAnswer'] + queryResult['topAnswer'];
+  /// Update the number of question answered
+  newResults['NbOfQuestionsAnswered'] += 1;
 
-  for(key in gradesPerParties) {
-    if(!gradesPerParties.hasOwnProperty(key)) continue;
+  /// Update the top answered
+  newResults['topAnswer'] += queryResult['topAnswer']*themeImportance;
 
-
-    grade = gradesPerParties[key];
-
-    newResults[key] = previousResults[key] + gradesPerParties[key];
-
+  /// Update the grade of each party
+  for(var key in queryResult['userAnswer']) {
+    if(queryResult['userAnswer'].hasOwnProperty(key)) {
+      newResults[key] = queryResult['userAnswer'][key]*themeImportance + resultsOfTheTheme[key];
+    }
   }
 
   return newResults;
+
 };
 
 
+////////////////////////////////////////////////////////////////////////////////
+/// Compute the importance of the theme
+////////////////////////////////////////////////////////////////////////////////
+
+var computeThemeImportance = function(userPreference) {
+  var DegreeOfImportance = 1;
+  return ((DegreeOfImportance - 1) * userPreference  + 20 - DegreeOfImportance)/19;
+};
 
 
 ////////////////////////////////////////////////////////////////////////////////
 /// Connect to MongoDB host
 ////////////////////////////////////////////////////////////////////////////////
 
-var computeResults = function(surveyResults, renderResults)
+var computeResults = function(surveyResults, userPreferences, renderResults)
 {
-  var iteratorResults = Object.keys(surveyResults);
   getResultsPerQuestion = [];
-  for(var i = 0; i < iteratorResults.length; ++i) {
-    var questionText = iteratorResults[i];
-    var questionAnswer = surveyResults[questionText];
-    getResultsPerQuestion.push( getResultsOfGivenQuestion.bind(null, questionText, questionAnswer));
+
+  for(var key in surveyResults) {
+    if(surveyResults.hasOwnProperty(key)){
+      var questionAnswer = surveyResults[key];
+      getResultsPerQuestion.push( getResultsOfGivenQuestion.bind(null, key, questionAnswer));
+    }
   };
 
   async.parallel(
     getResultsPerQuestion,
     function(err, queryResults) {
       var resultsPerTheme = initResultFormat(queryResults);
-
       for(var i=0; i < queryResults.length; i++) {
         queryResult = queryResults[i];
         var theme = queryResult['theme'];
 
-        var tt  = sumJSObjects(queryResult, resultsPerTheme);
-        
-        resultsPerTheme[theme] = tt
-        break;
+        var themeImportance = computeThemeImportance(userPreferences[theme])
+        resultsPerTheme[theme]  = sumJSObjects(queryResult, resultsPerTheme[theme], themeImportance);
       }
       renderResults(resultsPerTheme);
   });

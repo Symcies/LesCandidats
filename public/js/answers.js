@@ -5,9 +5,10 @@
 
 var results = {};
 var listOfThemesToDisplay = []
-var invertedlistOfParties = {};
-for(var key in listOfParties){
-    invertedlistOfParties[listOfParties[key]] = key;
+var invertedlistOfCandidates = {};
+for(var i = 0; i < listOfCandidates.length; ++i)
+{
+  invertedlistOfCandidates[listOfCandidates[i]['shortName']] = listOfCandidates[i]['name']
 }
 
 
@@ -17,25 +18,21 @@ for(var key in listOfParties){
 
 var sumOverThemes = function(themesToSum) {
 
-  var maxValue =0;
+  var maxValue = 0;
   var selectedResults = {};
-
-  for(key in listOfParties) {
-    if(!listOfParties.hasOwnProperty(key)) continue;
-    selectedResults[listOfParties[key]] = 0;
+  for(var i = 0; i < listOfCandidates.length; ++i) {
+    selectedResults[listOfCandidates[i]['shortName']] = 0;
   }
 
 
   for(var i = 0; i < themesToSum.length; ++i) {
     var theme = themesToSum[i];
     for(key in rawResults[theme]) {
-      if(key != 'topAnswer'){
+      if(key != 'topAnswer' && key != 'NbOfQuestionsAnswered'){
         selectedResults[key] = selectedResults[key] + rawResults[theme][key];
       }
-      else {
-        maxValue += rawResults[theme][key];
-      }
     }
+    maxValue += rawResults[theme]['topAnswer'];
   }
 
   return [selectedResults, maxValue];
@@ -59,7 +56,7 @@ var displayOneParty = function(party) {
 
   var partyCol = document.createElement('div');
   partyCol.className = 'col-lg-2'
-  partyCol.textContent = invertedlistOfParties[partyName];
+  partyCol.textContent = invertedlistOfCandidates[partyName];
 
   var resultCol = document.createElement('div');
   resultCol.className = 'col-lg-2';
@@ -82,11 +79,15 @@ var displayResults = function(resultsToDisplay) {
   var maxValue = resultsToDisplay[1];
   var resultsToDisplay = resultsToDisplay[0];
 
+  console.log(1, maxValue);
+  console.log(2, resultsToDisplay);
+
+
   var sortedResults = [];
   for (var result in resultsToDisplay)
     sortedResults.push([result, resultsToDisplay[result]/maxValue*100])
 
-  sortedResults.sort(function(a, b) {
+    sortedResults.sort(function(a, b) {
     return b[1] - a[1]
   })
 

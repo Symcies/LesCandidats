@@ -74,13 +74,16 @@ var transformMongoDBQuestionIntoSurveyJSQuestion = function(listIDs, MongoQuesti
   var surveyJSON = {};
   surveyJSON["title"] = "Questions";
   pages = [];
-  MongoQuestions = shuffleListIDs(MongoQuestions);
-  for(var i = 0; i < MongoQuestions.length; ++i)
+  OrderOfQuestions = Array.apply(null, {length: MongoQuestions.length}).map(Number.call, Number)
+  OrderOfQuestions = shuffleListIDs(OrderOfQuestions);
+  for(var i = 0; i < OrderOfQuestions.length; ++i)
   {
-      page = {};
-      page["name"] = "page" + i;
-      page["questions"] = [MongoQuestions[i]["question"]];
-      pages.push(page);
+    var QuestionNumber = OrderOfQuestions[i]
+
+    page = {};
+    page["name"] = "page" + i;
+    page["questions"] = [MongoQuestions[QuestionNumber]["question"]];
+    pages.push(page);
   }
   surveyJSON["pages"] = pages;
   surveyRender(surveyJSON);
@@ -89,7 +92,6 @@ var transformMongoDBQuestionIntoSurveyJSQuestion = function(listIDs, MongoQuesti
 
 var getQuestionsFromMongoDB = function(listIDs, surveyRender) {
   db.collection('questions').find({"_id": {$in: listIDs}}, {question:1, _id:0, "question.type":1, "question.choices":1, "question.name":1}).toArray(function(err, questions) {
-    //console.log(questions);
     transformMongoDBQuestionIntoSurveyJSQuestion(listIDs, questions, surveyRender);
   });
 };
@@ -100,31 +102,26 @@ var getQuestionsFromMongoDB = function(listIDs, surveyRender) {
 ////////////////////////////////////////////////////////////////////////////////
 
 var constructSurvey = function(userThemeSelection, totalNumberOfQuestions, surveyRender) {
-    console.log(totalNumberOfQuestions);
-    if(totalNumberOfQuestions == "1") {
-      totalNumberOfQuestions = 2;
-    }
-    else if (totalNumberOfQuestions == "2") {
-      totalNumberOfQuestions = 20;
-    }
-    else if (totalNumberOfQuestions == "3") {
-      totalNumberOfQuestions = 30;
-    }
-
-    var iteratorTheme = Object.keys(userThemeSelection);
+    if      (totalNumberOfQuestions == "1") { totalNumberOfQuestions = 1; }
+    else if (totalNumberOfQuestions == "2") { totalNumberOfQuestions = 20; }
+    else if (totalNumberOfQuestions == "3") { totalNumberOfQuestions = 25; }
 
     var sumPreferences = 0;
-    for(var i = 0; i < iteratorTheme.length; ++i) {
-      var themeName = iteratorTheme[i];
-      sumPreferences += parseInt(userThemeSelection[themeName]);
+    for(var key in userThemeSelection) {
+      if(userThemeSelection.hasOwnProperty(key)) {
+        sumPreferences += parseInt(userThemeSelection[key]);
+      }
     }
 
     getQuestionIDsPerTheme = [];
-    for(var i = 0; i < iteratorTheme.length; ++i) {
-      var themeName = iteratorTheme[i];
-      var themeNumberOfQuestions = parseInt(userThemeSelection[themeName]) * totalNumberOfQuestions / sumPreferences;
-      console.log(themeName, themeNumberOfQuestions);
-      getQuestionIDsPerTheme.push( GetQuestionIDsOfGivenTheme.bind(null, themeName, themeNumberOfQuestions) );
+    for(var key in userThemeSelection) {
+      if(userThemeSelection.hasOwnProperty(key))
+      {
+        var themeNumberOfQuestions = parseInt(userThemeSelection[key]) * totalNumberOfQuestions / sumPreferences;
+        themeNumberOfQuestions = Math.round(themeNumberOfQuestions);
+        if(themeNumberOfQuestions < 1) { themeNumberOfQuestions = 1}
+        getQuestionIDsPerTheme.push( GetQuestionIDsOfGivenTheme.bind(null, key, themeNumberOfQuestions) );
+      }
     }
 
     async.parallel(getQuestionIDsPerTheme

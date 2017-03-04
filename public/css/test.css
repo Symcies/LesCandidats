@@ -18,12 +18,36 @@ p {
   margin-bottom: 30px;
 }
 
-.themeText {
-  font-size: 22px;
+.icon {
+  font-size: 32px !important;
 }
 
+.iconCol {
+  margin-right: 0px;
+  margin-top: 3px;
+}
+
+.themeText {
+  font-size: 18px;
+  margin-right: 0px;
+  margin-left: 0px;
+  margin-bottom: -5px;
+}
+
+.themeUnit {
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+.textCol {
+  padding-left: 0px;
+}
 
 /* Row explaining the methodology */
 #conceptRow {
   margin-top: 100px;
+}
+
+#Slider .slider-selection {
+	background: #098767;
 }

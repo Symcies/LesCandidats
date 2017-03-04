@@ -3,6 +3,8 @@
 <% include partials/head %>
 <link rel="stylesheet" type="text/css" href="/css/test.css"></link>
 <link rel="stylesheet" type="text/css" href="/css/testSlider.css"></link>
+<link rel="stylesheet" type="text/css" href="/css/bootstrap-slider.min.css"></link>
+
 <body>
     <% include partials/navbar %>
 
@@ -42,6 +44,7 @@
         </div>
       </div>
 
+
       <div class="row" id="conceptRow">
         <div class="col-md-8 col-md-offset-3 text-center">
           <p>Parce que la transparence est indispensable, découvrez notre méthodologie sur la page <a href="/concept">concept</a>
@@ -59,7 +62,8 @@
 
         <% include partials/footer %>
 
-
+    <script src="https://use.fontawesome.com/97f692b4ab.js"></script>
+    <script src="js/bootstrap-slider.min.js"></script>
     <script>var listOfThemes = <%- JSON.stringify(listOfThemes) %>;</script>
     <script src="js/test.js"></script>
 
