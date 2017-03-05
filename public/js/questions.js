@@ -4,7 +4,15 @@
 
 Survey.Survey.cssType = "bootstrap"
 
-var survey = new Survey.Survey(questions, "surveyContainer");
+//var survey = new Survey.Survey(questions, "surveyContainer");
+//survey.showProgressBar = "bottom";
+
+var survey = new Survey.Model(questions);
+$("#surveyContainer").Survey({
+    model:survey,
+    onComplete:sendDataToServer
+});
+survey.showProgressBar = "bottom";
 
 ////////////////////////////////////////////////////////////////////////////////
 /// Send the data to the surver

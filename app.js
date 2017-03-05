@@ -1,23 +1,22 @@
-
 //////////////////////////////////
 ///  Import the server modules ///
 //////////////////////////////////
-var express = require('express');
-var app = express();
-var url = require('url');
-var bodyParser = require('body-parser');
-var server = require('http').Server(app);
-var querystring = require('querystring');
-var themes = require('./data/themes');
-var biographies = require('./data/biographies');
-var infoContent = require('./data/infoContent');
+var express     = require('express');
+var app         = express();
+var url         = require('url');
+var bodyParser  = require('body-parser');
+var server      = require('http').Server(app);
+require("./database/mongo-pool.js").initPool();
 
 //////////////////////////////////////
 /// Import the JS backend modules ///
 /////////////////////////////////////
+var themes          = require('./data/themes');
+var biographies     = require('./data/biographies');
+var infoContent     = require('./data/infoContent');
+var SurveyQuestions = require('./routes/construct_survey/main.js');
+var SurveyResults   = require('./routes/compute_survey_results/main.js')
 
-var constructSurvey = require('./routes/constructSurvey');
-var constructResults = require('./routes/constructResults')
 
 /////////////////////////////////////////
 /// Public files : CSS and Javascript ///
@@ -56,17 +55,6 @@ app.get('/biographies', function (req, res) {
   res.render('bios.ejs', {biographies: biographies});
 });
 
-app.get('/biographies/:name', function(req, res) {
-  if(biographies.hasOwnProperty(req.params.name))
-    res.render('bio.ejs', {biographie: biographies[req.params.name]});
-  else {
-    res.status(404);
-    res.render('404.ejs', { url: req.url });
-    return;
-  }
-});
-
-
 app.get('/analyse', function (req, res) {
   res.render('analyse.ejs');
 });
@@ -102,7 +90,7 @@ app.post('/questions', function(req, res) {
     res.render('questions.ejs', {surveyJSON:questions, userPreferences:results});
   };
 
-  constructSurvey.constructSurvey(userThemeSelection, totalNumberOfQuestions,  renderSurvey);
+  SurveyQuestions.constructSurvey(userThemeSelection, totalNumberOfQuestions,  renderSurvey);
 });
 
 
@@ -116,7 +104,7 @@ app.post('/answers', function(req, res) {
     res.render('answers.ejs', {results:results, listOfCandidates: JSON.stringify(biographies.listOfCandidates)});
   }
 
-  constructResults.computeResults(surveyData, userPreferences, renderResults);
+  SurveyResults.computeResults(surveyData, userPreferences, renderResults);
 
 });
 

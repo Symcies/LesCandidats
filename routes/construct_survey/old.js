@@ -1,21 +1,14 @@
 //////////////////////////////////
 /// Different libraries loaded ///
 //////////////////////////////////
-var async = require('async');
+var async     = require('async');
+var app       = require('./../../app.js');
+var MongoPool = require("./../../database/mongo-pool");
 
+MongoPool.getInstance(function (db){
+    // Query your MongoDB database.
+});
 
-///////////////////////////////
-/// Connect to MongoDB host ///
-///////////////////////////////
-var MongoClient = require('mongodb').MongoClient;
-var db;
-
-var MongoDBKey = require('./MongoDBKey');
-
-MongoClient.connect(MongoDBKey.key, (err, database) => {
-  if (err) return console.log(err)
-  db = database
-})
 
 ////////////////////////////////////////////////////////////////////////////////
 ///  Select the IDS of the questions out of the mongo database
@@ -33,17 +26,19 @@ var getRandomSubarray = function(arr, size) {
 }
 
 var GetQuestionIDsOfGivenTheme = function(themeName, themeNumberOfQuestions, callback) {
-  db.collection('questions').find({"theme":themeName}, {"_id":1}).toArray(function(err, questionIDs) {
-    listQuestionIDs = [];
-    for(var i = 0; i < questionIDs.length; ++i)
-    {
-      listQuestionIDs.push(questionIDs[i]["_id"]);
-    }
-    if(questionIDs.length > themeNumberOfQuestions)
-    {
-      questionIDs = getRandomSubarray(questionIDs, themeNumberOfQuestions);
-    }
-    callback(err, listQuestionIDs);
+  MongoPool.getInstance(function(db) {
+    db.collection('questions').find({"theme":themeName}, {"_id":1}).toArray(function(err, questionIDs) {
+      listQuestionIDs = [];
+      for(var i = 0; i < questionIDs.length; ++i)
+      {
+        listQuestionIDs.push(questionIDs[i]["_id"]);
+      }
+      if(questionIDs.length > themeNumberOfQuestions)
+      {
+        questionIDs = getRandomSubarray(questionIDs, themeNumberOfQuestions);
+      }
+      callback(err, listQuestionIDs);
+    });
   });
 };
 
@@ -91,8 +86,10 @@ var transformMongoDBQuestionIntoSurveyJSQuestion = function(listIDs, MongoQuesti
 
 
 var getQuestionsFromMongoDB = function(listIDs, surveyRender) {
-  db.collection('questions').find({"_id": {$in: listIDs}}, {question:1, _id:0, "question.type":1, "question.choices":1, "question.name":1}).toArray(function(err, questions) {
-    transformMongoDBQuestionIntoSurveyJSQuestion(listIDs, questions, surveyRender);
+  MongoPool.getInstance(function (db){
+    db.collection('questions').find({"_id": {$in: listIDs}}, {question:1, _id:0, "question.type":1, "question.choices":1, "question.name":1}).toArray(function(err, questions) {
+      transformMongoDBQuestionIntoSurveyJSQuestion(listIDs, questions, surveyRender);
+    });
   });
 };
 

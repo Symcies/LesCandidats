@@ -1,28 +1,10 @@
-
 ////////////////////////////////////////////////////////////////////////////////
 /// Different libraries loaded
 ////////////////////////////////////////////////////////////////////////////////
-var async = require('async');
-var biographies = require('./../data/biographies');
-var themes = require('./../data/themes');
-
-
-////////////////////////////////////////////////////////////////////////////////
-/// Connect to MongoDB host
-////////////////////////////////////////////////////////////////////////////////
-var MongoClient = require('mongodb').MongoClient;
-var db;
-var MongoDBKey = require('./MongoDBKey');
-
-MongoClient.connect(MongoDBKey.key, (err, database) => {
-  if (err) return console.log(err)
-  db = database
-})
-
-////////////
-// TODO : The previous MongoClient has to be used only once, between this file and userPreference.js
-////////////
-
+var async       = require('async');
+var biographies = require('./../../data/biographies');
+var themes      = require('./../../data/themes');
+var MongoPool   = require("./../../database/mongo-pool");
 
 ////////////////////////////////////////////////////////////////////////////////
 /// Inspect and process the result of the database query
@@ -63,18 +45,18 @@ var getResultsOfGivenQuestion = function(questionText, questionAnswer, callback)
     "theme": 1,
     "question.choices": 1,
   };
+  MongoPool.getInstance(function (db){
+    db.collection('questions').find(Query, Projection).toArray(function(err, queryResult) {
 
-  db.collection('questions').find(Query, Projection).toArray(function(err, queryResult) {
+      Answers = processQuery(queryResult[0]['question']['choices'], questionAnswer);
 
-    Answers = processQuery(queryResult[0]['question']['choices'], questionAnswer);
-
-    results = {};
-    results['userAnswer'] = Answers[0];
-    results['theme'] = queryResult[0]['theme'];
-    results['topAnswer'] = Answers[1];
-    callback(err, results)
+      results = {};
+      results['userAnswer'] = Answers[0];
+      results['theme'] = queryResult[0]['theme'];
+      results['topAnswer'] = Answers[1];
+      callback(err, results)
+    });
   });
-
 };
 
 ////////////////////////////////////////////////////////////////////////////////

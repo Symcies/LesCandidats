@@ -29,10 +29,8 @@ var loadSlider = function(theme) {
 /// Load the theme text with the buttons
 ////////////////////////////////////////////////////////////////////////////////
  var loadThemeText = function(theme) {
-
    var themeText = document.createElement('span');
    themeText.textContent = theme['name'];
-
 
    var themeRow = document.createElement('div');
    themeRow.className = 'row themeText';
@@ -47,29 +45,6 @@ var loadSlider = function(theme) {
  ////////////////////////////////////////////////////////////////////////////////
 
 var loadThemeIcon = function(theme) {
-
-  /*
-  /// Load the icon
-  var themeIcon = document.createElement('i');
-  themeIcon.className = 'fa fa-' + theme['icon'] + ' fa-stack-1x' ;
-
-  /// Stack the icon into a circle
-  var circle = document.createElement('i');
-  circle.className = 'fa fa-square-o fa-stack-2x';
-
-  var stacked = document.createElement('span');
-  stacked.className = 'fa-stack fa-3x fa-fw';
-  stacked.appendChild(circle);
-  stacked.appendChild(themeIcon);
-
-  /// Incorporate the stacked icon into a col
-  var iconCol = document.createElement('div');
-  iconCol.className = 'col-md-2';
-  iconCol.appendChild(stacked);
-
-  return iconCol;
-*/
-
   var themeIcon = document.createElement('i');
   themeIcon.className = 'fa fa-' + theme['icon'] + '  fa-fw icon';
 
@@ -78,8 +53,6 @@ var loadThemeIcon = function(theme) {
   iconCol.appendChild(themeIcon);
 
   return iconCol;
-
-
 }
 
 ////////////////////////////////////////////////////////////////////////////////
