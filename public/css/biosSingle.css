@@ -1,0 +1,14 @@
+#singleBio {
+  color: black;
+}
+
+#imageContainer {
+  overflow: hidden;
+  height:350px;
+  width: 280px;
+}
+
+#image {
+  height: 100%;
+  width: auto;
+}
