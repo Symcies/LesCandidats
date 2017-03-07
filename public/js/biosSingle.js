@@ -248,7 +248,16 @@ var changeBiography = function(bio) {
 
 
 $(".btn-default").click(function(e){
-  var bio = biographies[e.target.id];
+  var bio;
+  for(var key in biographies)
+  {
+    if(!biographies.hasOwnProperty(key)) continue;
+    if(biographies[key]['shortName'] == e.target.id)
+    {
+      bio = biographies[key];
+      break;
+    }
+  }
   changeBiography(bio);
   $("#singleBio").modal('show');
 });

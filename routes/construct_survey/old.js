@@ -60,6 +60,8 @@ var shuffleListIDs = function(listIDs) {
 };
 
 
+
+
 ////////////////////////////////////////
 /// MongoDB function to extract data ///
 ////////////////////////////////////////
@@ -73,11 +75,13 @@ var transformMongoDBQuestionIntoSurveyJSQuestion = function(listIDs, MongoQuesti
   OrderOfQuestions = shuffleListIDs(OrderOfQuestions);
   for(var i = 0; i < OrderOfQuestions.length; ++i)
   {
-    var QuestionNumber = OrderOfQuestions[i]
+    var questionNumber = OrderOfQuestions[i]
+    var questionType = MongoQuestions[questionNumber]["type"];
+    var questions = processQuestion(MongoQuestions[questionNumber], questionType);
 
     page = {};
     page["name"] = "page" + i;
-    page["questions"] = [MongoQuestions[QuestionNumber]["question"]];
+    page["questions"] = questions;
     pages.push(page);
   }
   surveyJSON["pages"] = pages;

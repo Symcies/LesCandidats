@@ -52,7 +52,7 @@ app.get('/main', function(req, res) {
 })
 
 app.get('/biographies', function (req, res) {
-  res.render('bios.ejs', {biographies: biographies});
+  res.render('bios.ejs', {biographies: biographies.listOfCandidates});
 });
 
 app.get('/analyse', function (req, res) {

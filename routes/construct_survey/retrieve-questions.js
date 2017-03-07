@@ -8,6 +8,44 @@ var MongoPool = require("./../../database/mongo-pool");
 ////////////////////////////////////////
 /// MongoDB function to extract data ///
 ////////////////////////////////////////
+
+
+var firstTypeQuestion = function(MongoQuestion) {
+
+  return ;
+};
+
+var secondTypeQuestion = function(MongoQuestion) {
+  return ;
+};
+
+var thirdTypeQuestion = function(MongoQuestion) {
+  return ;
+};
+
+
+
+var processQuestion = function(MongoQuestion, questionType) {
+  if(Type == 'FirstType') {
+    return FirstTypeQuestion(MongoQuestion);
+  }
+  else if(Type == 'SecondType') {
+    return SecondTypeQuestion(MongoQuestion);
+  }
+  else if(Type == 'ThirdType') {
+    return ThirdTypeQuestion(MongoQuestion);
+  }
+  else
+  {
+    console.log('Problem with one of the question type: ', MongoQuestion);
+  }
+};
+
+
+
+////////////////////////////////////////
+/// MongoDB function to extract data ///
+////////////////////////////////////////
 var shuffleListIDs = function(listIDs) {
   var currentIndex = listIDs.length, temporaryValue, randomIndex;
 
@@ -24,6 +62,7 @@ var shuffleListIDs = function(listIDs) {
   return listIDs;
 };
 
+
 var retrieveQuestions = function(listIDs, surveyRender) {
   MongoPool.getInstance(function (db){
     db.collection('questions').find({"_id": {$in: listIDs}}, {question:1, _id:0, "question.type":1, "question.choices":1, "question.name":1}).toArray(function(err, questions) {
@@ -35,12 +74,13 @@ var retrieveQuestions = function(listIDs, surveyRender) {
       OrderOfQuestions = shuffleListIDs(OrderOfQuestions);
       for(var i = 0; i < OrderOfQuestions.length; ++i)
       {
-        var QuestionNumber = OrderOfQuestions[i]
+        var questionNumber = OrderOfQuestions[i]
+        var questionType = MongoQuestions[questionNumber]["type"];
+        var questions = processQuestion(MongoQuestions[questionNumber], questionType);
 
         page = {};
         page["name"] = "page" + i;
-        page["questions"] = [questions[QuestionNumber]["question"]];
-        page["questions"][0]["isRequired"] = true;
+        page["questions"] = questions;
         pages.push(page);
       }
       surveyJSON["pages"] = pages;

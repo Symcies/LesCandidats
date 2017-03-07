@@ -23,7 +23,7 @@ var p_db;
 function initPool(cb){
   //console.log(MongoDBKey.key);
   MongoClient.connect(MongoDBKey.key, function(err, db) {
-    if (err) throw err;
+    //if (err) throw err;
 
     p_db = db;
     if(cb && typeof(cb) == 'function')
