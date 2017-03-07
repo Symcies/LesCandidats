@@ -36,52 +36,23 @@ var initResultFormat = function(queryResult) {
 ////////////////////////////////////////////////////////////////////////////////
 
 var sumJSObjects = function(queryResult, previousResults, themeImportance) {
-  var Type = queryResult['Type'];
+  var newResults = previousResults;
 
-  if(Type == 'FirstType') {
-    return firstTypedQuestion(queryResult, previousResults, themeImportance);
+  /// Update the number of question answered
+  newResults['NbOfQuestionsAnswered'] += 1;
+
+  /// Update the top answered
+  newResults['topAnswer'] += queryResult['topAnswer']*themeImportance;
+
+  /// Update the grade of each party
+  for(var key in queryResult['userAnswer']) {
+    if(!queryResult['userAnswer'].hasOwnProperty(key)) continue;
+
+    newResults[key] = queryResult['userAnswer'][key]*themeImportance + previousResults[key];
   }
-  else if(Type == 'SecondType') {
-    return secondTypedQuestion(queryResult, previousResults, themeImportance);
-  }
-  else if(Type == 'ThirdType') {
-    return thirdTypedQuestion(queryResult, previousResults, themeImportance);
-  }
-  else
-  {
-    console.log('Problem with one of the question type: ', MongoQuestion);
-  }
 
-
+  return newResults;
 };
-
-var firstTypeQuestion = function(queryResults, previousResults, themeImportance) {
-    var newResults = resultsOfTheTheme;
-
-    /// Update the number of question answered
-    newResults['NbOfQuestionsAnswered'] += 1;
-
-    /// Update the top answered
-    newResults['topAnswer'] += queryResult['topAnswer']*themeImportance;
-
-    /// Update the grade of each party
-    for(var key in queryResult['userAnswer']) {
-      if(!queryResult['userAnswer'].hasOwnProperty(key)) continue;
-
-      newResults[key] = queryResult['userAnswer'][key]*themeImportance + resultsOfTheTheme[key];
-    }
-
-    return newResults;
-};
-
-var secondTypeQuestion = function(queryResults, previousResults, themeImportance) {
-  return ;
-};
-
-var thirdTypeQuestion = function(queryResults, previousResults, themeImportance) {
-  return ;
-};
-
 
 ////////////////////////////////////////////////////////////////////////////////
 /// Compute the importance of the theme

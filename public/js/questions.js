@@ -8,11 +8,13 @@ Survey.Survey.cssType = "bootstrap"
 //survey.showProgressBar = "bottom";
 
 var survey = new Survey.Model(questions);
+survey.showProgressBar = "bottom";
 $("#surveyContainer").Survey({
     model:survey,
+    showQuestionNumbers:"off",
     onComplete:sendDataToServer
 });
-survey.showProgressBar = "bottom";
+
 
 ////////////////////////////////////////////////////////////////////////////////
 /// Send the data to the surver

@@ -9,36 +9,17 @@ var MongoPool = require("./../../database/mongo-pool");
 /// MongoDB function to extract data ///
 ////////////////////////////////////////
 
+var processQuestion = function(MongoQuestion) {
 
-var firstTypeQuestion = function(MongoQuestion) {
-
-  return ;
-};
-
-var secondTypeQuestion = function(MongoQuestion) {
-  return ;
-};
-
-var thirdTypeQuestion = function(MongoQuestion) {
-  return ;
-};
-
-
-
-var processQuestion = function(MongoQuestion, questionType) {
-  if(Type == 'FirstType') {
-    return FirstTypeQuestion(MongoQuestion);
+  var questions = MongoQuestion["questions"];
+  for(var i = 0; i < questions.length; ++i) {
+    var choices = questions[i]["choices"];
+    for(var j = 0; j < choices.length; ++j) {
+      delete questions[i]["choices"][j]["answers"];
+    }
   }
-  else if(Type == 'SecondType') {
-    return SecondTypeQuestion(MongoQuestion);
-  }
-  else if(Type == 'ThirdType') {
-    return ThirdTypeQuestion(MongoQuestion);
-  }
-  else
-  {
-    console.log('Problem with one of the question type: ', MongoQuestion);
-  }
+  return questions;
+
 };
 
 
@@ -65,8 +46,7 @@ var shuffleListIDs = function(listIDs) {
 
 var retrieveQuestions = function(listIDs, surveyRender) {
   MongoPool.getInstance(function (db){
-    db.collection('questions').find({"_id": {$in: listIDs}}, {question:1, _id:0, "question.type":1, "question.choices":1, "question.name":1}).toArray(function(err, questions) {
-
+    db.collection('questions').find({"_id": {$in: listIDs}}, {questions:1, _id:0 }).toArray(function(err, questions) {
       var surveyJSON = {};
       surveyJSON["title"] = "Questions";
       pages = [];
@@ -74,13 +54,11 @@ var retrieveQuestions = function(listIDs, surveyRender) {
       OrderOfQuestions = shuffleListIDs(OrderOfQuestions);
       for(var i = 0; i < OrderOfQuestions.length; ++i)
       {
-        var questionNumber = OrderOfQuestions[i]
-        var questionType = MongoQuestions[questionNumber]["type"];
-        var questions = processQuestion(MongoQuestions[questionNumber], questionType);
-
+        var questionNumber = OrderOfQuestions[i];
+        var processedQuestion = processQuestion(questions[questionNumber]);
         page = {};
         page["name"] = "page" + i;
-        page["questions"] = questions;
+        page["questions"] = processedQuestion;
         pages.push(page);
       }
       surveyJSON["pages"] = pages;

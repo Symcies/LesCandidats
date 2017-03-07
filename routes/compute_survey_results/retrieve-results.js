@@ -9,52 +9,120 @@ var MongoPool   = require("./../../database/mongo-pool");
 ////////////////////////////////////////////////////////////////////////////////
 /// Inspect and process the result of the database query
 ////////////////////////////////////////////////////////////////////////////////
+var selectMaxValue = function(previousMax, answers) {
+  var NewMax = previousMax;
+  for(var key in answers) {
+    NewMax = Math.max(NewMax, answers[key]);
+  }
+  return NewMax;
+}
 
-var processQuery = function(questionChoices, questionAnswer) {
-  var userAnswer = {};
-  var topAnswer = 0;
+var addDictValues = function(container, dictToBeAdded) {
+  var temp = container;
 
-  var N = questionChoices.length;
-  for(var i = 0; i < N; ++i) {
-    choice = questionChoices[i];
-    Answers = choice['answers']
-    if(choice["value"] == questionAnswer)
-    {
-      userAnswer = Answers;
+  for(var key in dictToBeAdded) {
+    if(!dictToBeAdded.hasOwnProperty(key)) continue;
+
+    if(!temp.hasOwnProperty(key)) {
+      temp[key] = dictToBeAdded[key];
     }
-
-    for(party in Answers) {
-      if(Answers.hasOwnProperty(party)) {
-        topAnswer = Math.max(topAnswer, Answers[party]);
-      }
+    else {
+      temp[key] = temp[key] + dictToBeAdded[key];
     }
   }
-  return [userAnswer, topAnswer];
+
+  return temp;
 }
+
+var processCheckboxType = function(choices, userAnswer) {
+  /// Corresponds to multiple answers
+  /// Must return [TopAnswer, userAnswer]
+  var userPoints = {};
+  var topAnswer = 0;
+  //console.log('checkbox', user)
+  var userAnswers = userAnswer.split(',');
+
+  for(var i = 0; i < choices.length; ++i) {
+    if(userAnswers.includes(choices[i]["value"])) {
+      userPoints = addDictValues(userPoints, choices[i]["answers"]);
+    }
+    topAnswer = selectMaxValue(topAnswer, choices[i]["answers"])
+  }
+
+  return [topAnswer, userPoints];
+}
+
+var processRadiogroupType = function(choices, userAnswer) {
+  /// Corresponds to one answer
+  /// Must return [TopAnswer, userAnswer]
+
+  var userPoints = {};
+  var topAnswer = 0;
+
+  for(var i = 0; i < choices.length; ++i) {
+    if(choices[i]["value"] == userAnswer) {
+      userPoints = addDictValues(userPoints, choices[i]["answers"]);
+    }
+    topAnswer = selectMaxValue(topAnswer, choices[i]["answers"])
+  }
+
+  return [topAnswer, userPoints];
+}
+
+
+var processQuery = function(queryResult, userAnswer) {
+  var questionType = queryResult["type"];
+
+
+  if(questionType == 'checkbox') {
+    return processCheckboxType(queryResult["choices"], userAnswer)
+  }
+  else if(questionType == 'radiogroup') {
+    return processRadiogroupType(queryResult["choices"], userAnswer)
+  }
+  else {
+    console.log("There is a real problem with this question: ", queryResult);
+  }
+
+}
+
+
 
 ////////////////////////////////////////////////////////////////////////////////
 /// Query the database
 ////////////////////////////////////////////////////////////////////////////////
 
-var getResultsOfGivenQuestion = function(questionText, questionAnswer, callback) {
+var getResultsOfGivenQuestion = function(questionKey, userAnswer, callback) {
+
   var Query = {
-    "question.name": questionText,
+    "questions": { "$elemMatch": {"name":  questionKey  }}
   };
+
   var Projection = {
     "_id": 0,
     "theme": 1,
-    "question.choices": 1,
+    "questions.choices": 1,
+    "questions.type": 1,
+    "questions.name": 1,
   };
   MongoPool.getInstance(function (db){
     db.collection('questions').find(Query, Projection).toArray(function(err, queryResult) {
 
-      Answers = processQuery(queryResult[0]['question']['choices'], questionAnswer);
-      // TODO: NEED TO ADD THE TYPE
-      console.log('I NEED TO ADD THE TYPE -> retrieve-results. l.53');
+      var goodQuestion;
+      for(var i = 0; i < queryResult[0]['questions'].length; ++i) {
+        if(queryResult[0]['questions'][i]['name'] == questionKey) {
+          goodQuestion = queryResult[0]['questions'][i];
+          break;
+        }
+      }
+
+      processedQuery = processQuery(goodQuestion, userAnswer);
+
       results = {};
-      results['userAnswer'] = Answers[0];
-      results['theme'] = queryResult[0]['theme'];
-      results['topAnswer'] = Answers[1];
+      results['theme']      = queryResult[0]['theme'];
+      results['topAnswer']  = processedQuery[0];
+      results['userAnswer'] = processedQuery[1];
+
       callback(err, results)
     });
   });

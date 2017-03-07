@@ -24,7 +24,7 @@ var computeResults = function(surveyResults, userPreferences, renderResults)
   async.parallel(
     getResultsPerQuestion,
     function(err, queryResults) {
-      concatenateResults(queryResults, renderResults, userPreferences);
+      concatenateResults.concatenateResults(queryResults, renderResults, userPreferences);
     });
 
 };
