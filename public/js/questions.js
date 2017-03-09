@@ -4,13 +4,24 @@
 
 Survey.Survey.cssType = "bootstrap"
 
+var myCss = {
+  "navigationButton": "button btn-lg"
+};
+
 //var survey = new Survey.Survey(questions, "surveyContainer");
 //survey.showProgressBar = "bottom";
+questions["title"]        = "Découvrez votre candidat 2017";
+questions["requiredText"] = "";
+questions["completedHtml"] = "Veuillez patienter, nous recherchons votre candidat 2017";
+questions["locale"] = "fr";
+
 
 var survey = new Survey.Model(questions);
 survey.showProgressBar = "bottom";
+
 $("#surveyContainer").Survey({
     model:survey,
+    css:myCss,
     showQuestionNumbers:"off",
     onComplete:sendDataToServer
 });

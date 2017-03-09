@@ -16,6 +16,8 @@ var biographies     = require('./data/biographies');
 var infoContent     = require('./data/infoContent');
 var SurveyQuestions = require('./routes/construct_survey/main.js');
 var SurveyResults   = require('./routes/compute_survey_results/main.js')
+var themeSecurity   = require('./security/input-themes.js');
+var answersSecurity = require('./security/input-answers.js');
 
 
 /////////////////////////////////////////
@@ -80,6 +82,11 @@ app.get('/test', function (req, res) {
 });
 
 app.post('/questions', function(req, res) {
+  /// Check the security
+  //console.log('should be true', themeSecurity.checkUserThemes(req.body));
+  if(!themeSecurity.checkUserThemes(req.body)) res.render('hack.ejs');
+
+  /// Process the data
   var results = req.body;
   var totalNumberOfQuestions = results.length;
   delete results.length;
@@ -95,10 +102,16 @@ app.post('/questions', function(req, res) {
 
 
 app.post('/answers', function(req, res) {
+  /// Check the security
+  //console.log('should be true', answersSecurity.checkUserAnswers(req.body));
+  if(!answersSecurity.checkUserAnswers(req.body)) res.render('hack.ejs');
+
+  /// Preprocess the data
   var surveyData = req.body;
   var userPreferences = JSON.parse(surveyData.userPreferences);
   delete surveyData.userPreferences;
 
+  /// Render the results
   var renderResults = function(results)
   {
     res.render('answers.ejs', {results:results, listOfCandidates: JSON.stringify(biographies.listOfCandidates)});

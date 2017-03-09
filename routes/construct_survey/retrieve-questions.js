@@ -46,9 +46,8 @@ var shuffleListIDs = function(listIDs) {
 
 var retrieveQuestions = function(listIDs, surveyRender) {
   MongoPool.getInstance(function (db){
-    db.collection('questions').find({"_id": {$in: listIDs}}, {questions:1, _id:0 }).toArray(function(err, questions) {
+    db.collection('questions').find({"_id": {$in: listIDs}}, {questions:1, theme:1, _id:0 }).toArray(function(err, questions) {
       var surveyJSON = {};
-      surveyJSON["title"] = "Questions";
       pages = [];
       OrderOfQuestions = Array.apply(null, {length: questions.length}).map(Number.call, Number)
       OrderOfQuestions = shuffleListIDs(OrderOfQuestions);
@@ -57,6 +56,7 @@ var retrieveQuestions = function(listIDs, surveyRender) {
         var questionNumber = OrderOfQuestions[i];
         var processedQuestion = processQuestion(questions[questionNumber]);
         page = {};
+        page["title"] = questions[questionNumber]['theme'];
         page["name"] = "page" + i;
         page["questions"] = processedQuestion;
         pages.push(page);

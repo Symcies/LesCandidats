@@ -1,4 +1,3 @@
 node_modules/
-OldDraft_NoProd/
 database/mongodb-key.js
-node_modules/
+security/

@@ -4,11 +4,11 @@
 
 #imageContainer {
   overflow: hidden;
-  height:350px;
-  width: 280px;
+  height:auto;
+  width: 100%;
 }
 
 #image {
-  height: 100%;
-  width: auto;
+  width: 100%;
+  height: auto;
 }

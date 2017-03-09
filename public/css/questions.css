@@ -1,0 +1,16 @@
+.panel-body {
+  height: 300px;
+  position: relative;
+}
+
+.progress {
+  position: absolute;
+  bottom: 0px;
+  right: 10%;
+  left:10%;
+}
+
+h3 {
+  font-size: 30px;
+  text-align: center;
+}

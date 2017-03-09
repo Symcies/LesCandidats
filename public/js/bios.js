@@ -22,11 +22,14 @@ function shuffle(array) {
 function loadImage(bio) {
 
   var portrait = document.createElement("img");
-  portrait.height = 160;
   portrait.src = '/img/eyes/' + bio["shortName"] + 'eyes.jpg'
   portrait.alt = name;
 
-  return portrait;
+  var portraitContainer = document.createElement('div');
+  portraitContainer.className = "portraitContainer";
+  portraitContainer.appendChild(portrait);
+
+  return portraitContainer;
 }
 
 function loadTitle(bio) {
@@ -56,14 +59,14 @@ var writeBiographe = function(bio) {
 
   var Image = loadImage(bio);
   var Title = loadTitle(bio);
-  var Caption = loadBioLink(bio);
+  //var Caption = loadBioLink(bio);
 
   var candidate = document.createElement('div');
   candidate.className = 'col-md-12 thumbnail text-center';
   candidate.id = bio['shortName'];
   candidate.appendChild(Title);
   candidate.appendChild(Image);
-  candidate.appendChild(Caption)
+  //candidate.appendChild(Caption)
 
 
   /// Assemble the divs

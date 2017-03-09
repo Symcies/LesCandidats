@@ -1,3 +1,13 @@
+.portrait {
+  width: 120%;
+}
+
+.portraitContainer {
+  overflow: hidden;
+  height: 100px;
+}
+
+
 .candidate{
     height: 200px;
     overflow: hidden;
@@ -5,7 +15,6 @@
     margin-bottom: 15px;
     height: 200px;
 }
-
 
 .caption {
   position: absolute;
@@ -24,6 +33,7 @@
   margin:0;
   padding:0;
   //background: none;
+  cursor: pointer;
 }
 
 .thumbnail img {
@@ -40,7 +50,7 @@
     -ms-filter: blur(0);
     -ms-filter: blur(0px);
 
-    height: 100px;
+    /height: 100px;
 }
 
 .thumbnail:hover img {

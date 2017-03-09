@@ -247,12 +247,13 @@ var changeBiography = function(bio) {
 ////////////////////////////////////////////////////////////////////////////////
 
 
-$(".btn-default").click(function(e){
+$(".thumbnail").click(function(e){
+  
   var bio;
   for(var key in biographies)
   {
     if(!biographies.hasOwnProperty(key)) continue;
-    if(biographies[key]['shortName'] == e.target.id)
+    if(biographies[key]['shortName'] == $(this).attr("id"))
     {
       bio = biographies[key];
       break;
@@ -261,6 +262,7 @@ $(".btn-default").click(function(e){
   changeBiography(bio);
   $("#singleBio").modal('show');
 });
+
 
 ////////////////////////////////////////////////////////////////////////////////
 /// Initialize

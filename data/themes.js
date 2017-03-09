@@ -8,8 +8,8 @@ var listOfThemes = [
     'icon':'tint',
   },
   {
-    'name': 'Solidarité',
-    'icon': 'wheelchair'
+    'name': 'Société',
+    'icon': 'group'
   },
   {
     'name': 'Sécurité',
@@ -34,6 +34,10 @@ var listOfThemes = [
   {
     'name': 'Culture',
     'icon':'music',
+  },
+  {
+    'name': "Louise",
+    'icon': "wheelchair"
   }
 ]
 
