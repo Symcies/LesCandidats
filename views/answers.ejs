@@ -6,21 +6,27 @@
     <% include partials/navbar %>
 
   <div id="wrap">
+    <div class="container" id="singleBiography"></div>
+    <div class="container" id="favoriteCandidate"></div>
+    <hr>
+    <div class="container" id="listOfCandidates"></div>
+    <hr>
+    <div class="container" id="listThemes"></div>
 
-    <div class="container" id="mainContainer">
 
-    </div>
   </div>
-
 
     <% include partials/footer %>
 
-
-    <script> var rawResults = <%- JSON.stringify(results) %>;</script>
     <script>
-    var listOfCandidates = <%- JSON.stringify(listOfCandidates) %>;
-    listOfCandidates = JSON.parse(listOfCandidates);
+      var rawResults = <%- JSON.stringify(results) %>;
+      var listOfCandidates = <%- JSON.stringify(listOfCandidates) %>;
+      listOfCandidates = JSON.parse(listOfCandidates);
     </script>
-    <script src="js/answers.js"></script>
+    <script src="js/biosSingle.js"></script>
+    <script src="js/answers/init-results.js"></script>
+    <script src="js/answers/favorite-candidate.js"></script>
+    <script src="js/answers/list-candidates.js"></script>
+    <script src="js/answers/list-themes.js"></script>
 </body>
 </html>

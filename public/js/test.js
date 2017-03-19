@@ -112,7 +112,7 @@ function addTheme(theme) {
 $('.slid').slider({
 	formatter: function(value) {
 
-		return 'Current value: ' + value;
+		return 'Valeur: ' + value;
 	}
 });
 

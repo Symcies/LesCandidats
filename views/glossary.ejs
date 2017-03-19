@@ -5,30 +5,26 @@
     <% include partials/navbar %>
 
   <div id="wrap">
-
     <div class="container">
       <div class="row">
         <div class="col-md-8 col-md-offset-3 text-center">
-          <h1>Les Sources</h1>
+
+              <h1>Glossaire</h1>
+
         </div>
       </div>
 
-      <div class="row">
+      <div class ="row">
         <div class="col-md-8 col-md-offset-3 text-center">
-          <div class="row" id="sources">
+          <div class="row" id="words">
           </div>
-        </div>
       </div>
     </div>
-
   </div>
 
 
-    <% include partials/footer %>
+  <% include partials/footer %>
 
-    <!-- /container -->
-    <script> var listOfCandidates = <%- JSON.stringify(listOfCandidates) %>;</script>
-    <script> var candidateOrder = <%- JSON.stringify(candidateOrder) %>;</script>
-    <script src="js/sources.js"></script>
+
 </body>
 </html>

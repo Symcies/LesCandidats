@@ -1,0 +1,224 @@
+////////////////////////////////////////////////////////////////////////////////
+///
+////////////////////////////////////////////////////////////////////////////////
+
+
+var results = {};
+
+var invertedlistOfCandidates = {};
+for(var i = 0; i < listOfCandidates.length; ++i)
+{
+  invertedlistOfCandidates[listOfCandidates[i]['shortName']] = listOfCandidates[i]['name']
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+/// Sum over the themes
+////////////////////////////////////////////////////////////////////////////////
+
+var sumOverThemes = function(themesToSum) {
+
+  var maxValue = 0;
+  var selectedResults = {};
+  for(var candidate in listOfCandidates) {
+    selectedResults[candidate] = 0;
+  }
+
+  for(var i = 0; i < themesToSum.length; ++i) {
+    var theme = themesToSum[i];
+    for(key in rawResults[theme]) {
+      if(key != 'topAnswer' && key != 'NbOfQuestionsAnswered'){
+        selectedResults[key] = selectedResults[key] + rawResults[theme][key];
+      }
+    }
+    if('topAnswer' in rawResults[theme]) {
+      maxValue += parseInt(rawResults[theme]['topAnswer']);
+    }
+
+  }
+
+  return [selectedResults, maxValue];
+};
+
+
+
+
+////////////////////////////////////////////////////////////////////////////////
+/// Display one party
+////////////////////////////////////////////////////////////////////////////////
+
+var displayOneParty = function(candidate) {
+  var shortName = candidate[0];
+  var value = candidate[1];
+
+  /// Creating the elemnts
+  var newRow = document.createElement('div');
+  newRow.className = "row";
+
+  var partyCol = document.createElement('div');
+  partyCol.className = 'col-md-2 col-md-offset-2'
+  partyCol.textContent = listOfCandidates[shortName]['name'];
+
+  var resultCol = document.createElement('div');
+  resultCol.className = 'col-md-2';
+  resultCol.textContent = value + '%';
+
+
+  /// Concatenating the elements
+  newRow.appendChild(partyCol);
+  newRow.appendChild(resultCol);
+
+  var container = document.getElementById('mainContainer');
+  container.appendChild(newRow);
+};
+
+var displayResults = function(resultsToDisplay) {
+  var maxValue = resultsToDisplay[1];
+  var resultsToDisplay = resultsToDisplay[0];
+
+  var sortedResults = [];
+  for (var result in resultsToDisplay)
+    sortedResults.push([result, resultsToDisplay[result]/maxValue*100])
+
+    sortedResults.sort(function(a, b) {
+    return b[1] - a[1]
+  })
+
+  for(var i=0; i<sortedResults.length; ++i) {
+    displayOneParty(sortedResults[i]);
+  }
+
+}
+
+////////////////////////////////////////////////////////////////////////////////
+/// Display results
+////////////////////////////////////////////////////////////////////////////////
+
+var selectBest = function(results) {
+  var candidate = '';
+  var maxResult = 0;
+  for(var key in results) {
+    if(!results.hasOwnProperty(key)) continue;
+    if(parseInt(results[key]) > maxResult) {
+      maxResult = parseInt(results[key]);
+      candidate = key;
+    }
+  }
+  return [candidate, maxResult];
+};
+
+
+////////////////////////////////////////////////////////////////////////////////
+/// Display favorite candidate
+////////////////////////////////////////////////////////////////////////////////
+var percentageRow = function(percentage) {
+
+  var text = document.createElement('p');
+  text.textContent = "Avec près de " + percentage*100 + "% d'affinités, le candidat qui vous correspond le mieux est "
+
+  var container = document.createElement('div');
+  container.className = 'col-md-8 col-md-offset-3 text-center';
+  container.appendChild(text);
+
+  var row = document.createElement('div');
+  row.className = 'row';
+  row.appendChild(container);
+
+  return row;
+
+};
+
+var candidateRow = function(bio) {
+
+  /// First column
+  var picture = document.createElement('img');
+  picture.height = 25e0;
+  picture.src = '/img/profiles/' + bio['shortName'] + '.jpg';
+
+  var pictureContainer = document.createElement('div');
+  pictureContainer.style.borderRadius = '100px';
+  pictureContainer.style.overflow = "hidden";
+  pictureContainer.style.width = '200px';
+  pictureContainer.style.height = '200px';
+  pictureContainer.appendChild(picture);
+
+  var name = document.createElement('h3');
+  name.textContent = bio['name'];
+
+  var nameContainer = document.createElement('div');
+  nameContainer.appendChild(name);
+
+  var firstCol = document.createElement('div');
+  firstCol.className = "col-md-4"
+  firstCol.appendChild(pictureContainer);
+  firstCol.appendChild(nameContainer);
+
+
+  /// Second column
+  var program = document.createElement('div');
+
+  for(var i = 0; i < bio['program'].length; ++i) {
+    var Par = document.createElement('p');
+    Par.textContent = bio['program'][i];
+    program.appendChild(Par);
+  }
+
+  var secondCol = document.createElement('div');
+  secondCol.className = 'col-md-8';
+  secondCol.appendChild(program);
+
+  /// Concatenate to build row
+  var miniRow = document.createElement('div');
+  miniRow.className = 'row';
+  miniRow.appendChild(firstCol);
+  miniRow.appendChild(secondCol);
+
+  var mainCol = document.createElement('div');
+  mainCol.className = 'col-md-8 col-md-offset-3 text-center';
+  mainCol.appendChild(miniRow);
+
+  var mainRow = document.createElement('div');
+  mainRow.className = 'row';
+  mainRow.appendChild(mainCol);
+
+  return mainRow;
+};
+
+
+var displayFirst = function(results) {
+  favoriteCandidate = selectBest(results[0]);
+  maxResults = results[1];
+
+  /// First row : percentage
+  var percentage = percentageRow(favoriteCandidate[1]/maxResults);
+
+  ///  Second row : two col -->
+  var candidate = candidateRow(listOfCandidates[favoriteCandidate[0]]);
+
+  var container = document.getElementById('mainContainer');
+  container.appendChild(percentage);
+  container.appendChild(candidate);
+
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+/// Initialize the results
+////////////////////////////////////////////////////////////////////////////////
+
+
+var initializeResults = function() {
+  var listOfThemesToDisplay = [];
+  for(key in rawResults) {
+    if(!rawResults.hasOwnProperty[key]) {
+      listOfThemesToDisplay.push(key);
+    }
+  }
+
+  selectedResults = sumOverThemes(listOfThemesToDisplay);
+  //displayPodium(selectedResults);
+  displayFirst(selectedResults);
+  displayResults(selectedResults);
+};
+
+initializeResults();

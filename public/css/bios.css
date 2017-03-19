@@ -1,12 +1,12 @@
 .portrait {
-  width: 120%;
+  max-width: 150%;
+  width: 120% !important;
 }
 
 .portraitContainer {
   overflow: hidden;
   height: 100px;
 }
-
 
 .candidate{
     height: 200px;
@@ -34,8 +34,9 @@
   padding:0;
   //background: none;
   cursor: pointer;
+  overflow: hidden;
 }
-
+/*
 .thumbnail img {
     -webkit-transition: all 1s ease; /* Safari and Chrome */
   	-moz-transition: all 1s ease; /* Firefox */

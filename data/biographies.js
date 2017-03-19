@@ -1,11 +1,12 @@
 var FF = {
-    "name": "Francois Fillon",
+    "name": "François Fillon",
     "age": "63",
     "shortName": "FF",
     "currentSituation": ["Député de Paris"],
     "website": "https://www.fillon2017.fr",
     "partyName": "Les Républicains",
     "Bio": ["first paragraph", 'second paragraph'],
+    "program": ["No program yet", "No program yet", "No program yet"],
     "Sources": {
       "Site officiel":"https://www.fillon2017.fr",
       "":"",
@@ -22,6 +23,7 @@ var EM = {
   "website": "https://en-marche.fr/",
   "partyName": "En Marche",
   "Bio":  ["Emmanuel Macron est né le 21 décembre 1977 à Amiens. Diplômé des l'Institut de Science Politique en ..., il intègre l'ENA au sein de la promotion Léopold Sédar Senghor.","ahahah"],
+  "program": ["No program yet", "No program yet", "No program yet"],
   "Sources": {
     "Site officiel":"https://en-marche.fr/",
     "":"",
@@ -47,6 +49,7 @@ var BH = {
       "Après avoir été évincé du gouvernement en raison de son opposition avec les lignes directrices de celui-ci, Benoît Hamon siège alors au Parlement jusqu'à présent, notamment dans la Commission des affaires étrangères. Il quitte notamment ses mandats de conseiller municipal et de conseiller communautaire lorsqu'il est élu conseiller régional d'Île de France en 2015.",
       "Benoît Hamon fait alors partie des Frondeurs, le groupe de députés du PS opposés à la politique économique et sociale des gouvernements de Jean-Marc Ayrault et de Manuel Valls. Il s'oppose au projet de loi Macron en 2015 mais aussi à l'inscription dans la Constitution de la déchéance de nationalité pour les Français binationaux par exemple.",
     ],
+    "program": ["No program yet", "No program yet", "No program yet"],
     "Sources": {
       "Site officiel": "http://www.benoithamon2017.fr/",
       "Page officiel sur le site de l'Assemblé Nationale": "http://www2.assemblee-nationale.fr/deputes/fiche/OMC_PA590032",
@@ -64,6 +67,7 @@ var JLM = {
     "website": "http://www.jlm2017.fr/",
     "partyName": "La France Insoumise",
     "Bio":  ["first paragraph", 'second paragraph'],
+    "program": ["No program yet", "No program yet", "No program yet"],
     "Sources": {
       "Site officiel":"http://www.jlm2017.fr/",
       "":"",
@@ -78,7 +82,13 @@ var MLP = {
     "currentSituation": ["Présidente du Front National", "Présidente du groupe Europe des nations et des libertés au Parlement Européen", "Députée Europpéenne", "Conseillère régionale des Hauts-de-France"],
     "website": "https://www.marine2017.fr/",
     "partyName": "Front National",
-    "Bio":  ["first paragraph", 'second paragraph']
+    "Bio":  ["first paragraph", 'second paragraph'],
+    "program": ["No program yet", "No program yet", "No program yet"],
+    "Sources": {
+      "Site officiel":"https://www.fillon2017.fr",
+      "":"",
+      "":""
+    }
 }
 
 var NA = {
@@ -88,7 +98,13 @@ var NA = {
     "currentSituation": ["Porte-parole de Lutte Ouvrière"],
     "website": "http://www.nathalie-arthaud.info/",
     "partyName": "Lutte Ouvrière",
-    "Bio":  ["first paragraph", 'second paragraph']
+    "Bio":  ["first paragraph", 'second paragraph'],
+    "program": ["No program yet", "No program yet", "No program yet"],
+    "Sources": {
+      "Site officiel":"https://www.fillon2017.fr",
+      "":"",
+      "":""
+    }
 }
 
 var PP = {
@@ -98,7 +114,13 @@ var PP = {
     "currentSituation": ["Membre du Nouveau Parti Anticapitaliste", "Responsable syndical CGT et ouvrier dans une usine automobile"],
     "website": "https://npa2009.org/tag/philippe-poutou",
     "partyName": "Nouveau Parti Anticapitaliste",
-    "Bio":  ["first paragraph", 'second paragraph']
+    "Bio":  ["first paragraph", 'second paragraph'],
+    "program": ["No program yet", "No program yet", "No program yet"],
+    "Sources": {
+      "Site officiel":"https://www.fillon2017.fr",
+      "":"",
+      "":""
+    }
 }
 
 var NDA = {
@@ -108,17 +130,29 @@ var NDA = {
     "currentSituation": ["Député de l'Essonne", "Président de Debout La France", "Maire d'Yerres", "Président de la communauté d'agglomération Val d'Yerres Val de Seine"],
     "website": "http://blog.nicolasdupontaignan.fr/",
     "partyName":  "Debout La France",
-    "Bio":  ["first paragraph", 'second paragraph']
+    "Bio":  ["first paragraph", 'second paragraph'],
+    "program": ["No program yet", "No program yet", "No program yet"],
+    "Sources": {
+      "Site officiel":"https://www.fillon2017.fr",
+      "":"",
+      "":""
+    }
 }
 
-var RY = {
-    "name": "Rama Yade",
+var JL = {
+    "name": "Jean Lassalle",
     "age": "",
-    "shortName": "RY",
-    "currentSituation": ["Membre de La France qui ose"],
-    "website": "http://www.lafrancequiose.fr/",
-    "partyName": "La France qui ose",
-    "Bio":  ["first paragraph", 'second paragraph']
+    "shortName": "JL",
+    "currentSituation": [""],
+    "website": "",
+    "partyName": "",
+    "Bio":  ["first paragraph", 'second paragraph'],
+    "Sources": {
+      "":"",
+      "":"",
+      "":""
+    },
+    "program": ["No program yet", "No program yet", "No program yet"],
 }
 
 var JC = {
@@ -133,7 +167,24 @@ var JC = {
       "":"",
       "":"",
       "":""
-    }
+    },
+    "program": ["No program yet", "No program yet", "No program yet"],
+}
+
+var FA = {
+    "name": "François Asselineau",
+    "age": "",
+    "shortName": "FA",
+    "currentSituation": [""],
+    "website": "",
+    "partyName":"",
+    "Bio": ["first", "second"],
+    "Sources": {
+      "":"",
+      "":"",
+      "":""
+    },
+    "program": ["No program yet", "No program yet", "No program yet"],
 }
 
 var example = {
@@ -156,6 +207,21 @@ module.exports.MLP = MLP;
 module.exports.NA = NA;
 module.exports.PP = PP;
 module.exports.NDA = NDA;
-module.exports.RY = RY;
+module.exports.JL = JL;
 module.exports.JC = JC;
-module.exports.listOfCandidates = [EM, FF, BH, JLM, MLP, NA, PP, NDA, RY, JC]
+module.exports.FA = FA;
+module.exports.alphabeticalOrder = ["NA", "FA", "JC", "NDA", "FF", "BH", "JL", "MLP", "EM", "JLM", "PP"]
+module.exports.listOfCandidates =
+{
+  "EM":EM,
+  "FF":FF,
+  "BH":BH,
+  "JLM":JLM,
+  "MLP":MLP,
+  "NA":NA,
+  "PP":PP,
+  "NDA":NDA,
+  "JL":JL,
+  "JC":JC,
+  "FA":FA,
+}

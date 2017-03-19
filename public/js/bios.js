@@ -22,7 +22,8 @@ function shuffle(array) {
 function loadImage(bio) {
 
   var portrait = document.createElement("img");
-  portrait.src = '/img/eyes/' + bio["shortName"] + 'eyes.jpg'
+  portrait.className = "img-responsive";
+  portrait.src = '/img/eyes/' + bio["shortName"] + '.jpg'
   portrait.alt = name;
 
   var portraitContainer = document.createElement('div');
@@ -80,16 +81,49 @@ var writeBiographe = function(bio) {
 
 (function() {
 
-  listCandidates = shuffle(biographies);
-  var mainCol = document.createElement('div');
-  mainCol.className = 'col-lg-9 col-lg-offset-2';
+  candidateKeys = shuffle(Object.keys(biographies));
 
-  for(var i = 0; i < listCandidates.length; ++i) {
-    var fullCandidate = writeBiographe(listCandidates[i]);
+  var mainCol = document.createElement('div');
+  mainCol.className = 'col-lg-8 col-lg-offset-3';
+
+  for(var i = 0; i < candidateKeys.length; ++i) {
+    var fullCandidate = writeBiographe(biographies[candidateKeys[i]]);
     mainCol.appendChild(fullCandidate);
   }
 
   var container = document.getElementById('mainContainer');
   container.appendChild(mainCol);
+
 }
 )();
+
+
+////////////////////////////////////////////////////////////////////////////////
+/// Launch the modal
+////////////////////////////////////////////////////////////////////////////////
+
+var changeBiography = function(bio) {
+  // TO DO : DO NOT RELOAD EACH TIME !!
+  bootstrapStructure = loadBoostrapStructure(bio);
+  var container = document.getElementById('singleBiography');
+  while (container.firstChild) {
+    container.removeChild(container.firstChild);
+  }
+  container.appendChild(bootstrapStructure);
+};
+
+$(".thumbnail").click(function(e){
+
+  var bio;
+  for(var key in biographies)
+  {
+    if(!biographies.hasOwnProperty(key)) continue;
+    if(biographies[key]['shortName'] == $(this).attr("id"))
+    {
+      bio = biographies[key];
+      break;
+    }
+  }
+  changeBiography(bio);
+  $("#singleBio").modal('show');
+});

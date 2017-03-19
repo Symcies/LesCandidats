@@ -73,8 +73,12 @@ app.get('/concept', function (req, res) {
   res.render('concept.ejs');
 });
 
+app.get('/glossary', function (req, res) {
+  res.render('glossary.ejs');
+});
+
 app.get('/sources', function (req, res) {
-  res.render('sources.ejs');
+  res.render('sources.ejs', {listOfCandidates:biographies.listOfCandidates, candidateOrder:biographies.alphabeticalOrder});
 });
 
 app.get('/test', function (req, res) {
@@ -101,7 +105,45 @@ app.post('/questions', function(req, res) {
 });
 
 
+var examples = {
+   "Travail" : {
+     "JLM": 5,
+     "FF": 7,
+     "topAnswer": 10,
+     "NbOfQuestionsAnswered": 2,
+   },
+   "Société": {
+     "BH": 19,
+     "NA": 2,
+     "JLM": 8,
+     "EM": 4,
+     "MLP": 7,
+     "topAnswer": 8,
+     "NbOfQuestionsAnswered": 9
+   },
+   "Santé": {
+   },
+   "Sécurité": {
+     "EM": 7,
+     "topAnswer":15,
+     "NbOfQuestionsAnswered": 3
+   },
+   "Environnement": {
+     "NDA": 8,
+     "topAnswer": 16,
+     "NbOfQuestionsAnswered": 2,
+   },
+   "Culture": {
+     "JC": 3,
+     "PP": 4,
+     "topAnswer": 8,
+     "NbOfQuestionsAnswered": 3
+   }
+};
+
+
 app.post('/answers', function(req, res) {
+
   /// Check the security
   //console.log('should be true', answersSecurity.checkUserAnswers(req.body));
   if(!answersSecurity.checkUserAnswers(req.body)) res.render('hack.ejs');
@@ -119,6 +161,11 @@ app.post('/answers', function(req, res) {
 
   SurveyResults.computeResults(surveyData, userPreferences, renderResults);
 
+  //res.render('answers.ejs', {results:examples, listOfCandidates: JSON.stringify(biographies.listOfCandidates)});
+});
+
+app.get('/answers_test', function(req, res) {
+  res.render('answers.ejs', {results:examples, listOfCandidates: JSON.stringify(biographies.listOfCandidates)});
 });
 
 app.get('*', function(req, res) {

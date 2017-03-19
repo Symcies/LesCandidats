@@ -79,6 +79,7 @@ var concatenateResults = function(listOfResults, renderResults, userPreferences)
     resultsPerTheme[theme]  = sumJSObjects(queryResult, resultsPerTheme[theme], themeImportance);
   }
 
+
   renderResults(resultsPerTheme);
 };
 

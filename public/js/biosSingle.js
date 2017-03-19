@@ -231,37 +231,7 @@ var loadBiographyFooter = function(bio) {
  ////////////////////////////////////////////////////////////////////////////////
  /// Change the single biography
  ////////////////////////////////////////////////////////////////////////////////
-var changeBiography = function(bio) {
-  // TO DO : DO NOT RELOAD EACH TIME !!
-  bootstrapStructure = loadBoostrapStructure(bio);
-  var container = document.getElementById('singleBiography');
-  while (container.firstChild) {
-    container.removeChild(container.firstChild);
-  }
-  container.appendChild(bootstrapStructure);
-};
 
-
-////////////////////////////////////////////////////////////////////////////////
-/// Launch the modal
-////////////////////////////////////////////////////////////////////////////////
-
-
-$(".thumbnail").click(function(e){
-  
-  var bio;
-  for(var key in biographies)
-  {
-    if(!biographies.hasOwnProperty(key)) continue;
-    if(biographies[key]['shortName'] == $(this).attr("id"))
-    {
-      bio = biographies[key];
-      break;
-    }
-  }
-  changeBiography(bio);
-  $("#singleBio").modal('show');
-});
 
 
 ////////////////////////////////////////////////////////////////////////////////
