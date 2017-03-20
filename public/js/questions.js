@@ -5,7 +5,8 @@
 Survey.Survey.cssType = "bootstrap"
 
 var myCss = {
-  "navigationButton": "button btn-lg"
+  "navigationButton": "button btn-lg",
+  "footer": "text-center",
 };
 
 //var survey = new Survey.Survey(questions, "surveyContainer");
@@ -19,11 +20,17 @@ questions["locale"] = "fr";
 var survey = new Survey.Model(questions);
 survey.showProgressBar = "bottom";
 
+
+
 $("#surveyContainer").Survey({
     model:survey,
     css:myCss,
     showQuestionNumbers:"off",
     onComplete:sendDataToServer
+});
+
+$(".panel-footer").click(function() {
+  $(this).addClass("text-center");
 });
 
 

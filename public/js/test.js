@@ -158,14 +158,20 @@ function sendUserSelectionToServer(surveylength) {
 
 };
 
+$(".btn-group > .btn").click(function(){
+    $(".btn-group > .btn").removeClass("active");
+    $(this).addClass("active");
+});
 
-(function() {
-  var buttons = document.getElementsByClassName("btn");
-  for(var i = 0; i < buttons.length; ++i) {
 
-    buttons[i].addEventListener('click', function(e) {
-      var length = e.target.getAttribute("data-length");
-      sendUserSelectionToServer(length);
-    });
+$(".validation").click(function() {
+  var activeButton = document.getElementsByClassName('active');
+  if(activeButton.length == 1) {
+
+    length = activeButton[0].getAttribute("data-length");
+    sendUserSelectionToServer(length);
   }
-})();
+  else {
+    $("#myModal").modal('show');
+  }
+});

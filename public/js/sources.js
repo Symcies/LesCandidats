@@ -22,7 +22,7 @@ var candidateSources = function(bio) {
   candidateName.textContent = bio['name'];
 
   var sourcesCol = document.createElement('div');
-  sourcesCol.className = "col-md-4 text-left";
+  sourcesCol.className = "col-md-4 text-left wordDiv";
   sourcesCol.appendChild(candidateName);
   sourcesCol.appendChild(listSources);
 

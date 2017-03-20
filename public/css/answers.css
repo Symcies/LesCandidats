@@ -1,3 +1,30 @@
+/* framework */
+
+/*  Favorite candidate */
+
+#nameCol {
+    text-align:center;
+    display:table;
+}
+
+#nameCol h1 {display:table-cell; vertical-align:middle}
+
+/* list of candidates */
+
+#listOfCandidates {
+  margin-top: 100px;
+}
+
+/* list of themes */
+
+#listThemes {
+  margin-top: 100px;
+}
+
+
+
+
+/* modal biography */
 #singleBio {
   color: black;
 }

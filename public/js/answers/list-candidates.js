@@ -75,7 +75,7 @@ var candidateRow = function(candidate, number) {
 
 var headerRow = function() {
   var text = document.createElement('h2');
-  text.textContent = "Voici la liste des candidats dont vous êtes le plus proche";
+  text.textContent = "Les résultats détaillés";
 
   var col = document.createElement('div');
   col.className = 'col-md-6 col-md-offset-4 text-center';

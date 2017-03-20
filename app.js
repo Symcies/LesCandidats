@@ -12,6 +12,7 @@ require("./database/mongo-pool.js").initPool();
 /// Import the JS backend modules ///
 /////////////////////////////////////
 var themes          = require('./data/themes');
+var glossary        = require('./data/glossary');
 var biographies     = require('./data/biographies');
 var infoContent     = require('./data/infoContent');
 var SurveyQuestions = require('./routes/construct_survey/main.js');
@@ -74,7 +75,7 @@ app.get('/concept', function (req, res) {
 });
 
 app.get('/glossary', function (req, res) {
-  res.render('glossary.ejs');
+  res.render('glossary.ejs', {listOfWords: glossary.listOfWords});
 });
 
 app.get('/sources', function (req, res) {

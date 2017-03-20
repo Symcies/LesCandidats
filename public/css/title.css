@@ -1,0 +1,12 @@
+.titleRow  {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.titleRow h1 {
+  font-size: 40px;
+}
+
+.titleRow p {
+  font-size: 18px;
+}
