@@ -1,5 +1,7 @@
 
 var candidateSources = function(bio) {
+
+
   var listSources = document.createElement('ul');
   listSources.className = "list-unstyled";
 
@@ -21,9 +23,13 @@ var candidateSources = function(bio) {
   var candidateName = document.createElement('h3');
   candidateName.textContent = bio['name'];
 
+  var nameDiv = document.createElement('div');
+  nameDiv.className = 'nameDiv';
+  nameDiv.appendChild(candidateName);
+
   var sourcesCol = document.createElement('div');
-  sourcesCol.className = "col-md-4 text-left wordDiv";
-  sourcesCol.appendChild(candidateName);
+  sourcesCol.className = "col-lg-4 col-md-4 col-sm-6 col-xs-12 text-left wordDiv";
+  sourcesCol.appendChild(nameDiv);
   sourcesCol.appendChild(listSources);
 
   return sourcesCol;

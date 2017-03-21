@@ -6,6 +6,8 @@
 .portraitContainer {
   overflow: hidden;
   height: 100px;
+  display: flex;
+  align-items: center;
 }
 
 .candidate{
@@ -35,7 +37,13 @@
   //background: none;
   cursor: pointer;
   overflow: hidden;
+  border: 2px solid #ca5251;
 }
+
+.thumbnail:hover {
+  border: 2px solid white;
+}
+
 /*
 .thumbnail img {
     -webkit-transition: all 1s ease; /* Safari and Chrome */

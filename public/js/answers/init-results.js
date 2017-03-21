@@ -52,5 +52,5 @@ var sortCandidates = function(userAnswers) {
   }
 
   userAnswers = sumOverThemes(allThemes);
-  userAnswers = sortCandidates(userAnswers)
+  userAnswers = sortCandidates(userAnswers);
 })();

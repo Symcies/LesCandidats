@@ -1,11 +1,25 @@
 .portrait {
-margin-top: 50px;
+text-align: justify ;
 }
 
-h1 {
-  font-size: 20px;
-}
 
 p {
   font-size: 12px;
+}
+
+.portrait a {
+  color: white;
+}
+
+.resume {
+  min-height: 170px;
+
+}
+
+.links {
+  text-align: center;
+}
+
+.contact {
+  margin-top: 50px;
 }

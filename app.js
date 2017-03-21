@@ -110,7 +110,7 @@ var examples = {
    "Travail" : {
      "JLM": 5,
      "FF": 7,
-     "topAnswer": 10,
+     "topAnswer": 7,
      "NbOfQuestionsAnswered": 2,
    },
    "Société": {
@@ -119,25 +119,28 @@ var examples = {
      "JLM": 8,
      "EM": 4,
      "MLP": 7,
-     "topAnswer": 8,
+     "topAnswer": 19,
      "NbOfQuestionsAnswered": 9
    },
    "Santé": {
    },
    "Sécurité": {
      "EM": 7,
-     "topAnswer":15,
+     "topAnswer":7,
      "NbOfQuestionsAnswered": 3
    },
    "Environnement": {
      "NDA": 8,
-     "topAnswer": 16,
+     "BH": 5,
+     "JL": 3,
+     "topAnswer": 8,
      "NbOfQuestionsAnswered": 2,
    },
    "Culture": {
      "JC": 3,
      "PP": 4,
-     "topAnswer": 8,
+     "FA": 3,
+     "topAnswer": 4,
      "NbOfQuestionsAnswered": 3
    }
 };

@@ -6,7 +6,7 @@ body {
 
     background-image: linear-gradient(to right, rgba(149,34,34, 0.85), rgba(228,105,103, 0.85) ) /* Standard syntax */,  url("/img/background/Elysee1.jpg");
 
-    background-repeat:  no repeat ;
+    background-repeat:  no-repeat ;
     background-position:  left top;
 
     background-size:100% auto ;
@@ -23,8 +23,8 @@ body {
 
 h1 {
     font-size: 80px;
-    margin-top: 200px;
-    margin-bottom: 20px;
+    margin-top: 150px;
+    margin-bottom: 40px;
     color: white;
 }
 
@@ -62,14 +62,14 @@ a:hover {
 #clockdiv > div{
 	padding: 10px;
 	border-radius: 3px;
-	background: #00BF96;
+	background: #667fa0;
 	display: inline-block;
 }
 
 #clockdiv div > span{
 	padding: 15px;
 	border-radius: 3px;
-	background: #00816A;
+	background: #395c8a;
 	display: inline-block;
 }
 

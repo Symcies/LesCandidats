@@ -1,3 +1,25 @@
 .wordDiv {
   height : 200px;
 }
+
+ul ul a {
+  color:white;
+}
+
+.nameDiv {
+  text-align:center;
+  display:table;
+  width: 100%;
+  height: 50px;
+  border: 1px solid white;
+}
+
+.nameDiv h3 {
+  vertical-align:middle;
+  display:table-cell;
+}
+
+.nameDiv:hover {
+  background-color: white;
+  color: black;
+}

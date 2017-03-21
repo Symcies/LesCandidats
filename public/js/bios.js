@@ -23,7 +23,7 @@ function loadImage(bio) {
 
   var portrait = document.createElement("img");
   portrait.className = "img-responsive";
-  portrait.src = '/img/eyes/' + bio["shortName"] + '.jpg'
+  portrait.src = '/img/profiles/' + bio["shortName"] + '.jpg'
   portrait.alt = name;
 
   var portraitContainer = document.createElement('div');
@@ -63,7 +63,7 @@ var writeBiographe = function(bio) {
   //var Caption = loadBioLink(bio);
 
   var candidate = document.createElement('div');
-  candidate.className = 'col-md-12 thumbnail text-center';
+  candidate.className = 'row thumbnail text-center';
   candidate.id = bio['shortName'];
   candidate.appendChild(Title);
   candidate.appendChild(Image);
@@ -72,7 +72,7 @@ var writeBiographe = function(bio) {
 
   /// Assemble the divs
   var fullCandidate = document.createElement('div');
-  fullCandidate.className = 'col-md-6 candidate';
+  fullCandidate.className = 'col-lg-6 col-md-4 col-sm-6 col-xs-12 candidate';
   fullCandidate.appendChild(candidate);
 
   return fullCandidate;
@@ -84,15 +84,19 @@ var writeBiographe = function(bio) {
   candidateKeys = shuffle(Object.keys(biographies));
 
   var mainCol = document.createElement('div');
-  mainCol.className = 'col-lg-8 col-lg-offset-3';
+  mainCol.className = 'col-lg-9 col-lg-offset-2 col-md-12 col-sm-12 col-xs-12';
 
   for(var i = 0; i < candidateKeys.length; ++i) {
     var fullCandidate = writeBiographe(biographies[candidateKeys[i]]);
     mainCol.appendChild(fullCandidate);
   }
 
+  var mainRow = document.createElement('div');
+  mainRow.className = "row";
+  mainRow.appendChild(mainCol);
+
   var container = document.getElementById('mainContainer');
-  container.appendChild(mainCol);
+  container.appendChild(mainRow);
 
 }
 )();

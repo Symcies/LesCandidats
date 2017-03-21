@@ -19,15 +19,23 @@ p {
   margin-top: 3px;
 }
 
+@media screen and (max-width: 768px) {
+  .iconCol {
+    padding-left: 
+  }
+}
+
+
+
 .themeText {
   font-size: 18px;
   margin-right: 0px;
   margin-left: 0px;
-  margin-bottom: -5px;
+  margin-bottom: -8px;
 }
 
 .themeUnit {
-  margin-top: 5px;
+  margin-top: 15px;
   margin-bottom: 10px;
 }
 

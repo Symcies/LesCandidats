@@ -9,7 +9,6 @@ body {
     min-height: 100%;
     font-family: 'Work Sans';
     color: white;
-    /TODO : Change all color;
     background: #c0392b;
     background: -webkit-linear-gradient(left, #c0392b, #EF4836); /* For Safari 5.1 to 6.0 */
     background: -o-linear-gradient(right, #c0392b, yellow); /* For Opera 11.1 to 12.0 */
@@ -17,8 +16,41 @@ body {
     background: linear-gradient(to right, #952222, #E46967); /* Standard syntax */
 }
 
-#wrap {
-  min-height: 100%;
-  padding-bottom:50px;
-  padding-top: 10px;
+/* Small resolution, without Marianne */
+
+@media (max-width: 1199px) {
+  #wrap {
+    padding-left: 0px;
+    min-height: 100%;
+    padding-bottom:50px;
+    padding-top: 10px;
+  }
+
+  #Marianne {
+   height: 0px;
+  }
+}
+
+/* Higher resoltuion */
+
+@media (min-width: 1200px) {
+  #wrap {
+
+    min-height: 100%;
+    padding-bottom:50px;
+    padding-top: 10px;
+  }
+
+
+
+  #Marianne {
+   position: fixed;
+
+   z-index: 3;
+   height: 600px;
+   width: auto;
+
+   margin-top: -50px;
+   margin-left: -20px;
+  }
 }

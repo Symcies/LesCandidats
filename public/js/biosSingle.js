@@ -63,7 +63,7 @@ var loadBiographyHeader = function(bio) {
   politicalParty.textContent = bio['partyName'];
 
   var politicalPartyCol = document.createElement('div');
-  politicalPartyCol.className = 'col-md-4 col-md-offset-2';
+  politicalPartyCol.className = 'col-md-5 col-md-offset-1';
   politicalPartyCol.appendChild(politicalParty);
 
   var logo = document.createElement('img');

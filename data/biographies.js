@@ -145,7 +145,7 @@ var JL = {
     "shortName": "JL",
     "currentSituation": [""],
     "website": "",
-    "partyName": "",
+    "partyName": "Sans étiquette politique",
     "Bio":  ["first paragraph", 'second paragraph'],
     "Sources": {
       "":"",
@@ -177,7 +177,7 @@ var FA = {
     "shortName": "FA",
     "currentSituation": [""],
     "website": "",
-    "partyName":"",
+    "partyName":"Union Populaire Républicaine",
     "Bio": ["first", "second"],
     "Sources": {
       "":"",

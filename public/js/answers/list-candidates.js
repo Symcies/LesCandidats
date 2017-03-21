@@ -1,35 +1,99 @@
+var headerRow = function() {
+  var header = document.createElement('h1');
+  header.textContent = "Résultats détaillés";
 
-var indexCol = function(number) {
+  var row = document.createElement('div');
+  row.className = 'row text-center';
+  row.appendChild(header);
+
+  return row;
+};
+
+
+var nameCol = function(bio, number) {
+
+  /// First column
   var index = document.createElement('h1');
-  index.textContent = (number+1) + '.';
+  index.textContent = number + 1 + '.';
+
+  var indexCol = document.createElement('div');
+  indexCol.className = 'col-md-1';
+  indexCol.appendChild(index);
+
+  /// First column
+  var picture = document.createElement('img');
+  picture.height = 60 ;
+  picture.src = '/img/profiles/' + bio['shortName'] + '.jpg';
+
+  var pictureContainer = document.createElement('div');
+  pictureContainer.style.borderRadius = '30px';
+  pictureContainer.style.overflow = "hidden";
+  pictureContainer.style.width = '60px';
+  pictureContainer.style.height = '60px';
+  pictureContainer.appendChild(picture);
+
+  var pictureCol = document.createElement('div');
+  pictureCol.className = "col-md-3";
+  pictureCol.appendChild(pictureContainer);
+
+  /// Second column
+  var name = document.createElement('h1');
+  name.textContent = bio['name'];
+
+  var polParty = document.createElement('h2');
+  polParty.textContent = bio['partyName'];
+
+  var partyCol = document.createElement('div');
+  partyCol.className = 'col-md-7'
+  partyCol.appendChild(name);
+  partyCol.appendChild(polParty);
+
+  var row = document.createElement('div');
+  row.className = 'row subCandidateRow';
+  row.appendChild(indexCol);
+  row.appendChild(pictureCol);
+  row.appendChild(partyCol);
 
   var col = document.createElement('div');
-  col.className = 'col-md-1 col-md-offset-4';
-  col.appendChild(index);
+  col.className = 'col-md-6';
+  col.appendChild(row);
 
   return col;
 };
 
-var nameCol = function(bio) {
-
-
-  var partyCol = document.createElement('div');
-  partyCol.className = 'col-md-2 '
-  partyCol.textContent = bio['name'];
-
-  return partyCol;
-};
-
 var percentageCol = function(percentage) {
 
-  var perc = document.createElement('div');
-  perc.textContent = (percentage).toFixed(1) + '%';
-  perc.style.width = 5*percentage +'px';
-  perc.style.backgroundColor = 'black';
+  var progress = document.createElement('div');
+
+  /*
+  if(percentage >= 75) {
+    progress.style.backgroundColor = "#788965";
+  } else if(percentage >= 50) {
+    progress.style.backgroundColor = "#123456";
+  } else if(percentage >= 25) {
+    progress.style.backgroundColor = "#123456";
+  }
+  else {
+    progress.style.backgroundColor = "#890098";
+  }
+  */
+  progress.style.backgroundColor = "#667fa0";
+
+  progress.className = "progress-bar";
+  progress.role = "progressbar";
+  progress.setAttribute('aria-valuenow', percentage);
+  progress.setAttribute('aria-valuemin', 0);
+  progress.setAttribute('aria-valuemax', 100);
+  progress.textContent = (percentage).toFixed(1) + '%';
+  progress.style.width = percentage + "%";
+
+  var container = document.createElement('div');
+  container.className = 'progress';
+  container.appendChild(progress);
 
   var resultCol = document.createElement('div');
-  resultCol.className = 'col-md-2';
-  resultCol.appendChild(perc);
+  resultCol.className = 'col-md-4';
+  resultCol.appendChild(container);
 
   return resultCol;
 
@@ -54,16 +118,13 @@ var candidateRow = function(candidate, number) {
   var shortName = candidate[0];
   var percentage = candidate[1];
 
-  var index  = indexCol(number);
-  var name   = nameCol(listOfCandidates[shortName]);
+  var name   = nameCol(listOfCandidates[shortName], number);
   var result = percentageCol(percentage);
-
   var bio    = bioCol(listOfCandidates[shortName]);
 
   /// Concatenating the elements
   var newRow = document.createElement('div');
-  newRow.className = "row";
-  newRow.appendChild(index);
+  newRow.className = "row candidateRow";
   newRow.appendChild(name);
   newRow.appendChild(result);
   newRow.appendChild(bio);
@@ -73,32 +134,25 @@ var candidateRow = function(candidate, number) {
 };
 
 
-var headerRow = function() {
-  var text = document.createElement('h2');
-  text.textContent = "Les résultats détaillés";
 
-  var col = document.createElement('div');
-  col.className = 'col-md-6 col-md-offset-4 text-center';
-  col.appendChild(text);
 
-  var row = document.createElement('div');
-  row.className = 'row';
-  row.appendChild(col);
-
-  return row;
-};
 
 (function() {
-
-  var container = document.getElementById('listOfCandidates');
-
-  var header = headerRow();
-  container.appendChild(header);
+  var mainCol = document.createElement('div');
+  mainCol.className = 'col-md-8 col-md-offset-3';
+  mainCol.appendChild(headerRow());
 
   for(var i=0; i<userAnswers.length; ++i) {
     var candidate = candidateRow(userAnswers[i], i);
-    container.appendChild(candidate);
+    mainCol.appendChild(candidate);
   }
+
+  var mainRow = document.createElement('div');
+  mainRow.className = 'row';
+  mainRow.appendChild(mainCol);
+
+  var container = document.getElementById('listOfCandidates');
+  container.appendChild(mainRow);
 
 })();
 

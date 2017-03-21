@@ -1,21 +1,29 @@
 var CSG =
 [
+  "CSG - Constribution Sociale Généralisée",
   "Paragraphe aionda Paragzvzvzraphe aionda vrzvezfe aionda dzdz aionda Paragraphe aionda Paragraphe aionda ",
   "Paragraphe",
   "Paragraphe",
   "Paragraphe4"
 ]
 
-var Mot2 =
+var CICE =
 [
-  "Paragraphe",
+  "CICE",
   "Paragraphe",
   "Paragraphe",
   "Paragraphe4"
 ]
 
+var RPC = [
+  "Retraite par Capitalisation / par Mutualisation",
+  "",
+  ""
+]
+
 module.exports.listOfWords = {
   "CSG": CSG,
-  "AHA": Mot2
+  "CICE": CICE,
+  "RPC": RPC,
 
 };

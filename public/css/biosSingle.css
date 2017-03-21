@@ -4,8 +4,9 @@
 
 #imageContainer {
   overflow: hidden;
-  height:auto;
-  width: 100%;
+  height:250px;
+  width: 250px;
+  border-radius: 150px;
 }
 
 #image {

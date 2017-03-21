@@ -25,6 +25,7 @@
   display: inline-block;
   float: none;
   vertical-align: top;
+  margin-left: 75px;
 }
 
 .navbar .navbar-collapse {
@@ -42,8 +43,8 @@
 }
 
 .navbar-link {
-  margin-left: 60px;
-  margin-right: 60px;
+  margin-left: 40px;
+  margin-right: 40px;
 
   font-size: 18px;
   font-family: 'Work Sans';
@@ -51,23 +52,14 @@
   color: white !important;
 }
 
-@media (min-width: 768px) {
+@media (max-width: 1200px) {
     .navbar .navbar-nav {
         display: inline-block;
         float: none;
+        margin-left: 0px;
     }
 
     .navbar .navbar-collapse {
         text-align: center;
     }
-}
-
-#Marianne {
- position: fixed;
-
- z-index: 3;
- height: 600px;
- width: auto;
-
- margin-top: -50px;
 }

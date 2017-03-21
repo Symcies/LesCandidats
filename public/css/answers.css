@@ -9,16 +9,95 @@
 
 #nameCol h1 {display:table-cell; vertical-align:middle}
 
+
+.siteContainer {
+  margin-top: 10px;
+  text-align:center;
+  display:table;
+  width: 100%;
+  height: 50px;
+  border: 1px solid white;
+}
+
+.siteContainer p {
+  vertical-align:middle;
+  display:table-cell;
+}
+
+.siteContainer:hover {
+  background-color: white;
+  color: black;
+}
+
+.biographieContainer {
+  margin-top: 10px;
+  text-align:center;
+  display:table;
+  width: 100%;
+  height: 50px;
+  border: 1px solid white;
+}
+
+.biographieContainer p {
+  vertical-align:middle;
+  display:table-cell;
+}
+
+.biographieContainer:hover {
+  background-color: white;
+  color: black;
+}
+
 /* list of candidates */
 
 #listOfCandidates {
   margin-top: 100px;
 }
 
+.candidateRow {
+  height: 80px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-top: 2px solid #667fa0;
+  display: flex;
+  align-items: center;
+}
+
+.candidateRow .col-md-2 a {
+  color: white;
+}
+
+.subCandidateRow {
+  height: 70px;
+  display: flex;
+  align-items: center;
+}
+
+.subCandidateRow h1 {
+  font-size: 18px;
+  margin-bottom: 3px;
+  margin-top: 5px;
+}
+
+.subCandidateRow h2 {
+  font-size: 16px;
+  margin-top: 0px;
+}
+
+.subCandidateRow  .col-md-3 {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
 /* list of themes */
 
 #listThemes {
   margin-top: 100px;
+  margin-bottom: 50px;
+}
+
+.themeRow {
+  border-top: 2px solid #667fa0;
 }
 
 

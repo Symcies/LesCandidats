@@ -1,11 +1,11 @@
-var writeExplanation = function(word, explanation) {
+var writeExplanation = function(explanation) {
 
   var wordH = document.createElement('h4')
-  wordH.textContent = word;
+  wordH.textContent = explanation[0];
 
   var explanationD = document.createElement('div');
   explanationD.className = 'text-left';
-  for(var i = 0; i < explanation.length; ++i) {
+  for(var i = 1; i < explanation.length; ++i) {
     var p = document.createElement('p');
     p.textContent = explanation[i];
     explanationD.appendChild(p);
@@ -24,7 +24,7 @@ var writeExplanation = function(word, explanation) {
   for(var word in listOfWords) {
     if(!listOfWords.hasOwnProperty(word)) continue;
 
-    var explanation = writeExplanation(word, listOfWords[word]);
+    var explanation = writeExplanation(listOfWords[word]);
     container.appendChild(explanation);
   }
 })();

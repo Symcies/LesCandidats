@@ -49,7 +49,7 @@ var loadThemeIcon = function(theme) {
   themeIcon.className = 'fa fa-' + theme['icon'] + '  fa-fw icon';
 
   var iconCol = document.createElement('div');
-  iconCol.className = 'col-md-2 col-md-offset-2 iconCol';
+  iconCol.className = 'col-lg-2 col-lg-offset-2 col-md-2 col-md-offset-2 col-sm-2 col-sm-offset-1 col-xs-2 iconCol';
   iconCol.appendChild(themeIcon);
 
   return iconCol;
@@ -67,7 +67,7 @@ function addTheme(theme) {
 
   // Concatenate the text and slider into a column
   var TextSliderCol = document.createElement('div');
-  TextSliderCol.className = 'col-md-8 textCol';
+  TextSliderCol.className = 'col-lg-8 col-md-8 col-sm-8 col-xs-10 textCol';
   TextSliderCol.appendChild(themeTextRow);
   TextSliderCol.appendChild(sliderRow);
 
@@ -82,7 +82,7 @@ function addTheme(theme) {
 
   // Creating all the elements
   var newDiv = document.createElement('div');
-  newDiv.className = "col-md-6 themeUnit";
+  newDiv.className = "col-lg-6 col-md-6 col-sm-6 col-xs-12 themeUnit";
   newDiv.appendChild(ThemeRow);
 
   return newDiv;
@@ -95,7 +95,7 @@ function addTheme(theme) {
 (function initThemes(){
   var NumberOfThemes = listOfThemes.length;
   var mainCol = document.createElement('div');
-  mainCol.className = 'col-md-8 col-md-offset-3';
+  mainCol.className = 'col-lg-9 col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12 col-sm-offset-0 col-xs-8 col-xs-offset-2';
 
   for(var i = 0; i < NumberOfThemes; ++i)
   {
