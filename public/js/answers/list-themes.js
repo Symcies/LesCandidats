@@ -33,11 +33,41 @@ var candidateCol = function(theme, params) {
   userAnswers = sortCandidates(userAnswers);
 
   for(var i = 0; i < 3; ++i) {
-    var p = document.createElement('p');
+
     var name = listOfCandidates[userAnswers[i][0]]['name'];
-    var perc = userAnswers[i][1]
-    p.textContent =  name + " avec "  + (perc).toFixed(1) + "% d'affinités.";
-    col.appendChild(p);
+    var percentage = userAnswers[i][1];
+
+    var p = document.createElement('p');
+    p.textContent =  name;
+
+    var nameCol = document.createElement('div');
+    nameCol.className = 'col-lg-4';
+    nameCol.appendChild(p)
+
+    var progress = document.createElement('div');
+    progress.style.backgroundColor = "#667fa0";
+    progress.className = "progress-bar";
+    progress.role = "progressbar";
+    progress.setAttribute('aria-valuenow', percentage);
+    progress.setAttribute('aria-valuemin', 0);
+    progress.setAttribute('aria-valuemax', 100);
+    progress.textContent = (percentage).toFixed(0) + '%';
+    progress.style.width = percentage + "%";
+
+    var progressContainer = document.createElement('div');
+    progressContainer.className = 'progress themeProgress';
+    progressContainer.appendChild(progress);
+
+    var progressCol = document.createElement('div');
+    progressCol.className = 'col-lg-7';
+    progressCol.appendChild(progressContainer);
+
+    var row = document.createElement('div');
+    row.className = 'row candidateThemeRow';
+    row.appendChild(nameCol);
+    row.appendChild(progressCol);
+
+    col.appendChild(row);
   }
 
   return col;

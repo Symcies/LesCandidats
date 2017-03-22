@@ -21,7 +21,7 @@ p {
 
 @media screen and (max-width: 768px) {
   .iconCol {
-    padding-left: 
+    padding-left:
   }
 }
 
@@ -48,9 +48,6 @@ p {
   margin-top: 100px;
 }
 
-#conceptRow div a {
-  color: white;
-}
 
 #Slider .slider-selection {
 	background: #098767;
@@ -78,4 +75,23 @@ p {
   display: inline-block;
   text-align: center;
   vertical-align: middle;
+}
+
+#conceptDiv {
+  text-align:center;
+  display:table;
+  height: 50px;
+  border: 1px solid white;
+}
+
+
+#conceptDiv p {
+  vertical-align:middle;
+  display:table-cell;
+}
+
+#conceptDiv:hover {
+  background-color: white;
+  color: black;
+  cursor: pointer;
 }

@@ -175,3 +175,8 @@ $(".validation").click(function() {
     $("#myModal").modal('show');
   }
 });
+
+
+$("#conceptDiv").click(function(){
+  window.location.href="/concept";
+});

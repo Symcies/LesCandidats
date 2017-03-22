@@ -54,3 +54,11 @@ var sortCandidates = function(userAnswers) {
   userAnswers = sumOverThemes(allThemes);
   userAnswers = sortCandidates(userAnswers);
 })();
+
+$("#candidateResults").click(function(){
+  window.location.href="#listOfCandidates";
+});
+
+$("#themeResults").click(function(){
+  window.location.href="#listThemes";
+});

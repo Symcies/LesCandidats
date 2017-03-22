@@ -9,15 +9,53 @@
 ////////////////////////////////////////////////////////////////////////////////
 /// Display favorite candidate
 ////////////////////////////////////////////////////////////////////////////////
-var percentageRow = function(name, percentage) {
+var headerRow = function(bio) {
+  var text = document.createElement('h1');
+  text.id = "titleName";
+  text.textContent = "Votre candidat 2017 est " + bio['name'];
 
-  var text = document.createElement('h4');
-  text.textContent = "Avec près de " + (percentage).toFixed(1) + "% d'affinités, " + name + " est le candidat qui vous correspond le mieux";
-
+  var col = document.createElement('div');
+  col.className = 'col-lg-12 text-center';
+  col.appendChild(text);
 
   var row = document.createElement('div');
   row.className = 'row text-center';
-  row.appendChild(text);
+  row.appendChild(col);
+
+  return row;
+};
+
+var percentageRow = function(name, percentage) {
+
+  var progress = document.createElement('div');
+  progress.style.backgroundColor = "#bf4847";
+  progress.className = "progress-bar";
+  progress.role = "progressbar";
+  progress.setAttribute('aria-valuenow', percentage);
+  progress.setAttribute('aria-valuemin', 0);
+  progress.setAttribute('aria-valuemax', 100);
+  progress.textContent = (percentage).toFixed(1) + '%';
+  progress.style.width = percentage + "%";
+  progress.style.fontSize = "18px";
+  progress.style.lineHeight = "30px";
+
+  var container = document.createElement('div');
+  container.className = 'progress';
+  container.appendChild(progress);
+  container.style.height = "30px";
+
+
+  var text = document.createElement('h4');
+  text.textContent = "Avec près de " + (percentage).toFixed(1) + "% d'affinités, " + name + " est le candidat qui vous correspond le plus";
+
+  var col = document.createElement('div');
+  col.className = 'col-lg-8 col-lg-offset-2';
+  col.appendChild(container);
+  col.appendChild(text);
+
+  var row = document.createElement('div');
+  row.className = 'row text-center';
+  row.appendChild(col);
 
   return row;
 
@@ -27,51 +65,46 @@ var candidateRow = function(bio) {
 
   /// First column
   var picture = document.createElement('img');
-  picture.height = 200;
+  picture.height = 150;
   picture.src = '/img/profiles/' + bio['shortName'] + '.jpg';
 
   var pictureContainer = document.createElement('div');
-  pictureContainer.style.borderRadius = '100px';
+  pictureContainer.style.borderRadius = '75px';
   pictureContainer.style.overflow = "hidden";
-  pictureContainer.style.width = '200px';
-  pictureContainer.style.height = '200px';
+  pictureContainer.style.width = '150px';
+  pictureContainer.style.height = '150px';
   pictureContainer.appendChild(picture);
 
   var pictureCol = document.createElement('div');
-  pictureCol.className = "col-md-4";
+  pictureCol.className = "col-lg-3 col-lg-offset-2";
   pictureCol.appendChild(pictureContainer);
 
   /// Second column
-  // Name part
-  var name = document.createElement('h1');
-  name.textContent = bio['name'];
-
-  var nameContainer = document.createElement('div');
-  nameContainer.className = 'nameContainer';
-  nameContainer.appendChild(name);
 
   // Site part
   var site = document.createElement('p');
-  site.textContent = 'Site officiel';
+  site.textContent = 'Son site officiel';
 
   var siteContainer = document.createElement('div');
-  siteContainer.className = 'siteContainer';
+  siteContainer.className = 'favBox';
   siteContainer.appendChild(site);
+  siteContainer.addEventListener('click', function (event) {
+    window.open(bio['website']);
+});
 
   // Biographie part
   var biographie = document.createElement('p');
-  biographie.textContent = 'Biographie';
+  biographie.textContent = 'Sa biographie';
 
   var biographieContainer = document.createElement('div');
-  biographieContainer.className = 'biographieContainer';
+  biographieContainer.className = 'favBox modalBio';
+  biographieContainer.id = bio['shortName'];
   biographieContainer.appendChild(biographie);
 
   /// Concatenate elements
   var nameCol = document.createElement('div');
-  nameCol.className = "col-md-8 text-center"
+  nameCol.className = "col-lg-4 col-md-offset-1 text-center"
   nameCol.id = "nameCol";
-  nameCol.style.height = '200px';
-  nameCol.appendChild(nameContainer);
   nameCol.appendChild(siteContainer);
   nameCol.appendChild(biographieContainer);
 
@@ -95,6 +128,8 @@ var shareRow = function() {
 
 var displayFirst = function(favoriteCandidate, percentage) {
 
+  /// Header row
+  var header = headerRow(favoriteCandidate);
 
   ///  Candidate row
   var candidate = candidateRow(favoriteCandidate);
@@ -106,7 +141,9 @@ var displayFirst = function(favoriteCandidate, percentage) {
   //var share = shareRow();
 
   var mainCol = document.createElement('div');
-  mainCol.className = 'col-md-8 col-md-offset-3';
+  mainCol.className = 'col-lg-9 col-lg-offset-2';
+  mainCol.id = "favoriteCandidateCol";
+  mainCol.appendChild(header);
   mainCol.appendChild(candidate);
   mainCol.appendChild(percentage);
   //mainCol.appendChild(share);
@@ -149,4 +186,20 @@ jQuery(document).ready(function ($) {
     emailBody: 'Usually email body is just the description + url, but you can customize it if you want',
     image: '',
   });
+});
+
+
+$(".modalBio").click(function(e){
+  var bio;
+  for(var key in listOfCandidates)
+  {
+    if(!listOfCandidates.hasOwnProperty(key)) continue;
+    if(listOfCandidates[key]['shortName'] == $(this).attr("id"))
+    {
+      bio = listOfCandidates[key];
+      break;
+    }
+  }
+  changeBiography(bio);
+  $("#singleBio").modal('show');
 });

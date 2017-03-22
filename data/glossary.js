@@ -16,7 +16,25 @@ var CICE =
 ]
 
 var RPC = [
-  "Retraite par Capitalisation / par Mutualisation",
+  "Retraite par Répartition / par Mutualisation",
+  "",
+  ""
+]
+
+var NC = [
+  "Numerus Clausus",
+  "",
+  ""
+]
+
+var PMA = [
+  "PMA - Procréation Médicalement assistée",
+  "",
+  ""
+]
+
+var GPA = [
+  "GPA - Gestation Pour Autrui",
   "",
   ""
 ]

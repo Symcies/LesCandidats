@@ -84,11 +84,11 @@ var percentageCol = function(percentage) {
   progress.setAttribute('aria-valuenow', percentage);
   progress.setAttribute('aria-valuemin', 0);
   progress.setAttribute('aria-valuemax', 100);
-  progress.textContent = (percentage).toFixed(1) + '%';
+  progress.textContent = (percentage).toFixed(0) + '%';
   progress.style.width = percentage + "%";
 
   var container = document.createElement('div');
-  container.className = 'progress';
+  container.className = 'progress candidateProgress';
   container.appendChild(progress);
 
   var resultCol = document.createElement('div');
@@ -101,13 +101,12 @@ var percentageCol = function(percentage) {
 
 var bioCol = function(bio) {
 
-  var link  = document.createElement('a');
+  var link  = document.createElement('p');
   link.textContent = 'Biographie';
-  link.className = "bioLink";
-  link.id = bio['shortName'];
 
   var col = document.createElement('div');
-  col.className = 'col-md-2';
+  col.className = 'col-md-2 bioLink';
+  col.id = bio['shortName'];
   col.appendChild(link);
 
   return col;

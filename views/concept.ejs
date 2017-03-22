@@ -2,13 +2,14 @@
 <html lang="en">
 <% include partials/head %>
 <link rel="stylesheet" type="text/css" href="/css/title.css"></link>
+<link rel="stylesheet" type="text/css" href="/css/concept.css"></link>
 <body>
     <% include partials/navbar %>
 
   <div id="wrap">
     <div class="container">
       <div class="row titleRow">
-        <div class="col-md-8 col-md-offset-3 text-center">
+        <div class="col-lg-9 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2 text-center">
           <h1>Concept</h1>
           <p>Découvrez comment votre candidat est choisi</p>
         </div>
@@ -19,29 +20,52 @@
 
     <div class="container">
       <div class="row">
-        <div class="col-md-8 col-md-offset-3">
+        <div class="col-lg-7 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2">
+          <div class="block">
+            <h2>Contexte</h2>
+            <p>L'année 2017 est marquée par l'élection présidentielle, à laquelle participent pas moins de 11 candidats.
+              Chacun d'eux se distingue par l'ambition, la qualité et les positions du programme qu'il souhaite soumettre à la France pendant les 5 prochaines années</p>
+            <p>Néanmoins, le nombre de candidats et l'importance de leur programme rend complexe l'analyse de leurs positions relatives.
+            Nous considérons dès lors qu'il devient difficile de s'échapper des débats passionnels, rendant tout positionnement personnel distinct de la proximité de chacun à l'un des candidats</p>
+          </div>
 
-              <h1>L'intention du site</h1>
-              <p>Contexte</p>
-                <ul>
-                  <li>Présidentielle</li>
-                  <li>Beaucoup de candidats
-                </ul>
-              <p>Pourquoi: </p>
-                <ul>
-                  <li>Pour avoir tous les candidats</li>
-                  <li>Pour avoir un test personnalisé</li>
-                  <li>Parce qu'il est laborieux de comparer tous les candidats sur ttous les thèmes </li>
-                  <li>...</li>
-                </ul>
-              <p>Comment</p>
-                <ul>
-                  <li>Choix des thèmes et de la durée</li>
-                  <li>Selection des questions dans une base de données</li>
-                  <li>Il existe plusieurs types de questions : ...</li>
-                  <li>Chaque réponse rapporte des points à chaque candidat</li>
-                  <li>Les résultats sont aggrégés, notamment par thèmes</li>
-                </ul>
+          <div class="block">
+            <h2>Ambition</h2>
+            <p>Les positions de chacun sont uniques et tout le monde n'a pas les mêmes valeurs.
+            Il faut personnaliser le débat aux attentes de chacun : l'importance accordée à tous les sujets n'est pas la même</p>
+            <p>Nous avons voulu apporter un outil supplémentaire aux électeurs qui ne s'absout pas des points suivants</p>
+            <ul>
+              <li>Test relatif à chaque personne</li>
+              <li>Proximité des candidats sur certaines propositions/positions parce qu'il est laborieux de les comparer sur tous les thèmes</li>
+              <li>Avoir tous les candidats: nous pensons qu'on ne peut pas avoir toujours les mêmes acteurs qui évitent le changement</li>
+              <li>Pas toujours le même type de réponse, aps que des QCM</li>
+            </ul>
+            <p>Pour les raisons qui viennent d'être évoquées, le test n'a pas vocation à déterminer de manière absolu le ou la candidate, mais d'esquisser un ordre et une proximité de l'utilisateur au paysage électoral au vue des affinités et des convictions de chacun</p>
+            <p></p>
+            <p></p>
+            <p></p>
+          </div>
+
+          <div class="block">
+            <h2>Transparence de la méthode</h2>
+            <p>Tout d'abord, un choix de thème a été fait. Il ne se veut pas parfait ni exhaustif mais il a le mérite, d'une part, de regrouper l'ensemble des sujets abordés, et, d'autre part, d'aggréger les points de vues de tous les candidats</p>
+            <p>Liste des thèmes</p>
+            <p>L'utilisateur choisit les thèmes qui lui sont les plus importants ainsi qu'un nombre de quesiton approximatif</p>
+            <p>Nous essayons qu'il y ait au moins une question par thème, même si, dans le calcul du résultat, ce thème aura un poids moins élevé</p>
+            <p>Un algorithme vient déterminer le nombre de question par thème, ainsi que l'importance de chaque thème. A partir d'une base de données, une liste de questions est proposé à l'utilisateur, mélant questions à choix simple, questions à choix multiples, sous questions, ...</p>
+            <p>Chaque réponse apporte des points différents à chaque candidat</p>
+            <p>Un autre algorithme aggrège les résultats pour donner :</p>
+            <ul>
+              <li>Un candidat favori</li>
+              <li>L'ordre des candidats, du plus proche au plus lointain</li>
+              <li>Pour les thèmes les plus importants aux yeux de l'utilisateur, les candidats les plus proches</li>
+            </ul>
+
+            <p>Pseudo code d'une question</p>
+            <p>De fait, les résultats sont davantage des positions relatives des candidats les uns par rapport aux autres qu'une valeur absolue</p>
+            <p>L'ensemble du code peut être retrouvé sur ce lien <a>Github</a></p>
+            <p></p>
+          </div>
         </div>
       </div>
     </div>
