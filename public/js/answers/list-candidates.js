@@ -22,7 +22,7 @@ var nameCol = function(bio, number) {
 
   /// First column
   var picture = document.createElement('img');
-  picture.height = 60 ;
+  picture.style.height = '60px' ;
   picture.src = '/img/profiles/' + bio['shortName'] + '.jpg';
 
   var pictureContainer = document.createElement('div');
@@ -30,6 +30,7 @@ var nameCol = function(bio, number) {
   pictureContainer.style.overflow = "hidden";
   pictureContainer.style.width = '60px';
   pictureContainer.style.height = '60px';
+
   pictureContainer.appendChild(picture);
 
   var pictureCol = document.createElement('div');

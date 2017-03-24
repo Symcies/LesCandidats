@@ -9,12 +9,29 @@ var MongoPool   = require("./../../database/mongo-pool");
 ////////////////////////////////////////////////////////////////////////////////
 /// Inspect and process the result of the database query
 ////////////////////////////////////////////////////////////////////////////////
-var selectMaxValue = function(previousMax, answers) {
+var selectMaxValueRadiogroup = function(previousMax, answers) {
   var NewMax = previousMax;
   for(var key in answers) {
     NewMax = Math.max(NewMax, answers[key]);
   }
   return NewMax;
+}
+
+var accumulateTopAnswers = function(topAnswers, answers) {
+  for(var key in answers) {
+    topAnswers.push(answers[key]);
+  }
+  return topAnswers;
+}
+
+var getSumTopAnswers = function(topAnswers, sumNumber) {
+  topAnswers = topAnswers.sort().reverse();
+  topAnswer = 0;
+  for(var i = 0; i < sumNumber; ++i) {
+    topAnswer += topAnswers[i];
+  }
+
+  return topAnswer;
 }
 
 var addDictValues = function(container, dictToBeAdded) {
@@ -38,7 +55,7 @@ var processCheckboxType = function(choices, userAnswer) {
   /// Corresponds to multiple answers
   /// Must return [TopAnswer, userAnswer]
   var userPoints = {};
-  var topAnswer = 0;
+  var topAnswers = [];
   //console.log('checkbox', user)
   var userAnswers = userAnswer.split(',');
 
@@ -46,9 +63,9 @@ var processCheckboxType = function(choices, userAnswer) {
     if(userAnswers.includes(choices[i]["value"])) {
       userPoints = addDictValues(userPoints, choices[i]["answers"]);
     }
-    topAnswer = selectMaxValue(topAnswer, choices[i]["answers"])
+    topAnswers = accumulateTopAnswers(topAnswers, choices[i]["answers"])
   }
-
+  topAnswer = getSumTopAnswers (topAnswers, userAnswers.length);
   return [topAnswer, userPoints];
 }
 
@@ -63,7 +80,7 @@ var processRadiogroupType = function(choices, userAnswer) {
     if(choices[i]["value"] == userAnswer) {
       userPoints = addDictValues(userPoints, choices[i]["answers"]);
     }
-    topAnswer = selectMaxValue(topAnswer, choices[i]["answers"])
+    topAnswer = selectMaxValueRadiogroup(topAnswer, choices[i]["answers"])
   }
 
   return [topAnswer, userPoints];

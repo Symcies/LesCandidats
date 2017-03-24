@@ -23,3 +23,8 @@ ul ul a {
   background-color: white;
   color: black;
 }
+
+.links {
+  text-decoration: none;
+  color: white;
+}

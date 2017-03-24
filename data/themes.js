@@ -1,15 +1,15 @@
 var listOfThemes = [
   {
-    'name': 'Travail',
+    'name': 'Travail et Retraites',
     'icon':'industry',
   },
   {
-    'name': 'Enrivonnement',
+    'name': 'Environnement',
     'icon':'tint',
   },
   {
-    'name': 'Société',
-    'icon': 'group'
+    'name': 'Relations Internationales',
+    'icon': 'globe'
   },
   {
     'name': 'Sécurité',
@@ -17,27 +17,27 @@ var listOfThemes = [
   },
   {
     'name': 'Santé',
-    'icon':'medkit',
+    'icon': 'medkit',
   },
   {
     'name': 'Economie et Finances',
     'icon':'line-chart',
   },
   {
-    'name': 'Institutions',
+    'name': 'Etat, Institutions et Justice',
     'icon': 'bank'
   },
   {
-    'name': 'Relations Internationales',
-    'icon':'globe',
-  },
-  {
-    'name': 'Culture',
+    'name': 'Culture et Numérique',
     'icon':'music',
   },
   {
-    'name': "Louise",
-    'icon': "wheelchair"
+    'name': "Solidarité",
+    'icon': "universal-access"
+  },
+  {
+    'name': 'Education',
+    'icon': "book"
   }
 ]
 

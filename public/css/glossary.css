@@ -1,0 +1,12 @@
+h4 {
+
+}
+
+.col p {
+  text-align: justify;
+    text-justify: inter-word;
+}
+
+.col {
+  min-height: 300px;
+}

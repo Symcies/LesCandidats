@@ -42,13 +42,13 @@ var sumJSObjects = function(queryResult, previousResults, themeImportance) {
   newResults['NbOfQuestionsAnswered'] += 1;
 
   /// Update the top answered
-  newResults['topAnswer'] += queryResult['topAnswer']*themeImportance;
+  newResults['topAnswer'] += (0.1*queryResult['topAnswer'] + 0.9)*themeImportance;
 
   /// Update the grade of each party
   for(var key in queryResult['userAnswer']) {
     if(!queryResult['userAnswer'].hasOwnProperty(key)) continue;
-
-    newResults[key] = queryResult['userAnswer'][key]*themeImportance + previousResults[key];
+    var convertX = 0.2 * (queryResult['userAnswer'][key]) + 0.8;
+    newResults[key] = convertX*themeImportance + previousResults[key];
   }
 
   return newResults;
@@ -59,7 +59,7 @@ var sumJSObjects = function(queryResult, previousResults, themeImportance) {
 ////////////////////////////////////////////////////////////////////////////////
 
 var computeThemeImportance = function(userPreference) {
-  var DegreeOfImportance = 1;
+  var DegreeOfImportance = 1.5;
   return ((DegreeOfImportance - 1) * userPreference  + 20 - DegreeOfImportance)/19;
 };
 

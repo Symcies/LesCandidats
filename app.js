@@ -12,6 +12,8 @@ require("./database/mongo-pool.js").initPool();
 /// Import the JS backend modules ///
 /////////////////////////////////////
 var themes          = require('./data/themes');
+var compare         = require('./data/compare');
+var addiSources     = require('./data/sources');
 var glossary        = require('./data/glossary');
 var biographies     = require('./data/biographies');
 var infoContent     = require('./data/infoContent');
@@ -79,11 +81,15 @@ app.get('/glossary', function (req, res) {
 });
 
 app.get('/sources', function (req, res) {
-  res.render('sources.ejs', {listOfCandidates:biographies.listOfCandidates, candidateOrder:biographies.alphabeticalOrder});
+  res.render('sources.ejs', {listOfCandidates:biographies.listOfCandidates, candidateOrder:biographies.alphabeticalOrder, addiSources:addiSources.sources});
 });
 
 app.get('/test', function (req, res) {
   res.render('test.ejs', {listOfThemes: themes.listOfThemes});
+});
+
+app.get('/compare', function (req, res) {
+  res.render('compare.ejs', {comparison: compare.comparison, listOfCandidates: JSON.stringify(biographies.listOfCandidates)});
 });
 
 app.post('/questions', function(req, res) {

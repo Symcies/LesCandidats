@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<% include partials/head %>
+<link rel="stylesheet" type="text/css" href="/css/title.css"></link>
+<link rel="stylesheet" type="text/css" href="/css/compare.css"></link>
+<body>
+    <% include partials/navbar %>
+
+  <div id="wrap">
+
+    <div class="container">
+      <div class="row titleRow">
+        <div class="col-lg-9 col-lg-offset-2 col-md-12 col-sm-12 col-xs-12 text-center">
+          <h1>Comparaison des candidats</h1>
+          <p>Cette partie est malheureusement en construction</p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-9 col-lg-offset-2 col-md-12 col-sm-12 col-xs-12 text-center">
+          <p>Liste des thèmes</p>
+        </div>
+      </div>
+
+      <div class="row" id="compareRow">
+      </div>
+
+    </div>
+
+  </div>
+
+
+    <% include partials/footer %>
+<script> var comparison = <%- JSON.stringify(comparison) %>;</script>
+<script>
+  var listOfCandidates = <%- JSON.stringify(listOfCandidates) %>;
+  listOfCandidates = JSON.parse(listOfCandidates);
+</script>
+<script src='/js/compare.js'></script>
+
+</body>
+</html>

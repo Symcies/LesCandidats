@@ -2,3 +2,4 @@ node_modules/
 database/mongodb-key.js
 database/questions/
 security/
+data/

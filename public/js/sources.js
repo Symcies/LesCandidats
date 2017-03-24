@@ -44,3 +44,24 @@ var candidateSources = function(bio) {
     container.appendChild(sources);
   }
 })();
+
+
+var otherSource = function(source) {
+  var link = document.createElement('a');
+  link.className = 'links';
+  link.textContent = source['title'];
+  link.href = source['link'];
+
+  var col = document.createElement('div');
+  col.className = 'col-lg-12 col-md-12 col-sm-12 col-xs-12';
+  col.appendChild(link);
+
+  return col;
+};
+
+(function() {
+  var container = document.getElementById('addiSources');
+  for(var i = 0; i < addiSources.length; ++i) {
+    container.appendChild(otherSource(addiSources[i]));
+  }
+})();

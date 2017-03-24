@@ -1,5 +1,5 @@
 .panel-body {
-  height: 300px;
+  min-height: 400px;
   position: relative;
 }
 
