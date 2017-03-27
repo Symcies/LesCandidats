@@ -11,16 +11,28 @@ padding-right: 0px;
 .heads {
   height: 70px;
   width: 70px;
-  border:1px solid white;
+  border:1px solid #c2c2c2;
   border-radius: 35px;
   -webkit-border-radius: 35px;
   -moz-border-radius: 35px;
 }
 
+@media (max-width: 992px) {
+  .heads {
+    height: 50px;
+    width: 500px;
+  }
+}
+
 .block {
+  height: 50px;
   padding: 2px;
   border-radius: 8px;
   background-clip:content-box;
+}
+
+.btn:hover {
+  cursor: default;
 }
 
 .btn {
@@ -43,6 +55,8 @@ padding-right: 0px;
   margin-top: 2px;
   margin-left: -10px;
   margin-right: 10px;
+  padding-left: 0px;
+  padding-right: 0px;
   border: 1px solid white;
   border-radius: 8px;
 }
@@ -61,4 +75,16 @@ padding-right: 0px;
 .themeBlock {
   margin-top: 20px;
   margin-bottom: 80px;
+}
+
+
+#explain {
+  margin-top: 30px;
+  text-align: justify;
+   text-justify: inter-word;
+}
+
+.exp {
+  padding-top: 6px;
+  font-size: 16px;
 }

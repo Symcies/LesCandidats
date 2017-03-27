@@ -6,7 +6,7 @@ var selectIDs = require('./select-ids.js');
 var async     = require('async');
 
 var constructSurvey = function(userPreferences, totalNumberOfQuestions, surveyRender) {
-    if      (totalNumberOfQuestions == "1") { totalNumberOfQuestions = 10; }
+    if      (totalNumberOfQuestions == "1") { totalNumberOfQuestions = 15; }
     else if (totalNumberOfQuestions == "2") { totalNumberOfQuestions = 20; }
     else if (totalNumberOfQuestions == "3") { totalNumberOfQuestions = 25; }
 
@@ -30,7 +30,7 @@ var constructSurvey = function(userPreferences, totalNumberOfQuestions, surveyRe
       }
     }
 
-    selectIDs.selectIDs(numberOfQuestionsPerTheme, surveyRender);
+    selectIDs.selectIDs(numberOfQuestionsPerTheme, surveyRender, totalNumberOfQuestions);
 };
 
 

@@ -15,7 +15,7 @@ var headerRow = function(bio) {
   text.textContent = "Votre candidat 2017 est " + bio['name'];
 
   var col = document.createElement('div');
-  col.className = 'col-lg-12 text-center';
+  col.className = 'col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center';
   col.appendChild(text);
 
   var row = document.createElement('div');
@@ -49,12 +49,13 @@ var percentageRow = function(name, percentage) {
   text.textContent = "Avec près de " + (percentage).toFixed(1) + "% d'affinités, " + name + " est le candidat qui vous correspond le plus";
 
   var col = document.createElement('div');
-  col.className = 'col-lg-8 col-lg-offset-2';
+  col.className = 'col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1';
   col.appendChild(container);
   col.appendChild(text);
 
   var row = document.createElement('div');
   row.className = 'row text-center';
+  row.style.marginTop = "20px";
   row.appendChild(col);
 
   return row;
@@ -76,7 +77,7 @@ var candidateRow = function(bio) {
   pictureContainer.appendChild(picture);
 
   var pictureCol = document.createElement('div');
-  pictureCol.className = "col-lg-3 col-lg-offset-2";
+  pictureCol.className = "col-lg-3 col-lg-offset-2 col-md-3 col-md-offset-2 col-sm-3 col-sm-offset-2 col-xs-3 col-xs-offset-2";
   pictureCol.appendChild(pictureContainer);
 
   /// Second column
@@ -103,7 +104,7 @@ var candidateRow = function(bio) {
 
   /// Concatenate elements
   var nameCol = document.createElement('div');
-  nameCol.className = "col-lg-4 col-md-offset-1 text-center"
+  nameCol.className = "col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-5 col-sm-offset-1 col-xs-5 col-xs-offset-1 text-center"
   nameCol.id = "nameCol";
   nameCol.appendChild(siteContainer);
   nameCol.appendChild(biographieContainer);

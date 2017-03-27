@@ -1,7 +1,10 @@
 var writeExplanation = function(word, explanation) {
 
-  var wordH = document.createElement('h4')
-  wordH.textContent = word;
+  var text = document.createElement('i');
+  text.textContent = word;
+
+  var wordH = document.createElement('blockquote')
+  wordH.appendChild(text);
 
   var explanationD = document.createElement('div');
   explanationD.className = 'text-left';

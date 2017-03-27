@@ -103,14 +103,42 @@ app.post('/questions', function(req, res) {
   delete results.length;
   var userThemeSelection = results;
 
-  var renderSurvey = function(questions)
+  var renderSurvey = function(err, questions)
   {
+
+    if(err) { res.render('hack.ejs'); }
+
     res.render('questions.ejs', {surveyJSON:questions, userPreferences:results});
   };
 
   SurveyQuestions.constructSurvey(userThemeSelection, totalNumberOfQuestions,  renderSurvey);
 });
 
+
+
+
+app.post('/answers', function(req, res) {
+
+  /// Check the security
+  //console.log('should be true', answersSecurity.checkUserAnswers(req.body));
+  if(!answersSecurity.checkUserAnswers(req.body)) res.render('hack.ejs');
+
+  /// Preprocess the data
+  var surveyData = req.body;
+  var userPreferences = JSON.parse(surveyData.userPreferences);
+  delete surveyData.userPreferences;
+
+  /// Render the results
+  var renderResults = function(err, results)
+  {
+    //console.log(err);
+    //if(err) { res.render('hack.ejs'); }
+    res.render('answers.ejs', {results:results, listOfCandidates: JSON.stringify(biographies.listOfCandidates)});
+  }
+
+  SurveyResults.computeResults(surveyData, userPreferences, renderResults);
+
+});
 
 var examples = {
    "Travail" : {
@@ -151,28 +179,6 @@ var examples = {
    }
 };
 
-
-app.post('/answers', function(req, res) {
-
-  /// Check the security
-  //console.log('should be true', answersSecurity.checkUserAnswers(req.body));
-  if(!answersSecurity.checkUserAnswers(req.body)) res.render('hack.ejs');
-
-  /// Preprocess the data
-  var surveyData = req.body;
-  var userPreferences = JSON.parse(surveyData.userPreferences);
-  delete surveyData.userPreferences;
-
-  /// Render the results
-  var renderResults = function(results)
-  {
-    res.render('answers.ejs', {results:results, listOfCandidates: JSON.stringify(biographies.listOfCandidates)});
-  }
-
-  SurveyResults.computeResults(surveyData, userPreferences, renderResults);
-
-  //res.render('answers.ejs', {results:examples, listOfCandidates: JSON.stringify(biographies.listOfCandidates)});
-});
 
 app.get('/answers_test', function(req, res) {
   res.render('answers.ejs', {results:examples, listOfCandidates: JSON.stringify(biographies.listOfCandidates)});

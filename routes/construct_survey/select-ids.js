@@ -23,6 +23,8 @@ var getRandomSubarray = function(arr, size) {
 var GetQuestionIDsOfGivenTheme = function(themeName, themeNumberOfQuestions, callback) {
   MongoPool.getInstance(function(db) {
     db.collection('questions').find({"theme":themeName}, {"_id":1}).toArray(function(err, questionIDs) {
+      if(err)  { callback(false, 0); }
+
       listQuestionIDs = [];
       for(var i = 0; i < questionIDs.length; ++i)
       {
@@ -45,7 +47,7 @@ var GetQuestionIDsOfGivenTheme = function(themeName, themeNumberOfQuestions, cal
 ///  Convert the user favorite themes into a personnalized survey to render  ///
 ////////////////////////////////////////////////////////////////////////////////
 
-var selectIDs = function(numberOfQuestionsPerTheme, surveyRender) {
+var selectIDs = function(numberOfQuestionsPerTheme, surveyRender, totalNumberOfQuestions) {
 
     IDsPerTheme = [];
     for(var key in numberOfQuestionsPerTheme) {
@@ -60,6 +62,7 @@ var selectIDs = function(numberOfQuestionsPerTheme, surveyRender) {
     , function(err, results)
     {
         listIDs = [].concat.apply([], results);
+        listIDs = getRandomSubarray(listIDs, totalNumberOfQuestions);
         retrieveQuestions.retrieveQuestions(listIDs, surveyRender);
     });
 };

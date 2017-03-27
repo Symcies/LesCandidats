@@ -180,3 +180,24 @@
 #singleBio {
   color: black;
 }
+
+
+#conceptDiv {
+  text-align:center;
+  display:table;
+  height: 50px;
+  border: 1px solid white;
+}
+
+
+#conceptDiv p {
+  vertical-align:middle;
+  display:table-cell;
+  font-size: 18px;
+}
+
+#conceptDiv:hover {
+  background-color: white;
+  color: black;
+  cursor: pointer;
+}

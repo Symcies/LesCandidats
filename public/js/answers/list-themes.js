@@ -19,7 +19,7 @@ var themeCol = function(theme) {
   par.textContent = theme;
 
   var col = document.createElement('div');
-  col.className = 'col-md-3 col-md-offset-1';
+  col.className = 'col-lg-3 col-lg-offset-1 col-md-3 col-md-offset-1 col-sm-3 col-sm-offset-1 col-xs-3';
   col.appendChild(par);
 
   return col;
@@ -27,7 +27,7 @@ var themeCol = function(theme) {
 
 var candidateCol = function(theme, params) {
   var col = document.createElement('div');
-  col.className = 'col-md-8';
+  col.className = 'col-lg-8 col-md-8 col-sm-8 col-xs-8';
 
   userAnswers = sumOverThemes([theme]);
   userAnswers = sortCandidates(userAnswers);
@@ -41,7 +41,7 @@ var candidateCol = function(theme, params) {
     p.textContent =  name;
 
     var nameCol = document.createElement('div');
-    nameCol.className = 'col-lg-4';
+    nameCol.className = 'col-lg-4 col-md-4 col-sm-4 col-xs-6';
     nameCol.appendChild(p)
 
     var progress = document.createElement('div');
@@ -59,7 +59,7 @@ var candidateCol = function(theme, params) {
     progressContainer.appendChild(progress);
 
     var progressCol = document.createElement('div');
-    progressCol.className = 'col-lg-7';
+    progressCol.className = 'col-lg-7 col-md-7 col-sm-7 col-xs-6';
     progressCol.appendChild(progressContainer);
 
     var row = document.createElement('div');
@@ -89,7 +89,7 @@ var themeRow = function(theme, params) {
 (function() {
 
   var mainCol = document.createElement('div');
-  mainCol.className = 'col-md-8 col-md-offset-3';
+  mainCol.className = 'col-lg-9 col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12 col-sm-offset-0 col-xs-10 col-xs-offset-1';
   mainCol.appendChild(headerRow());
 
   for(var key in rawResults) {

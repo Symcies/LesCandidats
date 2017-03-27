@@ -4,7 +4,7 @@
 var async       = require('async');
 var biographies = require('./../../data/biographies');
 var themes      = require('./../../data/themes');
-var MongoPool   = require("./../../database/mongo-pool");
+
 
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -42,12 +42,12 @@ var sumJSObjects = function(queryResult, previousResults, themeImportance) {
   newResults['NbOfQuestionsAnswered'] += 1;
 
   /// Update the top answered
-  newResults['topAnswer'] += (0.2*queryResult['topAnswer'] + 0.8)*themeImportance;
+  newResults['topAnswer'] += (0.1*queryResult['topAnswer'] + 0.9)*themeImportance;
 
   /// Update the grade of each party
   for(var key in queryResult['userAnswer']) {
     if(!queryResult['userAnswer'].hasOwnProperty(key)) continue;
-    var convertX = 0.2 * (queryResult['userAnswer'][key]) + 0.8;
+    var convertX = 0.1 * (queryResult['userAnswer'][key]) + 0.9;
     newResults[key] += convertX*themeImportance;
   }
   return newResults;
@@ -58,7 +58,7 @@ var sumJSObjects = function(queryResult, previousResults, themeImportance) {
 ////////////////////////////////////////////////////////////////////////////////
 
 var computeThemeImportance = function(userPreference) {
-  var DegreeOfImportance = 1.5;
+  var DegreeOfImportance = 2.5;
   return ((DegreeOfImportance - 1) * userPreference  + 20 - DegreeOfImportance)/19;
 };
 

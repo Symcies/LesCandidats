@@ -5,7 +5,7 @@
 var listCurrentSituation = function(listPositions) {
 
   var name = document.createElement('h3');
-  name.textContent = "Liste des postes actuels";
+  name.textContent = "Poste(s) actuel(s)";
 
   var list = document.createElement('ul');
   list.className = 'listPositions list-unstyled';

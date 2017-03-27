@@ -20,11 +20,10 @@ var candidateSources = function(bio) {
     }
   }
 
-  var candidateName = document.createElement('h3');
+  var candidateName = document.createElement('i');
   candidateName.textContent = bio['name'];
 
-  var nameDiv = document.createElement('div');
-  nameDiv.className = 'nameDiv';
+  var nameDiv = document.createElement('blockquote');
   nameDiv.appendChild(candidateName);
 
   var sourcesCol = document.createElement('div');

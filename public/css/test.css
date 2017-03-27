@@ -1,12 +1,10 @@
 /* Title and text under*/
 
-p {
-  font-size: 18px;
-}
+
 
 /* Defines the margin of the choosing block */
 #testRows{
-  margin-top: 20px;
+
   margin-bottom: 50px;
 }
 
@@ -88,6 +86,8 @@ p {
 #conceptDiv p {
   vertical-align:middle;
   display:table-cell;
+    font-size: 18px;
+
 }
 
 #conceptDiv:hover {
@@ -98,4 +98,28 @@ p {
 
 .slider {
   width: 100% !important;
+}
+
+
+
+#Start {
+  margin-top: 30px;
+  font-size: 30px;
+  padding: 10px;
+  border-radius: 3px;
+  background: #667fa0;
+  display: inline-block;
+}
+
+#Start h3 {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+#Start:hover {
+  cursor: pointer;
+}
+
+.tooltip {
+  display: none;
 }

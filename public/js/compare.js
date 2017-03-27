@@ -150,7 +150,6 @@ var answerCol = function(candidate, candidates) {
 
   var col = document.createElement('div');
   col.className = 'col-lg-1 col-md-1 col-sm-1 col-xs-1 block';
-  col.style.height = '50px';
 
 
 

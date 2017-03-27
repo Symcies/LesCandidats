@@ -112,9 +112,10 @@ function addTheme(theme) {
 $('.slid').slider({
 	formatter: function(value) {
 
-		return 'Valeur: ' + value;
+		//return 'Valeur: ' + value;
 	}
 });
+
 
 ////////////////////////////////////////////////////////////////////////////////
 /// Send the data to the surver
@@ -164,7 +165,7 @@ $(".btn-group > .btn").click(function(){
 });
 
 
-$(".validation").click(function() {
+$("#Start").click(function() {
   var activeButton = document.getElementsByClassName('active');
   if(activeButton.length == 1) {
 

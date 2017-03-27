@@ -22,7 +22,7 @@ var sumOverThemes = function(themesToSum) {
     }
 
   }
-  console.log(selectedResults, maxValue);
+
   return [selectedResults, maxValue];
 };
 
@@ -61,4 +61,9 @@ $("#candidateResults").click(function(){
 
 $("#themeResults").click(function(){
   window.location.href="#listThemes";
+});
+
+
+$("#conceptDiv").click(function(){
+  window.location.href="/concept";
 });

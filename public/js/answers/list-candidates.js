@@ -17,7 +17,7 @@ var nameCol = function(bio, number) {
   index.textContent = number + 1 + '.';
 
   var indexCol = document.createElement('div');
-  indexCol.className = 'col-md-1';
+  indexCol.className = 'col-lg-1 col-md-1 col-sm-1 col-xs-1';
   indexCol.appendChild(index);
 
   /// First column
@@ -34,7 +34,7 @@ var nameCol = function(bio, number) {
   pictureContainer.appendChild(picture);
 
   var pictureCol = document.createElement('div');
-  pictureCol.className = "col-md-3";
+  pictureCol.className = "col-lg-3 col-md-3 col-sm-3 col-xs-3";
   pictureCol.appendChild(pictureContainer);
 
   /// Second column
@@ -45,7 +45,7 @@ var nameCol = function(bio, number) {
   polParty.textContent = bio['partyName'];
 
   var partyCol = document.createElement('div');
-  partyCol.className = 'col-md-7'
+  partyCol.className = 'col-lg-8 col-md-8 col-sm-8 col-xs-8';
   partyCol.appendChild(name);
   partyCol.appendChild(polParty);
 
@@ -56,7 +56,7 @@ var nameCol = function(bio, number) {
   row.appendChild(partyCol);
 
   var col = document.createElement('div');
-  col.className = 'col-md-6';
+  col.className = 'col-lg-6 col-md-6 col-sm-6 col-xs-6';
   col.appendChild(row);
 
   return col;
@@ -93,7 +93,7 @@ var percentageCol = function(percentage) {
   container.appendChild(progress);
 
   var resultCol = document.createElement('div');
-  resultCol.className = 'col-md-4';
+  resultCol.className = 'col-lg-4 col-md-4 col-sm-4 col-xs-4';
   resultCol.appendChild(container);
 
   return resultCol;
@@ -106,7 +106,7 @@ var bioCol = function(bio) {
   link.textContent = 'Biographie';
 
   var col = document.createElement('div');
-  col.className = 'col-md-2 bioLink';
+  col.className = 'col-lg-2 col-md-2 col-sm-2 col-xs-2 bioLink';
   col.id = bio['shortName'];
   col.appendChild(link);
 
@@ -139,12 +139,16 @@ var candidateRow = function(candidate, number) {
 
 (function() {
   var mainCol = document.createElement('div');
-  mainCol.className = 'col-md-8 col-md-offset-3';
+  mainCol.className = 'col-lg-9 col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12 col-sm-offset-0 col-xs-10 col-xs-offset-1';
   mainCol.appendChild(headerRow());
 
+  var j = 0;
   for(var i=0; i<userAnswers.length; ++i) {
-    var candidate = candidateRow(userAnswers[i], i);
-    mainCol.appendChild(candidate);
+    if(userAnswers[i][0] != "FA" && userAnswers[i][0] != "JL") {
+      var candidate = candidateRow(userAnswers[i], j);
+      mainCol.appendChild(candidate);
+      ++j;
+    }
   }
 
   var mainRow = document.createElement('div');
