@@ -4,6 +4,9 @@
 
 var listCurrentSituation = function(listPositions) {
 
+  var name = document.createElement('h3');
+  name.textContent = "Liste des postes actuels";
+
   var list = document.createElement('ul');
   list.className = 'listPositions list-unstyled';
 
@@ -13,7 +16,13 @@ var listCurrentSituation = function(listPositions) {
     list.appendChild(position);
   }
 
-  return list;
+  var col = document.createElement('div');
+  col.className = "col-lg-12 col-md-12 col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2";
+  col.style.marginLeft = "0px";
+  col.appendChild(name);
+  col.appendChild(list);
+
+  return col;
 };
 
 
@@ -34,6 +43,7 @@ var loadImageRow = function(bio) {
   var image = document.createElement('img');
   image.height = 200;
   image.id = "image";
+  image.className = "center-block";
   image.src = '/img/profiles/' + bio["shortName"] + '.jpg'
   image.alt = bio['name'];
 
@@ -56,23 +66,24 @@ var loadBiographyHeader = function(bio) {
   title.textContent = bio['name'];
 
   var titleCol = document.createElement('div');
-  title.className = "col-md-4";
+  title.className = "col-lg-4 col-md-4 col-sm-4 col-xs-4";
   titleCol.appendChild(title);
 
   var politicalParty = document.createElement("h3");
   politicalParty.textContent = bio['partyName'];
 
   var politicalPartyCol = document.createElement('div');
-  politicalPartyCol.className = 'col-md-5 col-md-offset-1';
+  politicalPartyCol.className = 'col-lg-5 col-lg-offset-1 col-md-5 col-md-offset-1 col-sm-5 col-xs-5';
   politicalPartyCol.appendChild(politicalParty);
 
   var logo = document.createElement('img');
-  logo.height = 60;
+  logo.style.maxHeight = '60px';
+  logo.style.maxWidth = '140px';
   logo.src = '/img/political_party/' + bio["shortName"] + '.png'
   logo.alt = bio['name'];
 
   var logoCol = document.createElement('div');
-  logoCol.className = 'col-md-2';
+  logoCol.className = 'col-lg-2 col-md-2 col-sm-3 col-xs-3';
   logoCol.appendChild(logo);
 
   var headerRow = document.createElement('div');
@@ -110,7 +121,7 @@ var loadBiographyBody = function(bio) {
   linkParagraph.appendChild(link);
 
   var bioText = document.createElement('div');
-  bioText.className = 'col-md-8';
+  bioText.className = 'col-lg-8 col-md-8 col-sm-12 col-xs-12';
   bioText.appendChild(fullBiography);
   bioText.appendChild(linkParagraph);
 
@@ -129,15 +140,15 @@ var loadBiographyBody = function(bio) {
   currentSituationRow.appendChild(currentSituation);
 
   var secondCol = document.createElement('div');
-  secondCol.className = 'col-md-4';
+  secondCol.className = 'col-lg-4 col-md-4 col-sm-12 col-xs-12';
   secondCol.appendChild(imageRow);
   secondCol.appendChild(ageRow);
   secondCol.appendChild(currentSituationRow);
 
   /// Concatenate the two columns
   var mainRow = document.createElement('div');
-  mainRow.appendChild(bioText);
   mainRow.appendChild(secondCol);
+  mainRow.appendChild(bioText);
 
   var container = document.createElement('div');
   container.className = 'row';
@@ -175,11 +186,12 @@ var loadBiographyFooter = function(bio) {
   }
 
   var sourcesCol = document.createElement('div');
-  sourcesCol.className = "col-md-5";
+  sourcesCol.className = "col-lg-10 col-lg-10 col-sm-10 col-xs-10 text-left";
   sourcesCol.appendChild(listSources);
 
   var sourceName = document.createElement('div');
-  sourceName.className = "col-md-2 col-md-offset-2 text-center";
+  sourceName.className = "col-lg-2 col-lg-2 col-sm-2 col-xs-2 text-center";
+  sourceName.style.fontSize = "18px";
   sourceName.textContent = "Sources";
 
   var sourcesRow = document.createElement('div');
@@ -211,7 +223,7 @@ var loadBiographyFooter = function(bio) {
    content.appendChild(footer);
 
    var dialog = document.createElement('div');
-   dialog.className = 'modal-dialog modal-lg';
+   dialog.className = 'modal-dialog modal-lg modal-md';
    dialog.role = 'document';
    dialog.appendChild(content);
 

@@ -3,14 +3,37 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 Survey.Survey.cssType = "bootstrap"
+Survey.JsonObject.metaData.addProperty("checkbox", {name: "renderAs", default: "standard", choices: ["standard", "icheck"]});
+Survey.JsonObject.metaData.addProperty("radiogroup", {name: "renderAs", default: "standard", choices: ["standard", "icheck"]});
 
-var myCss = {
-  "navigationButton": "button btn-lg",
-  "footer": "text-center",
+Survey.defaultBootstrapCss.navigationButton = "btn btn-primary";
+
+var widget = {
+    name: "icheck",
+    isFit : function(question) { return question["renderAs"] === 'icheck'; },
+    isDefaultRender: true,
+    afterRender: function(question, el) {
+        var $el = $(el);
+        var select = function() {
+          $el.find("input[value=" + question.value + "]").iCheck('check');
+        }
+        $el.find('input').data({"iCheck": undefined});
+        $el.find('input').iCheck({
+          checkboxClass: 'icheckbox_square-blue',
+          radioClass: 'iradio_square-blue',
+        });
+        $el.find('input').on('ifChecked', function(event){
+          question.value = event.target.value;
+        });
+        question.valueChangedCallback = select;
+        select();
+
+    }
 };
 
-//var survey = new Survey.Survey(questions, "surveyContainer");
-//survey.showProgressBar = "bottom";
+//Survey.CustomWidgetCollection.Instance.addCustomWidget(widget);
+
+
 questions["title"]        = "Découvrez votre candidat 2017";
 questions["requiredText"] = "";
 questions["completedHtml"] = "Veuillez patienter, nous recherchons votre candidat 2017";
@@ -24,7 +47,6 @@ survey.showProgressBar = "bottom";
 
 $("#surveyContainer").Survey({
     model:survey,
-    css:myCss,
     showQuestionNumbers:"off",
     onComplete:sendDataToServer
 });
@@ -32,6 +54,8 @@ $("#surveyContainer").Survey({
 $(".panel-footer").click(function() {
   $(this).addClass("text-center");
 });
+
+
 
 
 ////////////////////////////////////////////////////////////////////////////////

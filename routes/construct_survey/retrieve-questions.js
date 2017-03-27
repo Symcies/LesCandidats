@@ -17,7 +17,9 @@ var processQuestion = function(MongoQuestion) {
     for(var j = 0; j < choices.length; ++j) {
       delete questions[i]["choices"][j]["answers"];
     }
+    questions[i]['renderAs'] = 'icheck';
   }
+
   return questions;
 
 };

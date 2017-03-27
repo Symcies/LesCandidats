@@ -95,3 +95,7 @@ p {
   color: black;
   cursor: pointer;
 }
+
+.slider {
+  width: 100% !important;
+}

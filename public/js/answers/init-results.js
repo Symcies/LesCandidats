@@ -10,7 +10,6 @@ var sumOverThemes = function(themesToSum) {
   for(var candidate in listOfCandidates) {
     selectedResults[candidate] = 0;
   }
-
   for(var i = 0; i < themesToSum.length; ++i) {
     var theme = themesToSum[i];
     for(key in rawResults[theme]) {
@@ -19,11 +18,11 @@ var sumOverThemes = function(themesToSum) {
       }
     }
     if('topAnswer' in rawResults[theme]) {
-      maxValue += parseInt(rawResults[theme]['topAnswer']);
+      maxValue += parseFloat(rawResults[theme]['topAnswer']);
     }
 
   }
-
+  console.log(selectedResults, maxValue);
   return [selectedResults, maxValue];
 };
 
@@ -53,6 +52,7 @@ var sortCandidates = function(userAnswers) {
 
   userAnswers = sumOverThemes(allThemes);
   userAnswers = sortCandidates(userAnswers);
+
 })();
 
 $("#candidateResults").click(function(){

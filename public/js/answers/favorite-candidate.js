@@ -90,7 +90,7 @@ var candidateRow = function(bio) {
   siteContainer.appendChild(site);
   siteContainer.addEventListener('click', function (event) {
     window.open(bio['website']);
-});
+  });
 
   // Biographie part
   var biographie = document.createElement('p');
@@ -135,7 +135,7 @@ var displayFirst = function(favoriteCandidate, percentage) {
   var candidate = candidateRow(favoriteCandidate);
 
   /// Percentage row
-  var percentage = percentageRow(favoriteCandidate["name"], percentage );
+  var percentageR = percentageRow(favoriteCandidate["name"], percentage );
 
   /// Third row : share on twitter, facebook
   //var share = shareRow();
@@ -145,7 +145,7 @@ var displayFirst = function(favoriteCandidate, percentage) {
   mainCol.id = "favoriteCandidateCol";
   mainCol.appendChild(header);
   mainCol.appendChild(candidate);
-  mainCol.appendChild(percentage);
+  mainCol.appendChild(percentageR);
   //mainCol.appendChild(share);
 
   var mainRow = document.createElement('div');

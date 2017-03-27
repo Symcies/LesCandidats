@@ -5,8 +5,9 @@ h4 {
 .col p {
   text-align: justify;
     text-justify: inter-word;
+    font-size: 12px;
 }
 
 .col {
-  min-height: 300px;
+  min-height: 380px;
 }

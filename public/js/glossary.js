@@ -12,7 +12,7 @@ var writeExplanation = function(word, explanation) {
   }
 
   var col = document.createElement('div');
-  col.className = "col-lg-4 col-md-4 col-sm-6 col-xs-12 col";
+  col.className = "col-lg-6 col-md-6 col-sm-6 col-xs-12 col";
   col.appendChild(wordH);
   col.appendChild(explanationD);
 

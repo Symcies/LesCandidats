@@ -1,6 +1,8 @@
 <!DOCTYPE html
 <html lang="en">
 <% include partials/head %>
+
+<link rel="stylesheet" type="text/css" href="/css/skins/all.css"></link>
 <link rel="stylesheet" type="text/css" href="/css/questions.css"></link>
 <body>
     <% include partials/navbar %>
@@ -21,8 +23,9 @@
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="js/icheck.min.js"></script>
     <script src="js/survey.jquery.min.js"></script>
-    <script>var questions = <%- JSON.stringify(surveyJSON) %>; console.log(questions);</script>
+    <script>var questions = <%- JSON.stringify(surveyJSON) %>; </script>
     <script>var userPreferences = <%- JSON.stringify(userPreferences) %>;</script>
     <script src ="js/questions.js"></script>
 

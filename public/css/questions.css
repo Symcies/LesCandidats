@@ -19,3 +19,9 @@ h3 {
 .panel-footer {
   background-color: transparent;
 }
+
+
+
+.panel-footer input {
+  opacity: 1 !important;
+}

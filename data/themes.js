@@ -13,7 +13,7 @@ var listOfThemes = [
   },
   {
     'name': 'Sécurité',
-    'icon':'vcard',
+    'icon':'shield',
   },
   {
     'name': 'Santé',
@@ -37,7 +37,7 @@ var listOfThemes = [
   },
   {
     'name': 'Education',
-    'icon': "book"
+    'icon': "graduation-cap"
   }
 ]
 

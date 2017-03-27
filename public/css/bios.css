@@ -41,7 +41,12 @@
 }
 
 .thumbnail:hover {
-  border: 2px solid white;
+  border: 2px solid #667fa0;
+  background-color: #667fa0 ;
+}
+
+.thumbnail:hover h2 {
+  color: white;
 }
 
 /*
