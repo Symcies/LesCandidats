@@ -133,7 +133,7 @@ app.post('/answers', function(req, res) {
   {
     //console.log(err);
     //if(err) { res.render('hack.ejs'); }
-    res.render('answers.ejs', {results:results, listOfCandidates: JSON.stringify(biographies.listOfCandidates)});
+    res.render('answers.ejs', {results:err, listOfCandidates: JSON.stringify(biographies.listOfCandidates)});
   }
 
   SurveyResults.computeResults(surveyData, userPreferences, renderResults);
