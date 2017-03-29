@@ -87,3 +87,7 @@ a:hover {
   background: #667fa0;
   display: inline-block;
 }
+
+#test:hover {
+  background: #395c8a;
+}

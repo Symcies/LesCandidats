@@ -47,11 +47,11 @@ body {
   #Marianne {
    position: fixed;
 
-   z-index: 3;
+   z-index: 1;
    height: 600px;
    width: auto;
 
-   margin-top: -50px;
+   margin-top: 0px;
    margin-left: -20px;
   }
 }

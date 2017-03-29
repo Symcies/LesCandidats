@@ -60,6 +60,7 @@ var processCheckboxType = function(choices, userAnswer) {
   var userAnswers = userAnswer.split(',');
 
   for(var i = 0; i < choices.length; ++i) {
+
     if(userAnswers.includes(choices[i]["value"])) {
       userPoints = addDictValues(userPoints, choices[i]["answers"]);
     }

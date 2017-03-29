@@ -25,21 +25,20 @@
   display: inline-block;
   float: none;
   vertical-align: top;
-  margin-left: 75px;
+  margin-left: -120px;
+
 }
 
 .navbar .navbar-collapse {
   text-align: center;
 }
 
-.navbar > a {
-  padding-left: 30px;
-  padding-right: 30px;
-}
+
 
 .navbar-brand {
+  z-index: 15;
   font-size: 22px;
-  margin-right: 30px;
+  color: white !important;
 }
 
 .navbar-link {
@@ -65,8 +64,8 @@
 }
 /* Underline From Center */
 .hvr-underline-from-center {
-  margin-left: 40px;
-  margin-right: 40px;
+  margin-left: 30px;
+  margin-right: 30px;
 
   font-size: 18px;
   font-family: 'Work Sans';

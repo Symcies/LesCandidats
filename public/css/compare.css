@@ -31,14 +31,14 @@ padding-right: 0px;
   background-clip:content-box;
 }
 
-.btn:hover {
-  cursor: default;
-}
 
 .btn {
   width: 100%;
   height: 100%;
   background-color: transparent;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 .popover {
@@ -49,6 +49,7 @@ padding-right: 0px;
 
 
 .questionMark {
+  background: #667fa0;
   text-align:center;
   display:table;
   height: 47px;
@@ -57,7 +58,7 @@ padding-right: 0px;
   margin-right: 10px;
   padding-left: 0px;
   padding-right: 0px;
-  border: 1px solid white;
+  /border: 1px solid white;
   border-radius: 8px;
 }
 
@@ -66,11 +67,7 @@ padding-right: 0px;
   display:table-cell;
 }
 
-.questionMark:hover {
-  background-color: white;
-  color: black;
-  cursor: pointer;
-}
+
 
 .themeBlock {
   margin-top: 20px;

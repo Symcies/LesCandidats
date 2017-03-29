@@ -117,6 +117,10 @@
 }
 
 #Start:hover {
+  background: #395c8a;
+}
+
+#Start:hover {
   cursor: pointer;
 }
 

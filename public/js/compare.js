@@ -146,48 +146,50 @@ var questionCol = function(text) {
 
 /// Answers part
 
+var setPopOver = function(candidate) {
+  var pop = document.createElement('button');
+  pop.className = 'btn btn-lg';
+  pop.type = "button";
+  pop.setAttribute('data-toggle', 'popover');
+  pop.setAttribute('data-placement', 'bottom');
+  pop.setAttribute('data-trigger', 'hover');
+  pop.setAttribute('data-html', 'true');
+
+  var content = '';
+  if(candidate['content'].length > 1 && candidate.hasOwnProperty('content')) {
+    for(var i = 0; i < candidate['content'].length; ++i) {
+      content += i+1 + '. ' + candidate['content'][i] + '<br/>';
+    }
+  } else if (candidate['content'].length == 1 && candidate.hasOwnProperty('content')){
+    content += candidate['content'][0];
+  }
+
+  pop.setAttribute('data-content', content);
+
+  return pop;
+};
+
 var answerCol = function(candidate, candidates) {
 
   var col = document.createElement('div');
   col.className = 'col-lg-1 col-md-1 col-sm-1 col-xs-1 block';
 
 
-
-
   if(candidate in candidates) {
     var value  = candidates[candidate]["value"];
+
     if(value == 1)      { col.style.backgroundColor = color1; }
     else if(value == 2) { col.style.backgroundColor = color2; }
     else if(value == 3) { col.style.backgroundColor = color3; }
     else if(value == 4) { col.style.backgroundColor = color4; }
     else if(value == 5) { col.style.backgroundColor = color5; }
-    else {
-      col.style.backgroundColor = colorNSPP;
-    }
+    else                { col.style.backgroundColor = colorNSPP; }
 
-    var pop = document.createElement('button');
-    pop.className = 'btn btn-lg';
-    pop.type = "button";
-    pop.setAttribute('data-toggle', 'popover');
-    pop.setAttribute('data-placement', 'bottom');
-    pop.setAttribute('data-trigger', 'hover');
-    //pop.setAttribute('title', candidates[candidate]['title']);
-    pop.setAttribute('data-html', 'true');
-    var content = '';
-    if(candidates[candidate]['content'].length > 1 && candidates[candidate].hasOwnProperty('content')) {
-      for(var i = 0; i < candidates[candidate]['content'].length; ++i) {
-        content += i+1 + '. ' + candidates[candidate]['content'][i] + '<br/>';
-      }
-    } else if (candidates[candidate]['content'].length == 1 && candidates[candidate].hasOwnProperty('content')){
-      content += candidates[candidate]['content'][0];
+    if(candidates[candidate]["content"].length > 0) {
+      var pop = setPopOver(candidates[candidate]);
+      col.textContent = "*";
+      col.appendChild(pop);
     }
-    /*
-    if(candidates[candidate].hasOwnProperty('source') && candidates[candidate]['source'] != "" && candidates[candidate]['source'] != " ") {
-      content += '<a href=' + candidates[candidate]['source'] + '> Source </a>';
-    }
-    */
-    pop.setAttribute('data-content', content);
-    col.appendChild(pop);
 
   } else {
     col.style.backgroundColor = colorNSPP;

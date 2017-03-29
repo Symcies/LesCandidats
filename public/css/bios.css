@@ -26,7 +26,6 @@
 
 .title {
   z-index: 100000;
-  color: black;
 }
 
 .thumbnail {
@@ -37,12 +36,14 @@
   //background: none;
   cursor: pointer;
   overflow: hidden;
-  border: 2px solid #ca5251;
+  color: white;
+  background-color: #667fa0;
+  border: 2px solid #667fa0;
 }
 
 .thumbnail:hover {
   border: 2px solid #667fa0;
-  background-color: #667fa0 ;
+  background: #395c8a;
 }
 
 .thumbnail:hover h2 {
