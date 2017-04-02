@@ -65,11 +65,32 @@
 .resultBox h3 {
   vertical-align:middle;
   display:table-cell;
+  padding-top: 10px;
+  padding-bottom: 10px;
+
 }
 
 .resultBox:hover {
   background: #395c8a;
   cursor: pointer;
+}
+
+@media (max-width: 767px) {
+  #titleName {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  .resultBox {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+
+  .resultBox h3 {
+    font-size: 20px;
+  }
+
+
 }
 
 /*  Share results */
@@ -153,6 +174,56 @@
   cursor: pointer;
 }
 
+.link2 {
+  display: none !important;
+}
+
+.progress {
+  height: 22px;
+}
+
+.progress-bar {
+  font-size: 18px;
+  font-weight: 800;
+  color: white;
+  padding-left: 2px;
+  text-shadow:
+    -1px -1px 0 #395c8a,
+    1px -1px 0 #395c8a,
+    -1px 1px 0 #395c8a,
+    1px 1px 0 #395c8a;
+}
+
+@media (max-width: 767px) {
+  .link1 {
+    display: none !important;
+  }
+
+  .link2 {
+    display: inline !important;
+  }
+
+
+  .subCandidateRow .col-xs-3 {
+    display: none !important;
+  }
+
+  .subCandidateRow .col-xs-8 {
+    padding: 4px;
+  }
+
+  .subCandidateRow .col-xs-8 h1 {
+    font-size: 16px;
+    white-space: nowrap;
+  }
+
+  .subCandidateRow .col-xs-8 h2 {
+    font-size: 12px;
+    white-space: nowrap;
+  }
+}
+
+
 /* list of themes */
 
 #listThemes {
@@ -182,6 +253,13 @@
 /* modal biography */
 #singleBio {
   color: black;
+}
+
+@media only screen and (max-width: 767px) {
+  .modal-dialog {
+    margin-top: 100px;
+    margin-bottom: 100px;
+  }
 }
 
 

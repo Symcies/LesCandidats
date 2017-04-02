@@ -11,22 +11,18 @@ padding-right: 0px;
 .heads {
   height: 70px;
   width: 70px;
-  border:1px solid #c2c2c2;
+  /border:1px solid #c2c2c2;
   border-radius: 35px;
   -webkit-border-radius: 35px;
   -moz-border-radius: 35px;
 }
 
-@media (max-width: 992px) {
-  .heads {
-    height: 50px;
-    width: 500px;
-  }
-}
+
+
 
 .block {
   height: 50px;
-  padding: 2px;
+  padding: 1px;
   border-radius: 8px;
   background-clip:content-box;
 }
@@ -52,21 +48,52 @@ padding-right: 0px;
   background: #667fa0;
   text-align:center;
   display:table;
-  height: 47px;
-  margin-top: 2px;
-  margin-left: -10px;
-  margin-right: 10px;
+  height: 48px;
+  margin-top: 1px;
   padding-left: 0px;
   padding-right: 0px;
   /border: 1px solid white;
   border-radius: 8px;
 }
 
+
+
 .questionMark p {
   vertical-align:middle;
   display:table-cell;
+  position: relative;
+  font-size: 13px;
+  margin-top: -2px;
+  margin-bottom: -2px;
 }
 
+.questionMark:hover {
+    background: #395c8a;
+    cursor: pointer;
+}
+
+#exampleMark {
+  background: #667fa0;
+  text-align:center;
+  display:table;
+  height: 47px;
+
+  border: 1px solid white;
+  border-radius: 8px;
+  padding: 0px;
+}
+
+#exampleMark p {
+  vertical-align:middle;
+  display:table-cell;
+  padding: 5px;
+  font-size: 18px;
+}
+
+#exampleMark:hover {
+  background: #395c8a;
+  cursor: pointer;
+}
 
 
 .themeBlock {
@@ -76,12 +103,112 @@ padding-right: 0px;
 
 
 #explain {
-  margin-top: 30px;
   text-align: justify;
-   text-justify: inter-word;
+  text-justify: inter-word;
 }
 
 .exp {
-  padding-top: 6px;
-  font-size: 16px;
+    font-size: 16px;
 }
+
+
+#tiRow {
+  margin-top: 50px;
+}
+
+
+
+#explain {
+  margin-top: 20px;
+}
+
+/*  md resolution */
+@media (max-width: 991px) {
+  .container {
+    width: 100%;
+  }
+
+  .questionMark {
+    height: 34px;
+  }
+
+  .questionMark p {
+    font-size: 18px;
+  }
+
+  .heads {
+    min-width: 100%;
+    height: auto;
+  }
+}
+
+/*  sm resolution */
+@media (max-width: 767px) {
+  .questionMark {
+    height: 30px;
+  }
+
+  .questionMark p {
+    font-size: 16px;
+  }
+
+
+}
+
+/*  xs resolution */
+@media (max-width: 575px) {
+  .block {
+    height: 45px;
+    padding: 0px;
+      border-radius: 10px;
+  }
+
+  .exp {
+    font-size: 15px;
+  }
+}
+
+/*
+@media (max-width: 991px) {
+  .container {
+    width: 100%;
+  }
+
+  .heads {
+    min-width: 100%;
+    height: auto;
+
+  }
+
+  .headName {
+    display: inline !important;
+    width: 200px;
+    //position: absolute;
+    white-space: nowrap;
+    //transform-origin: bottom left;
+    //-moz-transform:  rotate(45deg);
+    //-webkit-transform:  rotate(45deg);
+    //transform:  rotate(45deg) translate(-190px, -20px);
+  }
+
+  .headName p{
+    text-align: right;
+    font-size: 18px;
+    display: none;
+  }
+
+  .pictureContainer {
+    //height : 20px;
+  }
+
+  .pictureContainer img {
+    //display: none;
+
+  }
+
+  .themeBlock h2 {
+    //margin-bottom: 160px;
+  }
+
+}
+*/

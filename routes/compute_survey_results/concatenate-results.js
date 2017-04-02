@@ -58,7 +58,7 @@ var sumJSObjects = function(queryResult, previousResults, themeImportance) {
 ////////////////////////////////////////////////////////////////////////////////
 
 var computeThemeImportance = function(userPreference) {
-  var DegreeOfImportance = 2.5;
+  var DegreeOfImportance = 1.8;
   return ((DegreeOfImportance - 1) * userPreference  + 20 - DegreeOfImportance)/19;
 };
 

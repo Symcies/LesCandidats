@@ -49,7 +49,11 @@ var addDictValues = function(container, dictToBeAdded) {
   }
 
   return temp;
-}
+};
+
+function isInArray(value, array) {
+  return array.indexOf(value) > -1;
+};
 
 var processCheckboxType = function(choices, userAnswer) {
   /// Corresponds to multiple answers
@@ -61,7 +65,7 @@ var processCheckboxType = function(choices, userAnswer) {
 
   for(var i = 0; i < choices.length; ++i) {
 
-    if(userAnswers.includes(choices[i]["value"])) {
+    if(isInArray(choices[i]["value"], userAnswers)) {
       userPoints = addDictValues(userPoints, choices[i]["answers"]);
     }
     topAnswers = accumulateTopAnswers(topAnswers, choices[i]["answers"])

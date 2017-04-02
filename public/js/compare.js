@@ -16,7 +16,7 @@ var MarianneDelete = (function() {
   var wrap = document.getElementById('wrap');
   var wrapWidth = wrap.clientWidth;
 
-  var fakeCol = document.getElementById('fakeCol');
+  var fakeCol = document.getElementById('tiRow');
   var colWidth = fakeCol.clientWidth;
 
   if((wrapWidth - colWidth)/2 < MarianneWidth + 20) {
@@ -71,9 +71,19 @@ var headCol = function(candidate) {
   picture.className = "img-responsive heads";
   picture.src = '/img/profiles/' + candidate + '.jpg';
 
+  var name = document.createElement('p');
+  name.textContent = listOfCandidates[candidate]["name"];
+
+
+  var nameDiv = document.createElement('div');
+  nameDiv.className = "headName";
+  nameDiv.style.display = "none";
+  nameDiv.appendChild(name);
+
   var pictureContainer = document.createElement('div');
   pictureContainer.className = "pictureContainer col-lg-1 col-md-1 col-sm-1 col-xs-1";
   pictureContainer.appendChild(picture);
+  pictureContainer.appendChild(nameDiv);
 
   return pictureContainer;
 };
@@ -88,7 +98,7 @@ var candidatesRow = function(orderCandidates) {
   }
 
   var col = document.createElement('div');
-  col.className = 'col-lg-10 col-lg-offset-2 col-md-10 col-md-offset-2 col-sm-10 col-sm-offset-2 col-xs-10 col-xs-offset-2';
+  col.className = 'col-lg-10 col-lg-offset-2 col-md-10 col-md-offset-2 col-sm-12 col-xs-12';
   col.appendChild(row);
 
   var containerRow = document.createElement('div');
@@ -121,7 +131,7 @@ function invertColor(e) {
   for(var i = 0; i < children.length; ++i) {
     var child = children[i];
 
-    if(child.style.backgroundColor == color1) { child.style.backgroundColor = color5; }
+    if(child.style.backgroundColor == color1)      { child.style.backgroundColor = color5; }
     else if(child.style.backgroundColor == color2) { child.style.backgroundColor = color4; }
     else if(child.style.backgroundColor == color4) { child.style.backgroundColor = color2; }
     else if(child.style.backgroundColor == color5) { child.style.backgroundColor = color1; }
@@ -134,7 +144,7 @@ var questionCol = function(text) {
   quest.textContent = text[0];
 
   var col = document.createElement('div');
-  col.className = 'col-lg-2 col-md-2 col-sm-2 col-xs-2 questionMark';
+  col.className = 'col-lg-2 col-md-2 col-sm-12 col-xs-12 questionMark';
   col.setAttribute('val', 0);
   col.appendChild(quest);
   col.onclick = function (event) {
@@ -188,6 +198,7 @@ var answerCol = function(candidate, candidates) {
     if(candidates[candidate]["content"].length > 0) {
       var pop = setPopOver(candidates[candidate]);
       col.textContent = "*";
+      col.style.fontSize = "18px";
       col.appendChild(pop);
     }
 
@@ -211,7 +222,7 @@ var questionRow = function(question, orderCandidates) {
   }
 
   var answersCol = document.createElement('div');
-  answersCol.className = 'col-lg-10 col-md-10 col-sm-10 col-xs-10';
+  answersCol.className = 'col-lg-10 col-md-10 col-sm-12 col-xs-12';
   answersCol.appendChild(answersRow);
 
   /// Concatenate into one row
@@ -273,4 +284,37 @@ $(".btn-group > .btn").click(function(){
 
 $(function () {
     $('[data-toggle="popover"]').popover()
-})
+});
+
+function invertExampleColor(e) {
+
+  var rows = e.target.parentNode.nextElementSibling.children;
+  for(var i = 0; i < rows.length; ++i) {
+    var row = rows[i];
+
+    /// Color
+    var color = window.getComputedStyle(row.firstElementChild).backgroundColor;
+    if(color == color1)      { row.firstElementChild.style.backgroundColor = color5; }
+    else if(color == color5) { row.firstElementChild.style.backgroundColor = color1; }
+
+    /// Text
+    var value = row.firstElementChild.nextElementSibling.getAttribute('data-value');
+    var numbCandidat = row.firstElementChild.nextElementSibling.getAttribute('data-candidat');
+    if(value == 1) {
+      row.firstElementChild.nextElementSibling.setAttribute('data-value', 5);
+      row.firstElementChild.nextElementSibling.textContent = "Le candidat " + numbCandidat + " est d'accord avec la proposition";
+    }
+    else if(value == 5) {
+      row.firstElementChild.nextElementSibling.setAttribute('data-value', 1);
+      row.firstElementChild.nextElementSibling.textContent = "Le candidat " + numbCandidat + " est contre la proposition";
+    }
+  }
+};
+
+
+(function() {
+  var ex = document.getElementById('exampleMark');
+  ex.onclick = function (event) {
+    invertExampleColor(event);
+  }
+})();

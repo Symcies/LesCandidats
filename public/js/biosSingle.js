@@ -17,7 +17,7 @@ var listCurrentSituation = function(listPositions) {
   }
 
   var col = document.createElement('div');
-  col.className = "col-lg-12 col-md-12 col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2";
+  col.className = "col-lg-12 col-md-12 col-sm-12 col-xs-12 postes";
   col.style.marginLeft = "0px";
   col.appendChild(name);
   col.appendChild(list);
@@ -32,6 +32,7 @@ var listBiography = function(listBio) {
   for(var i = 0; i < listBio.length; ++i)
   {
       var paragraph = document.createElement('p');
+      paragraph.className = "para";
       paragraph.textContent = listBio[i];
       bioContainer.appendChild(paragraph);
   }
@@ -66,14 +67,14 @@ var loadBiographyHeader = function(bio) {
   title.textContent = bio['name'];
 
   var titleCol = document.createElement('div');
-  title.className = "col-lg-4 col-md-4 col-sm-4 col-xs-4";
+  title.className = "col-lg-4 col-md-4 col-sm-12 col-xs-12";
   titleCol.appendChild(title);
 
   var politicalParty = document.createElement("h3");
   politicalParty.textContent = bio['partyName'];
 
   var politicalPartyCol = document.createElement('div');
-  politicalPartyCol.className = 'col-lg-5 col-lg-offset-1 col-md-5 col-md-offset-1 col-sm-5 col-xs-5';
+  politicalPartyCol.className = 'col-lg-5 col-lg-offset-1 col-md-5 col-md-offset-1 col-sm-12 col-xs-12';
   politicalPartyCol.appendChild(politicalParty);
 
   var logo = document.createElement('img');
@@ -83,7 +84,7 @@ var loadBiographyHeader = function(bio) {
   logo.alt = bio['name'];
 
   var logoCol = document.createElement('div');
-  logoCol.className = 'col-lg-2 col-md-2 col-sm-3 col-xs-3';
+  logoCol.className = 'col-lg-2 col-md-2 col-sm-0 col-xs-0 logo';
   logoCol.appendChild(logo);
 
   var headerRow = document.createElement('div');
@@ -175,6 +176,7 @@ var loadBiographyFooter = function(bio) {
     if(bio['Sources'].hasOwnProperty(key)) {
       var link = document.createElement('a');
       link.textContent = key;
+      link.className = "sourceLink"
       link.href = bio['Sources'][key];
 
       var ul = document.createElement('ul');
@@ -191,7 +193,7 @@ var loadBiographyFooter = function(bio) {
 
   var sourceName = document.createElement('div');
   sourceName.className = "col-lg-2 col-lg-2 col-sm-2 col-xs-2 text-center";
-  sourceName.style.fontSize = "18px";
+  sourceName.style.fontSize = "20px";
   sourceName.textContent = "Sources";
 
   var sourcesRow = document.createElement('div');

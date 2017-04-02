@@ -9,6 +9,8 @@ var constructSurvey = function(userPreferences, totalNumberOfQuestions, surveyRe
     if      (totalNumberOfQuestions == "1") { totalNumberOfQuestions = 15; }
     else if (totalNumberOfQuestions == "2") { totalNumberOfQuestions = 20; }
     else if (totalNumberOfQuestions == "3") { totalNumberOfQuestions = 25; }
+    else if (totalNumberOfQuestions == "4") { totalNumberOfQuestions = 30; }
+    else                                    { totalNumberOfQuestions = 20; }
 
     var sumPreferences = 0;
     for(var key in userPreferences) {

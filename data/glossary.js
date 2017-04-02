@@ -45,7 +45,7 @@ var AME = [
 
 module.exports.listOfWords = {
   "CSG - Constribution Sociale Généralisée": CSG,
-  "CICE - Crédit d'Impôts pour la Compétitivité et l'Emploir": CICE,
+  "CICE - Crédit d'Impôt pour la Compétitivité et l'Emploi": CICE,
   "Retraite par Répartition / par Capitalisation": RPC,
   "Numerus Clausus": NC,
   "PMA - Procréation Médicalement assistée": PMA,

@@ -4,7 +4,7 @@ text-align: justify ;
 
 
 p {
-  font-size: 12px;
+  font-size: 16px;
 }
 
 .portrait a {
@@ -19,4 +19,18 @@ p {
 
 .contact {
   margin-top: 50px;
+}
+
+@media only screen and (max-width: 767px) {
+  .portrait div p {
+    font-size: 15px;
+  }
+
+  .contact h2 {
+    font-size: 26px;
+  }
+
+  .contact h4 {
+    font-size: 16px;
+  }
 }

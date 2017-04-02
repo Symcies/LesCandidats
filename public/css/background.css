@@ -9,28 +9,14 @@ body {
     min-height: 100%;
     font-family: 'Work Sans';
     color: white;
-    background: #c0392b;
-    background: -webkit-linear-gradient(left, #c0392b, #EF4836); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(right, #c0392b, yellow); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(right, #c0392b, yellow); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(to right, #952222, #E46967); /* Standard syntax */
+    background: #F64747;
+    background: -webkit-linear-gradient(left, #911f1f, #F64747); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(right, #911f1f, #F64747); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(right, #911f1f, #F64747); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to right, #911f1f, #F64747); /* Standard syntax */
 }
 
-/* Small resolution, without Marianne */
 
-@media (max-width: 1199px) {
-  #wrap {
-    height: auto;
-    padding-left: 0px;
-    min-height: 100%;
-    padding-bottom:50px;
-    padding-top: 10px;
-  }
-
-  #Marianne {
-   height: 0px;
-  }
-}
 
 /* Higher resoltuion */
 
@@ -53,5 +39,27 @@ body {
 
    margin-top: 0px;
    margin-left: -20px;
+  }
+}
+/* Small resolution, without Marianne */
+
+@media (max-width: 1199px) {
+  #wrap {
+    height: auto;
+    padding-left: 0px;
+    min-height: 100%;
+    padding-bottom:50px;
+    padding-top: 10px;
+  }
+
+  #Marianne {
+   height: 0px;
+  }
+}
+
+@media (max-width: 576px) {
+  #wrap {
+    margin-top: 0px;
+    padding-top: 0px;
   }
 }

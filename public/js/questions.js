@@ -32,7 +32,82 @@ var widget = {
 };
 
 //Survey.CustomWidgetCollection.Instance.addCustomWidget(widget);
+/*
+var myCss = {
+	"root": "1",
+	"header": "panel-heading",
+	"body": "panel-body",
+	"footer": "panel-footer",
+	"navigationButton": "button btn-lg",
+	"navigation": {
+		"complete": "1",
+		"prev": "2",
+		"next": "3"
+	},
+	"progress": "progress center-block",
+	"progressBar": "progress-bar",
+	"pageTitle": "ab",
+	"row": "BlockOfQuestions",
+	"question": {
+		"root": "6",
+		"title": "7",
+		"comment": "form-control",
+		"indent": 20
+	},
+	"error": {
+		"root": "alert alert-danger",
+		"icon": "glyphicon glyphicon-exclamation-sign",
+		"item": "8"
+	},
+	"checkbox": {
+		"root": "form-inline",
+		"item": "checkbox",
+		"other": "9"
+	},
+	"comment": "form-control",
+	"dropdown": "form-control",
+	"matrix": {
+		"root": "table table-striped"
+	},
+	"matrixdropdown": {
+		"root": "table"
+	},
+	"matrixdynamic": {
+		"root": "table",
+		"button": "button"
+	},
+	"multipletext": {
+		"root": "table",
+		"itemTitle": "10",
+		"itemValue": "form-control"
+	},
+	"radiogroup": {
+		"root": "form-inline",
+		"item": "radio",
+		"other": "11"
+	},
+	"rating": {
+		"root": "btn-group",
+		"item": "btn btn-default"
+	},
+	"text": "form-control",
+	"window": {
+		"root": "modal-content",
+		"body": "modal-body",
+		"header": {
+			"root": "modal-header panel-title",
+			"title": "pull-left",
+			"button": "glyphicon pull-right",
+			"buttonExpanded": "glyphicon pull-right glyphicon-chevron-up",
+			"buttonCollapsed": "glyphicon pull-right glyphicon-chevron-down"
+		}
+	}
+}
+*/
 
+var myCss = {
+  row : 'BlockOfQuestions',
+}
 
 questions["title"]        = "Découvrez votre candidat 2017";
 questions["requiredText"] = "";
@@ -43,12 +118,23 @@ questions["locale"] = "fr";
 var survey = new Survey.Model(questions);
 survey.showProgressBar = "bottom";
 
+var nameLastQuestion = questions["pages"][questions["pages"].length - 1]["questions"][0]["name"];
+
+function surveyValidateQuestion(s, options) {
+    if (options.name == nameLastQuestion) {
+      if(Object.keys(survey.data).length < 5) {
+        options.error = "Veuillez répondre à au moins 5 questions en tout";
+      }
+    }
+}
 
 
 $("#surveyContainer").Survey({
     model:survey,
+    css: myCss,
     showQuestionNumbers:"off",
-    onComplete:sendDataToServer
+    onComplete:sendDataToServer,
+    onValidateQuestion: surveyValidateQuestion
 });
 
 $(".panel-footer").click(function() {

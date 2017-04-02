@@ -1,18 +1,21 @@
-.panel-body {
-  min-height: 400px;
-  position: relative;
+.panel-heading {
+  margin-top: 20px;
 }
 
-.progress {
-  position: absolute;
-  bottom: 0px;
-  right: 10%;
-  left:10%;
-}
 
 h3 {
-  font-size: 30px;
+  font-size: 44px;
   text-align: center;
+}
+
+h4 {
+  font-size: 26px;
+  padding-bottom: 20px;
+}
+
+h5 {
+  font-size: 20px;
+  padding-bottom: 4px;
 }
 
 
@@ -20,8 +23,58 @@ h3 {
   background-color: transparent;
 }
 
-
-
 .panel-footer input {
   opacity: 1 !important;
 }
+
+.btn {
+  font-size: 20px;
+}
+
+#sq_page > div:first-child  {
+  min-height: 420px;
+  position: relative;
+  padding-bottom: 10px;
+}
+
+.radio, .checkbox {
+  padding-top: 4px;
+  padding-bottom: 4px;
+
+}
+
+span {
+  font-size: 16px;
+  margin-left: 20px !important;
+
+}
+
+ .blockOfQuestions {
+   padding-bottom: 30px;
+ }
+
+
+ @media (max-width: 767px) {
+   .panel-heading {
+     display: none;
+   }
+
+   h4 {
+     font-size: 36px;
+     margin-bottom: 30px;
+   }
+
+   span {
+     font-size: 15px;
+   }
+
+   .btn {
+     font-size: 26px;
+   }
+
+   .radio, .checkbox {
+     padding-top: 1px;
+     padding-bottom: 2px;
+
+   }
+ }

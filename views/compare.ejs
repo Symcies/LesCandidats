@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <% include partials/head %>
-<meta name="viewport" content="width=device-width, initial-scale=0.6, maximum-scale=0.6, user-scalable=no">
-<link rel="stylesheet" type="text/css" href="/css/title.css"></link>
-<link rel="stylesheet" type="text/css" href="/css/compare.css"></link>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.7, user-scalable=yes">
+<link rel="stylesheet" type="text/css" href="/css/title.css">
+<link rel="stylesheet" type="text/css" href="/css/compare.css">
 <body>
     <% include partials/navbar %>
 
   <div id="wrap">
 
     <div class="container">
-      <div class="row titleRow">
+      <div class="row titleRow" >
         <div class="col-lg-9 col-lg-offset-2 col-md-12 col-sm-12 col-xs-12 text-center">
           <h1>Comparaison des candidats</h1>
           <p>
@@ -19,44 +19,36 @@
         </div>
       </div>
 
-      <div class="row">
-        <div class="col-lg-9 col-lg-offset-2 col-md-12 col-sm-12 col-xs-12 text-center" id="explain">
-          <div class="row">
-            <div class='col-lg-1 col-md-1 col-sm-1 col-xs-1 col-lg-offset-3 col-md-offset-3 col-sm-offset-3 col-xs-offset-3 block' style="height: 40px; width:60px;">
-              <button class="btn btn-lg" type="button" data-toggle="popover" data-placement="bottom" data-trigger="hover" data-html="true" data-content="" data-original-title="" title="" style="background-color: rgb(22, 161, 1);"></button>
-            </div>
-            <div class='col-lg-6 col-md-6 col-sm-6 col-xs-6 exp'> Le candidat est d'accord avec la proposition
-            </div>
-          </div>
-          <div class="row">
-            <div class='col-lg-1 col-md-1 col-sm-1 col-xs-1 col-lg-offset-3 col-md-offset-3 col-sm-offset-3 col-xs-offset-3 block' style="height: 40px; width:60px;">
-              <button class="btn btn-lg" type="button" data-toggle="popover" data-placement="bottom" data-trigger="hover" data-html="true" data-content="" data-original-title="" title="" style="background-color: rgb(231, 165, 4);"></button>
-            </div>
-            <div class='col-lg-6 col-md-6 col-sm-6 col-xs-6 exp'> Le candidat a une proposition alternative
-            </div>
-          </div>
-          <div class="row">
-            <div class='col-lg-1 col-md-1 col-sm-1 col-xs-1  col-lg-offset-3 col-md-offset-3 col-sm-offset-3 col-xs-offset-3 block' style="height: 40px; width:60px;">
-              <button class="btn btn-lg" type="button" data-toggle="popover" data-placement="bottom" data-trigger="hover" data-html="true" data-content="" data-original-title="" title="" style="background-color: rgb(171, 22, 4);"></button>
-            </div>
-            <div class='col-lg-6 col-md-6 col-sm-6 col-xs-6 exp'> Le candidat est contre la proposition
-            </div>
-
-          </div>
-          <div class="row">
-          <div class='col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2' style="margin-top: 40px;">
-          Pour une lecture plus rapide et intuitive, sélectionner les positions qui vous importent. Cliquez sur chaque proposition pour que s'affiche celle que vous soutenez. Vous pourrez ainsi voir plus rapidement les candidats qui partagent votre opinion. En survolant certaines cases, vous trouverez la proposition du candidat.
-          </div>
+      <div class="row" id='tiRow'>
+        <div class='col-lg-4 col-lg-offset-1 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-9 col-xs-offset-1' id='exampleMark' style="margin-top: 25px">
+          <p>Cliquez sur la proposition pour voir qui partage votre opinion.</p>
         </div>
+        <div class="col-lg-6 col-lg-offset-1 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-9 col-xs-offset-1 text-center" id="explain">
+          <div class="row">
+            <div class='col-lg-1 col-lg-offset-0 col-md-2 col-md-offset-0  col-sm-1 col-sm-offset-2 col-xs-2 block' style="height: 40px; background-color: rgb(22, 161, 1);">
+            </div>
+            <div class='col-lg-10 col-md-10 col-sm-9 col-xs-10 exp' data-value="5" data-candidat="A"> Le candidat A est d'accord avec la proposition
+            </div>
+          </div>
+          <div class="row">
+            <div class='col-lg-1 col-lg-offset-0 col-md-2 col-md-offset-0 col-sm-1 col-sm-offset-2 col-xs-2 block' style="height: 40px; background-color: rgb(231, 165, 4);">
+            </div>
+            <div class='col-lg-10 col-md-10 col-sm-9 col-xs-10 exp' data-value="3" data-candidat="B"> Le candidat B a une proposition alternative
+            </div>
+          </div>
+          <div class="row">
+            <div class='col-lg-1 col-lg-offset-0 col-md-2 col-md-offset-0  col-sm-1 col-sm-offset-2 col-xs-2 block' style="height: 40px;  background-color: rgb(171, 22, 4);">
+              <button class="btn btn-lg" type="button" data-toggle="popover" data-placement="bottom" data-trigger="hover" data-html="true" data-content="L'étoile indique qu'une information est donnée sur la proposition du candidat" data-original-title="" title="">*</button>
+            </div>
+            <div class='col-lg-10 col-md-10 col-sm-9 col-xs-10 exp' data-value="1" data-candidat="C"> Le candidat C est contre la proposition
+            </div>
 
+          </div>
 
         </div>
       </div>
 
       <div class="row" id="compareRow">
-      </div>
-
-      <div class='col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12' id="fakeCol">
       </div>
 
     </div>

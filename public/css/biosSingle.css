@@ -9,7 +9,37 @@
 }
 
 #image {
-  height:250px;
+
   width: 250px;
+  height:auto;
   border-radius: 150px;
+}
+
+.para {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.sourceLink {
+  font-size: 14px;
+}
+
+@media only screen and (max-width: 800px) {
+  .modal-dialog {
+    margin-top: 100px;
+    margin-bottom: 100px;
+  }
+
+  .para {
+    font-size: 14px;
+  }
+
+  .logo img {
+    display: none;
+  }
+
+  .postes {
+    margin-bottom: 20px;
+  }
+
 }

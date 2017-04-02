@@ -1,10 +1,16 @@
 /* Title and text under*/
+ol li {
+  font-size: 16px;
+}
 
+ol {
+  padding-left: 100px;
+}
 
 
 /* Defines the margin of the choosing block */
 #testRows{
-
+  margin-top: 30px;
   margin-bottom: 50px;
 }
 
@@ -17,24 +23,28 @@
   margin-top: 3px;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
   .iconCol {
     padding-left:
   }
 }
 
+button {
+  z-index: 1 !important;
+}
 
 
 .themeText {
-  font-size: 18px;
+  font-size: 20px;
   margin-right: 0px;
   margin-left: 0px;
   margin-bottom: -8px;
 }
 
 .themeUnit {
-  margin-top: 15px;
-  margin-bottom: 10px;
+  margin-top: 10px;
+  margin-bottom: 6px;
+  max-width: 400px;
 }
 
 .textCol {
@@ -48,7 +58,7 @@
 
 
 #Slider .slider-selection {
-	background: #098767;
+	background: #395c8a;
 }
 
 #validationRow {
@@ -60,14 +70,7 @@
   color: black;
 }
 
-@media screen and (min-width: 768px) {
-  .modal:before {
-    display: inline-block;
-    vertical-align: middle;
-    content: " ";
-    height: 100%;
-  }
-}
+
 
 .modal-dialog {
   display: inline-block;
@@ -86,7 +89,10 @@
 #conceptDiv p {
   vertical-align:middle;
   display:table-cell;
-    font-size: 18px;
+  padding: 10px;
+  text-align: justify;
+  text-justify: inter-word;
+  font-size: 16px;
 
 }
 
@@ -124,6 +130,44 @@
   cursor: pointer;
 }
 
-.tooltip {
+tooltip {
   display: none;
+}
+
+@media screen and (min-width: 767px) {
+  .modal:before {
+    display: inline-block;
+    vertical-align: middle;
+    content: " ";
+    height: 100%;
+  }
+}
+
+@media (max-width: 370px) {
+  .iconCol {
+    display: none;
+  }
+}
+
+@media (max-width: 993px) {
+  .themeText span {
+    font-size: 18px;
+  }
+
+}
+
+
+@media (max-width: 767px) {
+  ol li {
+    font-size: 16px;
+    padding-top: 10px;
+  }
+
+  ol {
+    padding-left: 40px;
+  }
+
+  .themeText {
+    font-size: 20px;
+  }
 }

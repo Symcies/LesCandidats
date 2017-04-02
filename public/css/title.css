@@ -4,9 +4,21 @@
 }
 
 .titleRow h1 {
-  font-size: 40px;
+  font-size: 50px;
 }
 
 .titleRow p {
-  font-size: 18px;
+  font-size: 20px;
+}
+
+@media (max-width: 767px) {
+  .titleRow {
+    margin-top: 0px;
+    margin-bottom: 10px;
+  }
+
+  .titleRow h1 {
+    font-size: 40px;
+  }
+
 }

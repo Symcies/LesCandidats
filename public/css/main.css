@@ -7,9 +7,10 @@ body {
     background-image: linear-gradient(to right, rgba(149,34,34, 0.85), rgba(228,105,103, 0.85) ) /* Standard syntax */,  url("/img/background/Elysee1.jpg");
 
     background-repeat:  no-repeat ;
-    background-position:  left top;
+    background-position: top;
 
-    background-size:100% auto ;
+    background-size:cover ;
+
     / TODO;
     /background: #c0392b;
     /background: -webkit-linear-gradient(left, #c0392b, #EF4836); /* For Safari 5.1 to 6.0 */
@@ -18,7 +19,6 @@ body {
     /background: linear-gradient(to right, rgba(149,34,34, 0.2), rgba(228,105,103, 0.2) ); /* Standard syntax */
 
 }
-
 
 
 h1 {
@@ -90,4 +90,20 @@ a:hover {
 
 #test:hover {
   background: #395c8a;
+}
+
+
+
+
+@media (max-width: 991px) {
+  h1 {
+      margin-top: 20px;
+      margin-bottom: 50px;
+      font-size: 40px;
+  }
+
+  #secs {
+    display: none !important;
+  }
+
 }

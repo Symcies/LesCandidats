@@ -65,6 +65,8 @@ var retrieveQuestions = function(listIDs, surveyRender) {
         page["questions"] = processedQuestion;
         pages.push(page);
       }
+      var lastQuestion = pages[pages.length -1]["questions"].length;
+      pages[pages.length -1]["questions"][0]["value"] = true;
       surveyJSON["pages"] = pages;
       surveyRender(err, surveyJSON);
 

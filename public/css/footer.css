@@ -2,8 +2,9 @@
   width: 100%;
   background: #ecf0f1;
   color: #667fa0;
-
 }
+
+
 
 .footer2 {
   width: 100%;
@@ -20,4 +21,34 @@
 
 .animated p {
   font-size: 16px;
+}
+
+.animated li a {
+  font-size: 18px;
+}
+
+.animated h4 {
+  font-size: 20px;
+}
+
+
+@media only screen and (max-width: 767px)
+ {
+
+
+  .animated p {
+    font-size: 14px;
+  }
+
+  .animated li a {
+    font-size: 16px;
+  }
+
+  .animated h4 {
+    font-size: 18px;
+  }
+
+  .footer-brand {
+    display: none;
+  }
 }

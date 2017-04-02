@@ -49,7 +49,7 @@ var percentageRow = function(name, percentage) {
   text.textContent = "Avec près de " + (percentage).toFixed(1) + "% d'affinités, " + name + " est le candidat qui vous correspond le plus";
 
   var col = document.createElement('div');
-  col.className = 'col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1';
+  col.className = 'col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12';
   col.appendChild(container);
   col.appendChild(text);
 
@@ -77,7 +77,7 @@ var candidateRow = function(bio) {
   pictureContainer.appendChild(picture);
 
   var pictureCol = document.createElement('div');
-  pictureCol.className = "col-lg-3 col-lg-offset-2 col-md-3 col-md-offset-2 col-sm-3 col-sm-offset-2 col-xs-3 col-xs-offset-2";
+  pictureCol.className = "col-lg-3 col-lg-offset-2 col-md-3 col-md-offset-2 col-sm-3 col-sm-offset-2 col-xs-3";
   pictureCol.appendChild(pictureContainer);
 
   /// Second column
@@ -104,7 +104,7 @@ var candidateRow = function(bio) {
 
   /// Concatenate elements
   var nameCol = document.createElement('div');
-  nameCol.className = "col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-5 col-sm-offset-1 col-xs-5 col-xs-offset-1 text-center"
+  nameCol.className = "col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-5 col-sm-offset-2 col-xs-5 col-xs-offset-3 text-center"
   nameCol.id = "nameCol";
   nameCol.appendChild(siteContainer);
   nameCol.appendChild(biographieContainer);
@@ -142,7 +142,7 @@ var displayFirst = function(favoriteCandidate, percentage) {
   //var share = shareRow();
 
   var mainCol = document.createElement('div');
-  mainCol.className = 'col-lg-9 col-lg-offset-2';
+  mainCol.className = 'col-lg-9 col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 col-xs-12';
   mainCol.id = "favoriteCandidateCol";
   mainCol.appendChild(header);
   mainCol.appendChild(candidate);
@@ -179,12 +179,13 @@ jQuery(document).ready(function ($) {
 
   $('.rrssb-buttons').rrssb({
     // required:
-    title: 'Mon candidat favori est '+ userAnswers[0],
-    url: 'LesCandidats2017.fr',
+
+    title: 'Les Candidasts 2017',
+    url: 'http://www.lescandidats2017.fr',
 
     // optional:
     description: "Grâce aux candidats 2017, j'ai trouvé le candidat qui me correspond le plus",
-    emailBody: 'Usually email body is just the description + url, but you can customize it if you want',
+    emailBody: '',
     image: '',
   });
 });

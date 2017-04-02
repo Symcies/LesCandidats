@@ -1,6 +1,7 @@
 .row {
   text-align: justify;
   text-justify: inter-word;
+  font-size: 16px;
 }
 
 .block {
@@ -15,7 +16,7 @@ blockquote{
   position: relative;
 
   /*Font*/
-  font-size: 30px;
+  font-size: 34px;
   line-height: 1.2;
   text-align: justify;
 
@@ -38,4 +39,14 @@ blockquote::before{
 blockquote::after{
   /*Reset to make sure*/
   content: "";
+}
+
+@media only screen and (max-width: 767px) {
+  .row {
+    font-size: 15px;
+  }
+
+  blockquote{
+    font-size: 22px;
+  }
 }

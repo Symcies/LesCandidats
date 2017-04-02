@@ -17,7 +17,7 @@ var loadSlider = function(theme) {
   slider.setAttribute('data-slider-min', '1');
   slider.setAttribute('data-slider-max', '20');
   slider.setAttribute('data-slider-step', '1');
-  slider.setAttribute('data-slider-value', '7');
+  slider.setAttribute('data-slider-value', '4');
 
   var sliderRow = document.createElement('div');
   sliderRow.appendChild(slider);
@@ -95,7 +95,7 @@ function addTheme(theme) {
 (function initThemes(){
   var NumberOfThemes = listOfThemes.length;
   var mainCol = document.createElement('div');
-  mainCol.className = 'col-lg-9 col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12 col-sm-offset-0 col-xs-10 col-xs-offset-1';
+  mainCol.className = 'col-lg-9 col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12 col-sm-offset-0 col-xs-12';
 
   for(var i = 0; i < NumberOfThemes; ++i)
   {
@@ -110,9 +110,10 @@ function addTheme(theme) {
 
 
 $('.slid').slider({
+  tooltip_position:'bottom',
 	formatter: function(value) {
 
-		//return 'Valeur: ' + value;
+		return 'Valeur: ' + value;
 	}
 });
 

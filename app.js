@@ -140,14 +140,16 @@ app.post('/answers', function(req, res) {
 
 });
 
+/*
 var examples = {
    "Travail" : {
      "JLM": 5,
      "FF": 7,
+     "BH": 6,
      "topAnswer": 7,
      "NbOfQuestionsAnswered": 2,
    },
-   "Société": {
+   "Etat, Institutions et Justice": {
      "BH": 19,
      "NA": 2,
      "JLM": 8,
@@ -159,7 +161,7 @@ var examples = {
    "Santé": {
    },
    "Sécurité": {
-     "EM": 7,
+     "EM": 1,
      "topAnswer":7,
      "NbOfQuestionsAnswered": 3
    },
@@ -180,9 +182,12 @@ var examples = {
 };
 
 
+
 app.get('/answers_test', function(req, res) {
   res.render('answers.ejs', {results:examples, listOfCandidates: JSON.stringify(biographies.listOfCandidates)});
 });
+*/
+
 
 app.get('*', function(req, res) {
   res.status(404);
