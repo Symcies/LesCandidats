@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<title>Les Candidats 2017 | Découvrer les candidats à l'élection présidentielle 2017, leurs programmes ainsi que ceux qui partagent vos opinions</title>
 <% include partials/head %>
 <link rel="stylesheet" type="text/css" href="/css/main.css">
 <body>
@@ -11,32 +12,54 @@
 
             <h1>Les Candidats 2017</h1>
 
-            <h2>Plus que</h2>
-            <div id="clockdiv">
-              <div>
-                <span class="days"></span>
-                <div class="smalltext">Jours</div>
-              </div>
-              <div>
-                <span class="hours"></span>
-                <div class="smalltext">Heures</div>
-              </div>
-              <div>
-                <span class="minutes"></span>
-                <div class="smalltext">Minutes</div>
-              </div>
-              <div id="secs">
-                <span class="seconds"></span>
-                <div class="smalltext">Secondes</div>
-              </div>
-            </div>
-            <p></p>
+      </div>
+    </div>
 
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 col-lg-offset-4 col-md-8 col-md-offset-2 col-sm-12 col-xs-12 text-center">
+          <a href="/test2">
+          <div class="sitemap">
+            <b style="font-size: 30px;">Nouveau</b> : Toujours indécis?
+          </div>
+          </a>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-4 col-lg-offset-2 col-md-4 col-md-offset-2 col-sm-12 col-xs-12 text-center">
             <a href="/test">
-            <div id="test">
-              Découvrez votre candidat
+            <div class="sitemap">
+              Trouvez votre candidat
             </div>
             </a>
+        </div>
+        <div class="col-lg-4 col-lg-offset-0 col-md-4 col-md-offset-0 col-md-offset-2 col-sm-12 col-xs-12 text-center">
+
+            <a href="/compare">
+              <div class="sitemap">
+                Comparez les programmes
+              </div>
+            </a>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-4 col-lg-offset-2 col-md-4 col-md-offset-2 col-sm-12 col-xs-12 text-center">
+            <a href="/biographies">
+              <div class="sitemap">
+                Découvrez les biographies
+              </div>
+            </a>
+          </div>
+          <div class="col-lg-4 col-lg-offset-0 col-md-4 col-md-offset-0 col-md-offset-2 col-sm-12 col-xs-12 text-center">
+
+            <a href="/glossary">
+              <div class="sitemap">
+                Déchiffrez ce qu'ils disent
+              </div>
+            </a>
+
+        </div>
       </div>
     </div>
   </div>
@@ -52,6 +75,24 @@
 
     ga('create', 'UA-96356155-1', 'auto');
     ga('send', 'pageview');
+  </script>
+  <script>
+    window.fbAsyncInit = function() {
+      FB.init({
+        appId      : '181479882363500',
+        xfbml      : true,
+        version    : 'v2.8'
+      });
+      FB.AppEvents.logPageView();
+    };
+
+    (function(d, s, id){
+       var js, fjs = d.getElementsByTagName(s)[0];
+       if (d.getElementById(id)) {return;}
+       js = d.createElement(s); js.id = id;
+       js.src = "//connect.facebook.net/en_US/sdk.js";
+       fjs.parentNode.insertBefore(js, fjs);
+     }(document, 'script', 'facebook-jssdk'));
   </script>
 
 
