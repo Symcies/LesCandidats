@@ -12,8 +12,8 @@ var CICE =
 ]
 
 var RPC = [
-  "Dans un système de retraite par répartition, les cotisations, versées par les actifs, sont immédiatement utilisées pour payer les pensions des retraités. Ce système repose donc sur une forte solidarité entre générations. Son équilibre financier dépend du rapport entre le nombre de cotisants et celui des retraités. Les taux de croissance des revenus et de la population active occupée constituent dès lors les deux principaux facteurs d’évolution.",
-  "Dans un régime de retraite par capitalisation, la logique est différente : les actifs d’aujourd’hui épargnent en vue de leur propre retraite. Les cotisations font l’objet de placements financiers ou immobiliers, dont le rendement dépend essentiellement de l’évolution des taux d’intérêt. Cette capitalisation peut être effectuée dans un cadre individuel ou collectif (ex : accords d’entreprise), ce qui peut permettre de réintroduire une dose de solidarité.",
+  "Retraite par répartition : les cotisations, versées par les actifs, sont immédiatement utilisées pour payer les pensions des retraités. Ce système repose sur une forte solidarité entre générations. Son équilibre financier dépend du rapport entre le nombre de cotisants et celui des retraités. Les taux de croissance des revenus et de la population active occupée constituent les deux principaux facteurs d’évolution.",
+  "Retraite par capitalisation : les actifs d’aujourd’hui épargnent en vue de leur propre retraite. Les cotisations font l’objet de placements financiers ou immobiliers, dont le rendement dépend essentiellement de l’évolution des taux d’intérêt. Cette capitalisation peut être effectuée dans un cadre individuel ou collectif (ex : accords d’entreprise), ce qui peut permettre de réintroduire une dose de solidarité.",
 ]
 
 var NC = [

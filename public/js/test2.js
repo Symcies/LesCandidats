@@ -138,21 +138,82 @@ function invertColor(e) {
   }
 };
 
+function displaySelection1(e) {
+  var parent = e.target.parentNode;
+  parent.firstChild.style.height = "20px";
+  parent.firstChild.style.fontSize = "15px";
+  parent.className = 'col-lg-2 col-md-2 col-sm-12 col-xs-12 questionMark';
+  parent.parentNode.removeChild(parent.parentNode.childNodes[2]);
+  parent.parentNode.removeChild(parent.parentNode.childNodes[1]);
+  parent.nextSibling.style.display = "inline";
+};
 
-var questionCol = function(text) {
-  var quest = document.createElement('p');
-  quest.textContent = text[0];
+function displaySelection2(e) {
+  var parent = e.target.parentNode;
+  parent.firstChild.style.height = "20px";
+  parent.firstChild.style.fontSize = "15px";
+  parent.className = 'col-lg-2 col-md-2 col-sm-12 col-xs-12 questionMark';
+  parent.nextSibling.style.display = "inline";
+  parent.parentNode.removeChild(parent.parentNode.childNodes[1]);
+  parent.parentNode.removeChild(parent.parentNode.childNodes[0]);
+};
 
-  var col = document.createElement('div');
-  col.className = 'col-lg-2 col-md-2 col-sm-12 col-xs-12 questionMark';
-  col.setAttribute('val', 0);
-  col.appendChild(quest);
-  col.onclick = function (event) {
+var questionCols = function(text) {
+  /// First col
+  var quest1 = document.createElement('p');
+  quest1.textContent = text[0];
+  quest1.style.height = "48px";
+
+  var col1 = document.createElement('div');
+  col1.className = 'col-lg-4 col-md-4 col-sm-5 col-xs-5 col-lg-offset-2 col-md-offset-2 questionMark';
+  col1.setAttribute('val', 0);
+  col1.appendChild(quest1);
+
+  $(col1).one('click', function(event) {
+    displaySelection1(event);
+    invertColor(event);
+    invertName(event, text);
+  })
+
+  col1.onclick = function (event) {
     invertColor(event);
     invertName(event, text);
   }
-  return col;
-}
+
+  /// Second col
+  var ppp = document.createElement('p');
+  ppp.textContent = '\u2194';
+  ppp.style.fontSize = "24px";
+
+  var col2 = document.createElement("div");
+  col2.className = 'col-lg-1 col-md-1 col-sm-1 col-xs-1 text-center';
+  col2.style.paddingRight = "0px";
+  col2.style.paddingLeft = "0px";
+  col2.appendChild(ppp);
+
+
+  /// Third col
+  var quest3 = document.createElement('p');
+  quest3.textContent = text[1];
+  quest3.style.height = "48px";
+
+  var col3 = document.createElement('div');
+  col3.className = 'col-lg-4 col-md-4 col-sm-5 col-xs-5 questionMark';
+  col3.setAttribute('val', 0);
+  col3.appendChild(quest3);
+  $(col3).one('click', function(event) {
+    displaySelection2(event);
+    invertName(event, text);
+  })
+  col3.onclick = function (event) {
+    invertColor(event);
+    invertName(event, text);
+
+  }
+
+
+  return [col1, col2, col3];
+};
 
 /// Answers part
 
@@ -214,7 +275,7 @@ var questionRow = function(question, orderCandidates) {
   var answersRow = document.createElement('div');
   answersRow.className = 'row';
 
-  var questCol = questionCol(question['question']);
+  var questCols = questionCols(question['question']);
 
   for(var i = 0; i < orderCandidates.length; ++i) {
     var ansCol = answerCol(orderCandidates[i], question["candidates"]);
@@ -222,13 +283,17 @@ var questionRow = function(question, orderCandidates) {
   }
 
   var answersCol = document.createElement('div');
-  answersCol.className = 'col-lg-10 col-md-10 col-sm-12 col-xs-12';
+  answersCol.className = 'col-lg-10 col-md-10 col-sm-12 col-xs-12 answersCol';
+  answersCol.style.display = "none";
   answersCol.appendChild(answersRow);
 
   /// Concatenate into one row
   var row = document.createElement('div');
   row.className = 'row';
-  row.appendChild(questCol);
+  row.style.minHeight = "50px";
+  row.appendChild(questCols[0]);
+  row.appendChild(questCols[1]);
+  row.appendChild(questCols[2]);
   row.appendChild(answersCol);
 
   return row;
@@ -285,36 +350,3 @@ $(".btn-group > .btn").click(function(){
 $(function () {
     $('[data-toggle="popover"]').popover()
 });
-
-function invertExampleColor(e) {
-
-  var rows = e.target.parentNode.nextElementSibling.children;
-  for(var i = 0; i < rows.length; ++i) {
-    var row = rows[i];
-
-    /// Color
-    var color = window.getComputedStyle(row.firstElementChild).backgroundColor;
-    if(color == color1)      { row.firstElementChild.style.backgroundColor = color5; }
-    else if(color == color5) { row.firstElementChild.style.backgroundColor = color1; }
-
-    /// Text
-    var value = row.firstElementChild.nextElementSibling.getAttribute('data-value');
-    var numbCandidat = row.firstElementChild.nextElementSibling.getAttribute('data-candidat');
-    if(value == 1) {
-      row.firstElementChild.nextElementSibling.setAttribute('data-value', 5);
-      row.firstElementChild.nextElementSibling.textContent = "Le candidat " + numbCandidat + " est d'accord avec la proposition";
-    }
-    else if(value == 5) {
-      row.firstElementChild.nextElementSibling.setAttribute('data-value', 1);
-      row.firstElementChild.nextElementSibling.textContent = "Le candidat " + numbCandidat + " est contre la proposition";
-    }
-  }
-};
-
-
-(function() {
-  var ex = document.getElementById('exampleMark');
-  ex.onclick = function (event) {
-    invertExampleColor(event);
-  }
-})();

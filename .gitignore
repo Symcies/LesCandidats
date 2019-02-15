@@ -1,0 +1,7 @@
+node_modules/
+database/mongodb-key.js
+security/
+data/
+ubuntu@ec2-52-37-180-94.us-west-2.compute.amazonaws.com
+app2/
+app2.zip

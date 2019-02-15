@@ -64,10 +64,6 @@ app.get('/analyse', function (req, res) {
   res.render('analyse.ejs');
 });
 
-app.get('/info', function(req, res) {
-  res.render('info.ejs', {info: infoContent.info});
-});
-
 app.get('/team', function(req, res) {
   res.render('team.ejs');
 })
@@ -86,6 +82,10 @@ app.get('/sources', function (req, res) {
 
 app.get('/test', function (req, res) {
   res.render('test.ejs', {listOfThemes: themes.listOfThemes});
+});
+
+app.get('/test2', function (req, res) {
+  res.render('test2.ejs', {comparison: compare.comparison, listOfCandidates: JSON.stringify(biographies.listOfCandidates)});
 });
 
 app.get('/compare', function (req, res) {
@@ -140,7 +140,7 @@ app.post('/answers', function(req, res) {
 
 });
 
-/*
+
 var examples = {
    "Travail" : {
      "JLM": 5,
@@ -186,7 +186,7 @@ var examples = {
 app.get('/answers_test', function(req, res) {
   res.render('answers.ejs', {results:examples, listOfCandidates: JSON.stringify(biographies.listOfCandidates)});
 });
-*/
+
 
 
 app.get('*', function(req, res) {

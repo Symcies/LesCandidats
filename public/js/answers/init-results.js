@@ -67,3 +67,7 @@ $("#themeResults").click(function(){
 $("#conceptDiv").click(function(){
   window.location.href="/concept";
 });
+
+$("#indecis").click(function(){
+  window.location.href="/test2";
+});

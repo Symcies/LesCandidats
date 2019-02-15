@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<title>Les Candidats 2017 | Biographies des candidats à l'élection présidentielle 2017</title>
 <% include partials/head %>
 <link rel="stylesheet" type="text/css" href="/css/title.css">
 <link rel="stylesheet" type="text/css" href="/css/bios.css">
@@ -39,6 +40,24 @@
     ga('create', 'UA-96356155-1', 'auto');
     ga('send', 'pageview');
 
+  </script>
+  <script>
+    window.fbAsyncInit = function() {
+      FB.init({
+        appId      : '181479882363500',
+        xfbml      : true,
+        version    : 'v2.8'
+      });
+      FB.AppEvents.logPageView();
+    };
+
+    (function(d, s, id){
+       var js, fjs = d.getElementsByTagName(s)[0];
+       if (d.getElementById(id)) {return;}
+       js = d.createElement(s); js.id = id;
+       js.src = "//connect.facebook.net/en_US/sdk.js";
+       fjs.parentNode.insertBefore(js, fjs);
+     }(document, 'script', 'facebook-jssdk'));
   </script>
 
 

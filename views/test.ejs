@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<title>Les Candidats 2017 | Questionnaire personnalisé pour découvrir le candidat à l'élection présidentielle qui se partage le plus votre opinion</title>
 <% include partials/head %>
 <link rel="stylesheet" type="text/css" href="/css/title.css">
 <link rel="stylesheet" type="text/css" href="/css/test.css">
@@ -14,8 +15,9 @@
 
     <div class="container" style="margin-bottom: 10px;">
       <div class="row titleRow">
-        <div class="col-lg-9 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-12 col-xs-12 text-center">
+        <div class="col-lg-7 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-12 col-xs-12 text-center">
           <h1>Votre Candidat 2017</h1>
+          <p>Découvrez le candidat qui partage votre opinion grâce à un questionnaire personnalisé dont les questions s'adaptent à vos préférences.</p>
         </div>
       </div>
     </div>
@@ -26,7 +28,7 @@
           <ol>
             <li>Sélectionnez l'importance que vous accordez à chaque thème en déplacant le curseur.</li>
             <li>Sélectionnez le nombre de questions auxquelles vous souhaitez répondre.</li>
-            <li>Découvrez votre candidat.</li>
+            <li>Découvrez votre candidat grâce à un test personnalisé.</li>
           </ol>
         </div>
       </div>
@@ -122,7 +124,25 @@
       ga('create', 'UA-96356155-1', 'auto');
       ga('send', 'pageview');
 
-      </script>
+    </script>
+    <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '181479882363500',
+          xfbml      : true,
+          version    : 'v2.8'
+        });
+        FB.AppEvents.logPageView();
+      };
+
+      (function(d, s, id){
+         var js, fjs = d.getElementsByTagName(s)[0];
+         if (d.getElementById(id)) {return;}
+         js = d.createElement(s); js.id = id;
+         js.src = "//connect.facebook.net/en_US/sdk.js";
+         fjs.parentNode.insertBefore(js, fjs);
+       }(document, 'script', 'facebook-jssdk'));
+    </script>
 
 
 </body>
